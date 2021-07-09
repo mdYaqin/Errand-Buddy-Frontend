@@ -28,13 +28,13 @@ class App extends React.Component {
           <SiteHeader /> 
           
           <Switch>
-            <Route path="/home" component={Home} />
-            <Route path="/buddy/show" component={ShowErrands} />
-            <Route path="/register" component={Register} />
-            <Route path="/login" component={Login} />
-            <Route path="/buddy/accept-errands" component={AcceptErrands} />
-            <Route path="/buddy/completed-errands" component={CompletedErrands} />
-            <Route path="/buddy/buddy-dashboard" component={BuddyDashboard} />
+            <Route path="/buddy/:id/completed-errands" component={CompletedErrands} exact/>
+            <Route path="/buddy/:id/accept-errands" component={AcceptErrands} exact/>
+            <Route path="/buddy/buddy-dashboard" component={BuddyDashboard} exact/>
+            <Route path="/buddy/:id" component={ShowErrands} exact/>
+            <Route path="/home" component={Home} exact />
+            <Route path="/register" component={Register} exact/>
+            <Route path="/login" component={Login} exact/>
             <Home />
             
           </Switch>

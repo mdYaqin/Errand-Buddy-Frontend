@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-export class Accept_errands extends Component {
-  render() {
+function Accept_errands(props) {
+     console.log(props, 12345)
+  
     return (
       
 <div>
@@ -12,7 +13,7 @@ export class Accept_errands extends Component {
   <hr/>
   <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
   <button type="button" class="btn btn-success">
-            <Link to="/buddy/completed-errands" className="navbar-item" href="">Item delivered</Link>
+            <Link to={`/buddy/${props.match.params.id}/completed-errands`} className="navbar-item" href="">Item delivered</Link>
             </button>
 </div>
 
@@ -33,6 +34,6 @@ export class Accept_errands extends Component {
       </div>
     );
   }
-}
+
 
 export default Accept_errands;

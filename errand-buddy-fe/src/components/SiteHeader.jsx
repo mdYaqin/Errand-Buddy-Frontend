@@ -32,29 +32,7 @@ class SiteHeader extends React.Component {
         </button>
         <div id="navb" class="navbar-collapse collapse hide">
           <ul class="navbar-nav ml-auto">
-            <div class="dropdown">
-              <button
-                class="btn btn-primary dropdown-toggle "
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                Categories
-              </button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="/#">
-                  Grocery
-                </a>
-                <a class="dropdown-item" href="/#">
-                  Pick-up
-                </a>
-                <a class="dropdown-item" href="/#">
-                  Others
-                </a>
-              </div>
-            </div>
+           
             <button type="button" class="btn btn-warning">
               Find a Buddy
             </button>

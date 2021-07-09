@@ -63,7 +63,7 @@ export class Completed_errands extends Component {
           id="rating-star-5"
         >
           <i class="fa fa-star" aria-hidden="true"></i>
-        </button>
++        </button>
 
         <div class="form-group">
           <label class="control-label col-sm-2" for="comment">
