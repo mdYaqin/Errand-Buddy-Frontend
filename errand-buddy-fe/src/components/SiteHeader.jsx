@@ -7,13 +7,14 @@ class SiteHeader extends React.Component {
   render() {
     return (
       <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
-        <a class="navbar-brand" href="#">
-          Errand Buddy
+        
+        <a class="navbar-brand" href="/#">
+          Errand Buddy <i className="fab fa-typo3"></i>
         </a>
 
        
 
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/#">
         <Link to="/home" className="navbar-item" href="">Home</Link>
         
         </a>
@@ -33,7 +34,7 @@ class SiteHeader extends React.Component {
           <ul class="navbar-nav ml-auto">
             <div class="dropdown">
               <button
-                class="btn btn-secondary dropdown-toggle "
+                class="btn btn-primary dropdown-toggle "
                 type="button"
                 id="dropdownMenuButton"
                 data-toggle="dropdown"
@@ -43,13 +44,13 @@ class SiteHeader extends React.Component {
                 Categories
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/#">
                   Grocery
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/#">
                   Pick-up
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="/#">
                   Others
                 </a>
               </div>
@@ -61,13 +62,13 @@ class SiteHeader extends React.Component {
 
           <ul class="nav navbar-nav">
             <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span class="fas fa-user"> <Link to="/register" className="navbar-item" href="/register">Sign up</Link></span>
+            <a class="nav-link" href="/#">
+              <span class="fas fa-user"> <Link to="/register" className="navbar-item" href="/register"><strong>Sign up</strong></Link></span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
-              <span class="fas fa-sign-in-alt">  <Link to="/login" className="navbar-item">Login</Link></span>
+              <a class="nav-link" href="/#">
+              <span class="fas fa-sign-in-alt"> <Link to="/login" className="navbar-item"><strong>Login</strong></Link></span>
                
               </a>
             </li>

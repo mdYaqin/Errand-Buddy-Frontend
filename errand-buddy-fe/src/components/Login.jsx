@@ -30,23 +30,12 @@ export class Login extends Component {
               <button class="btn btn-primary mt-4 signup">Login</button>
               <div class="d-flex justify-content-center mt-4">
                 {" "}
-                <span class="social">
-                  <i class="fa fa-google"></i>
-                </span>{" "}
-                <span class="social">
-                  <i class="fa fa-facebook"></i>
-                </span>{" "}
-                <span class="social">
-                  <i class="fa fa-twitter"></i>
-                </span>{" "}
-                <span class="social">
-                  <i class="fa fa-linkedin"></i>
-                </span>{" "}
+               
               </div>
               <div class="text-center mt-4">
                 {" "}
                 <span>Not a member?</span>{" "}
-                <a href="#" class="text-decoration-none">
+                <a href="/#" class="text-decoration-none">
                   Register
                 </a>{" "}
               </div>

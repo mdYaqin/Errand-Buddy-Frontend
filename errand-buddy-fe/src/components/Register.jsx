@@ -60,7 +60,7 @@ function Register() {
             <div class="text-center mt-4">
               {" "}
               <span>Already a member?</span>{" "}
-              <a href="#" class="text-decoration-none">
+              <a href="/#" class="text-decoration-none">
                 Login
               </a>{" "}
             </div>
