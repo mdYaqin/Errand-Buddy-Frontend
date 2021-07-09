@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export class Show_errands extends Component {
   render() {
@@ -17,7 +18,7 @@ export class Show_errands extends Component {
               Name : Mr A <br /> Item : 1 Qty of Bread
             </p>
             <button type="button" class="btn btn-success">
-              Click to accept
+            <Link to="/buddy/accept-errands" className="navbar-item" href="">Click to accept</Link>
             </button>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -18,7 +19,7 @@ const Home = () => {
                 Name : Mr A <br /> Item : 1 Qty of Bread
               </p>
               <button type="button" class="btn btn-success">
-                Click for detail
+              <Link to="/buddy/show" className="navbar-item" href="">Click for details</Link>
               </button>
             </div>
           </div>
@@ -37,7 +38,7 @@ const Home = () => {
                 Name : Mr A <br /> Item : 1 Qty of Bread
               </p>
               <button type="button" class="btn btn-success">
-                Click for detail
+              <Link to="/buddy/show" className="navbar-item" href="">Click for details</Link>
               </button>
             </div>
           </div>
@@ -56,7 +57,7 @@ const Home = () => {
                 Name : Mr A <br /> Item : 1 Qty of Bread
               </p>
               <button type="button" class="btn btn-success">
-                Click for detail
+              <Link to="/buddy/show" className="navbar-item" href="">Click for details</Link>
               </button>
             </div>
           </div>
@@ -76,7 +77,7 @@ const Home = () => {
                 Name : Mr A <br /> Item : 1 Qty of Bread
               </p>
               <button type="button" class="btn btn-success">
-                Click for detail
+              <Link to="/buddy/show" className="navbar-item" href="">Click for details</Link>
               </button>
             </div>
           </div>
@@ -95,7 +96,7 @@ const Home = () => {
                 Name : Mr A <br /> Item : 1 Qty of Bread
               </p>
               <button type="button" class="btn btn-success">
-                Click for detail
+              <Link to="/buddy/show" className="navbar-item" href="">Click for details</Link>
               </button>
             </div>
           </div>
@@ -114,7 +115,7 @@ const Home = () => {
                 Name : Mr A <br /> Item : 1 Qty of Bread
               </p>
               <button type="button" class="btn btn-success">
-                Click for detail
+              <Link to="/buddy/show" className="navbar-item" href="">Click for details</Link>
               </button>
             </div>
           </div>
@@ -134,7 +135,7 @@ const Home = () => {
                 Name : Mr A <br /> Item : 1 Qty of Bread
               </p>
               <button type="button" class="btn btn-success">
-                Click for detail
+              <Link to="/buddy/show" className="navbar-item" href="">Click for details</Link>
               </button>
             </div>
           </div>

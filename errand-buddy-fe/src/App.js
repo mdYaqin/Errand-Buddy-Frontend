@@ -28,6 +28,7 @@ class App extends React.Component {
           <SiteHeader /> 
           
           <Switch>
+            <Route path="/home" component={Home} />
             <Route path="/buddy/show" component={ShowErrands} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />

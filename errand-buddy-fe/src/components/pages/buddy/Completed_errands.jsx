@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export class Completed_errands extends Component {
   render() {
     return (
       <div class="form-group" id="rating-ability-wrapper">
+        
         <label class="control-label" for="rating">
           <span class="field-label-header">
             How would you rate your buddy services?*
@@ -69,8 +71,15 @@ export class Completed_errands extends Component {
           </label>
           <div class="col-sm-10">
             <textarea class="form-control" rows="5" id="comment"></textarea>
+            <button type="button" class="btn btn-warning">
+          Submit
+            </button>
           </div>
         </div>
+        <button type="button" class="btn btn-warning">
+            <Link to="/buddy/buddy-dashboard" className="navbar-item" href="">My Profile</Link>
+            </button>
+
       </div>
     );
   }
