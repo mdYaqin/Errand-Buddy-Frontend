@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import arrData from "../../../Data"
+import Layout from '../../Layout'
 
 function Show_errands (props) {
 
@@ -8,6 +9,8 @@ function Show_errands (props) {
   //  console.log(props.location.data.e, "sasa")
     return (
       <div class="col-lg-12">
+       <Layout title="Show" description="Make extra $  ">
+       </Layout>
         <div class="card" style={{ width: `38rem` }}>
           <img
             src={props.location.state.e.image}
@@ -25,6 +28,7 @@ function Show_errands (props) {
             </button>
           </div>
         </div>
+       
       </div>
     );
   }

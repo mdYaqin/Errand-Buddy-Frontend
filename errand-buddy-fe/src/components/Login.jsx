@@ -1,9 +1,68 @@
 import React, { Component } from "react";
+import { useState } from "react";
+import { Link} from "react-router-dom";
+import Layout from './Layout'
 
-export class Login extends Component {
-  render() {
+
+
+const Login = () => {
+
+  const [values, setValues] = useState({
+      
+    email: '',
+    password: '',
+    error: '',
+    loading: false,
+    redirectToReferer: false,
+
+  })
+
+  const {email, password, loading, error, redirectToReferer} = values
+
+  const handleChange = name => event => {
+    setValues({...values, error: false, [name]: event.target.value})
+
+  }
+
+
+
+  const clickSubmit = (event) => {
+    event.preventDefault()
+    setValues({...values, error: false, loading:true})
+    Login({ email: email, password: password})
+    .then(data => {
+      if (data.error) {
+        setValues({...values, error:data.error, loading:false})
+      } else {
+        setValues({
+          ...values, 
+          redirectToReferer: true
+
+        
+        })
+      }
+    })
+
+
+  }
+
+  const showError = () => {
+    <div className="alert alert-danger" style={{display: error ? '' : 'none'}}>
+      {error}
+    </div>
+  }
+
+  // const showSuccess = () => {
+  //   <div className="alert alert-info" style={{display: success ? '' : 'none'}}>
+  //     New account is created. Please <Link to="/Login">Login</Link>
+  //   </div>
+  // }
+
+
+  
     return (
       <div class="container mt-5 mb-5">
+        <Layout title="Welcome back Buddy!" description="  "></Layout>
         <div class="row d-flex align-items-center justify-content-center">
           <div class="col-md-6">
             <div class="card px-5 py-5">
@@ -14,7 +73,7 @@ export class Login extends Component {
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="User name or Email address"
+                  placeholder="Email address"
                 />{" "}
               </div>
               <div class="form-input">
@@ -45,6 +104,6 @@ export class Login extends Component {
       </div>
     );
   }
-}
+
 
 export default Login;

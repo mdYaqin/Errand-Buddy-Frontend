@@ -1,10 +1,13 @@
 import React, {useState} from "react";
 import { Link } from "react-router-dom";
 import arrData from '../Data'
+import Layout from './Layout'
 
 const Home = () => {
     const [data, setData] = useState(arrData)
-  return (
+  return (  
+    <>
+  <Layout title="Errand Buddy" description="You rest we do"></Layout>
     <div class="container mx-auto mt-4">
       <div class="row">
           {data.map(e => (
@@ -40,9 +43,11 @@ const Home = () => {
           ))}
 
         
-        
         </div>
-      </div>
+        </div>
+        
+        </>
+    
   )
 };
 

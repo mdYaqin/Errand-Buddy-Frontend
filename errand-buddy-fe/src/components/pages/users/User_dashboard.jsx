@@ -3,11 +3,11 @@ import Layout from '../../Layout'
 import {isAuthenticated} from "../../auth"
 import {Link} from 'react-router-dom'
 
-const Buddy_dashboard = () => {
+const UserDashboard = () => {
 
   // const {user:{_id, name, email, role} } = isAuthenticated()
 
-  const dashboardLinks = () => {
+  const userLinks = () => {
     return (
      
       <div className="card">
@@ -43,20 +43,20 @@ const Buddy_dashboard = () => {
     )
   }
 
-  const buddyRating= () => {
-    return (
-      <div className="card mb-5">
-      <h3 className="card-header">Rating</h3>
-      <ul className="list-group">
-        <li className="list-group-item">Review</li>
-       
-        {/* <li className="list-group-item">{role === 1 ? "Admin" : "Registered User"}</li> */}
-
-      </ul>
-      </div>
-
-    )
-  }
+  const userRating= () => {
+     return (
+       <div className="card mb-5">
+       <h3 className="card-header">Rating</h3>
+       <ul className="list-group">
+         <li className="list-group-item">Review</li>
+        
+         {/* <li className="list-group-item">{role === 1 ? "Admin" : "Registered User"}</li> */}
+ 
+       </ul>
+       </div>
+ 
+     )
+   }
   
     return (
 <>
@@ -77,13 +77,13 @@ title="Dashboard"
 
        <div className="row">
     < div className="col-3">
-      {dashboardLinks()}
+      {userLinks()}
 
     </div>
     < div className="col-9">
       
       {transactionHistory ()}
-      {buddyRating()}
+      {userRating ()}
    
 
 
@@ -97,4 +97,4 @@ title="Dashboard"
 
 
 
-export default Buddy_dashboard;
+export default UserDashboard;
