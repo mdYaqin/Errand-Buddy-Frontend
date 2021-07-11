@@ -11,7 +11,7 @@ function Show_errands (props) {
       <div class="col-lg-12">
        <Layout title="Show" description="Make extra $  ">
        </Layout>
-        <div class="card" style={{ width: `38rem` }}>
+        <div class="card" style={{ width: `28rem` }}>
           <img
             src={props.location.state.e.image}
             alt="..."
@@ -23,8 +23,8 @@ function Show_errands (props) {
             <p class="card-text">
               Name : {props.location.state.e.name} <br /> Item : {props.location.state.e.item}
             </p>
-            <button type="button" class="btn btn-success">
-            <Link to={`/buddy/${props.location.state.e.id}/accept-errands`} className="navbar-item" href="">Click to accept</Link>
+            <button className="btn btn-outline-primary" mt-2 mb-2>
+            <Link to={`/buddy/${props.location.state.e.id}/accept-errands`} className="navbar-item" href="">Login to accept</Link>
             </button>
           </div>
         </div>
@@ -35,3 +35,5 @@ function Show_errands (props) {
 
 
 export default Show_errands;
+
+

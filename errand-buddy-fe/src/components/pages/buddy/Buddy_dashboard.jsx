@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Layout from '../../Layout'
+
 import {isAuthenticated} from "../../auth"
 import {Link} from 'react-router-dom'
 
@@ -60,11 +60,11 @@ const Buddy_dashboard = () => {
   
     return (
 <>
-<Layout 
+<div 
 title="Dashboard" 
   description="  " 
   className="container-fluid">
-     <div className="card mb-5">
+     <div className="card mb-5 ">
        <h3 className="card-header">User Information</h3>
        <ul className="list-group">
          <li className="list-group-item">name</li>
@@ -89,7 +89,8 @@ title="Dashboard"
 
     </div>
     </div>
-    </Layout>
+    </div>
+   
      </>
     );
   }

@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route , Link} from 'react-router-dom';
+import './SiteHeader.css'
 
 
 
@@ -32,7 +33,7 @@ const SiteHeader = (props) => {
       </button>
       <div id="navb" class="navbar-collapse collapse hide">
         <ul class="navbar-nav ml-auto">
-          <button type="button" class="btn btn-warning"> 
+          <button type="button" class="btn btn-primary"> 
           <Link to="/user/errand-request"
           className="navbar-link">
             Find a Buddy
