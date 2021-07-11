@@ -42,15 +42,16 @@ const Home = () => {
 const [data, setData] = useState(arrData)
   return (  
     <>
-  <Layout title="Errand Buddy" description="You rest we do">
+  <Layout title="Errand Buddy" 
+  description="Let us share your errands today.">
     {/* {JSON.stringify(errandByArrival)}
     <hr/>
     {JSON.stringify{errandByOffer}} */}
 
   </Layout>
 
-    <div class="container-fluid mx-auto mt-5 ">
-      <h2 className="mb-4">Latest Errand: </h2>
+    <div class="container-fluid mt-5 ">
+      <h2 className="mb-4">Latest Errand! </h2>
       <div class="row">
           {data.map(e => (
               <div class="col-4 mb-3" key={e.id}>
@@ -60,18 +61,19 @@ const [data, setData] = useState(arrData)
                   class="card-img-top"
                   alt="..."
                 />
-                <div class="card-body">
+                <div class="card-body" style={{boxShadow: `5px 5px 15px orange`}}> 
                 <h4 class="card-subtitle mb-4 text-muted">{e.Time}</h4>
-                  <p>{e.categories}</p>
-                  <p>{e.price}</p>
+                  <p class="card-header">Category: {e.categories}</p>
+                  <p>Fare: {e.price}</p>
                   <p>{e.createdBy}</p>
+                  <p>{e.createdAt}</p>
                   <p>
                     Name : {e.name} <br /> Item : {e.item}
                   </p>
                  
                 
                   <button className="btn btn-outline-primary mt-2 mb-2">
-                  <Link to={{pathname:`/buddy/${e.id}`, state:{e}}} className="navbar-item" href="">Show Errand</Link>
+                  <Link to={{pathname:`/buddy/${e.id}`, state:{e}}} className="" href="">Show Errand</Link>
                   </button>
                 </div>
               </div>

@@ -6,13 +6,18 @@
 
 
 .jumbotron {
+
   width: 30wh;
-  height: 25vh;
-  color: #fff;
+  height: 30vh;
+  color: #fafafa;
   background: linear-gradient( #ee7752, #e73c7e);
   background-size: 400% 400%;
  
 }
+
+
+
+
 
 @-webkit-keyframes Gradient {
   0% {

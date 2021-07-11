@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import {isAuthenticated} from "../../auth"
+
 import {Link} from 'react-router-dom'
 
 const Buddy_dashboard = () => {

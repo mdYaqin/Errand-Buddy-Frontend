@@ -19,6 +19,7 @@ import AcceptErrands from "./components/pages/buddy/Accept_errands";
 import CompletedErrands from "./components/pages/buddy/Completed_errands";
 import BuddyDashboard from "./components/pages/buddy/Buddy_dashboard";
 
+
 class App extends React.Component {
   render() {
     return (
@@ -29,6 +30,7 @@ class App extends React.Component {
           <BrowserRouter>
           <SiteHeader />
             <Switch>
+            
               <Route
                 path="/buddy/:id/completed-errands"
                 exact
@@ -45,7 +47,7 @@ class App extends React.Component {
                 component={BuddyDashboard}
               />
               <Route path="/buddy/:id" exact component={ShowErrands} />
-              <Route path="/home" exact component={Home} exact />
+              <Route path="/home" exact component={Home}  />
               <Route path="/register" exact component={Register} />
               <Route path="/login" exact component={Login} />
               <Home />
