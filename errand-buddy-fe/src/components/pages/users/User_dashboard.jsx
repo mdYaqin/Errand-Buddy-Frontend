@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import Layout from '../../Layout'
-import {isAuthenticated} from "../../auth"
+
+
 import {Link} from 'react-router-dom'
 
 const UserDashboard = () => {
 
   // const {user:{_id, name, email, role} } = isAuthenticated()
 
-  const userLinks = () => {
+  const dashboardLinks = () => {
     return (
      
       <div className="card">
@@ -44,27 +44,27 @@ const UserDashboard = () => {
   }
 
   const userRating= () => {
-     return (
-       <div className="card mb-5">
-       <h3 className="card-header">Rating</h3>
-       <ul className="list-group">
-         <li className="list-group-item">Review</li>
-        
-         {/* <li className="list-group-item">{role === 1 ? "Admin" : "Registered User"}</li> */}
- 
-       </ul>
-       </div>
- 
-     )
-   }
+    return (
+      <div className="card mb-5">
+      <h3 className="card-header">Rating</h3>
+      <ul className="list-group">
+        <li className="list-group-item">Review</li>
+       
+        {/* <li className="list-group-item">{role === 1 ? "Admin" : "Registered User"}</li> */}
+
+      </ul>
+      </div>
+
+    )
+  }
   
     return (
 <>
-<Layout 
+<div 
 title="Dashboard" 
   description="  " 
   className="container-fluid">
-     <div className="card mb-5">
+     <div className="card mb-5 ">
        <h3 className="card-header">User Information</h3>
        <ul className="list-group">
          <li className="list-group-item">name</li>
@@ -77,19 +77,20 @@ title="Dashboard"
 
        <div className="row">
     < div className="col-3">
-      {userLinks()}
+      {dashboardLinks()}
 
     </div>
     < div className="col-9">
       
       {transactionHistory ()}
-      {userRating ()}
+      {userRating()}
    
 
 
     </div>
     </div>
-    </Layout>
+    </div>
+   
      </>
     );
   }

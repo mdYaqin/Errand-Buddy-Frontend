@@ -11,7 +11,7 @@ const colors = {
 
 
 
-function Completed_errands() {
+function UserReview() {
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const stars = Array(5).fill(0)
@@ -31,7 +31,7 @@ function Completed_errands() {
 
   return (
     <div style={styles.container}>
-      <Layout title="Thanks Buddy!" description=""></Layout>
+      <Layout title="Thanks User!" description=""></Layout>
       
       <h2> Please rate your experience </h2>
       <div style={styles.stars}>
@@ -64,7 +64,7 @@ function Completed_errands() {
       </button>
 
       <button type="button" class="btn btn-warning">
-            <Link to="/buddy/buddy-dashboard" className="navbar-item" href="">My Profile</Link>
+            <Link to="/user/user-dashboard" className="navbar-item" href="">My Profile</Link>
             </button>
 
       
@@ -106,5 +106,5 @@ const styles = {
 
 
 
-export default Completed_errands;
+export default UserReview;
  

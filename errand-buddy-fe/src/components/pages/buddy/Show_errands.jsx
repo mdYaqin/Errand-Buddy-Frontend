@@ -18,7 +18,7 @@ const Show_errands=(props) => {
         
          <div className="row"></div>
        </Layout>
-        <div className="card" style={{ width: `28rem` }}>
+        <div className="card" style={{ width: `24rem` }}>
           <img
             src={props.location.state.e.image}
             alt="..."

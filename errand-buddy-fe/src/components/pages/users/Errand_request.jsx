@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Layout from '../../Layout'
-import {isAuthenticated} from "../../auth"
 import {Link} from 'react-router-dom'
 
 
@@ -27,6 +26,7 @@ const Errand_request = () => {
 
      const newRequestForm = () => {
           <form onSubmit={clickSubmit}>
+               console.log(123456)
 
                <div className="form-group">
                <label className="text-muted">Categories</label>
@@ -80,17 +80,26 @@ const Errand_request = () => {
      }
 
      return (
+          <>
           <Layout 
 title="Add a new category" 
   description="" 
   className="container-fluid">
+        </Layout>
 
 
 <div className="row">
     < div className="col-md-8 offset-md-2">{newRequestForm()}</div>
+
+    <button className="btn btn-outline-primary">
+    <Link to={`/user/add-errand`} className="navbar-item" href="">Create Errand
+    </Link>
+    </button>  
     
-</div>
-  </Layout>
+    
+</div>    
+</>
+ 
      )
          
      
