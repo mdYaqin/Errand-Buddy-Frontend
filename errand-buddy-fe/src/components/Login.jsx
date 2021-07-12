@@ -11,13 +11,12 @@ const Login = () => {
       
     email: '',
     password: '',
-    error: '',
-    loading: false,
-    redirectToReferer: false,
+   
+   
 
   })
 
-  const {email, password, loading, error, redirectToReferer} = values
+  const {email, password,error} = values
 
   const handleChange = name => event => {
     setValues({...values, error: false, [name]: event.target.value})
@@ -28,15 +27,14 @@ const Login = () => {
 
   const clickSubmit = (event) => {
     event.preventDefault()
-    setValues({...values, error: false, loading:true})
+    setValues({...values, error: false})
     Login({ email: email, password: password})
     .then(data => {
       if (data.error) {
-        setValues({...values, error:data.error, loading:false})
+        setValues({...values, error:data.error})
       } else {
         setValues({
-          ...values, 
-          redirectToReferer: true
+          ...values
 
         
         })
@@ -61,40 +59,40 @@ const Login = () => {
 
   
     return (
-      <div class="container mt-5 mb-5">
+      <div className="container mt-5 mb-5">
         <Layout title="Welcome back Buddy!" description="  "></Layout>
-        <div class="row d-flex align-items-center justify-content-center">
-          <div class="col-md-6">
-            <div class="card px-5 py-5">
+        <div className="row d-flex align-items-center justify-content-center">
+          <div className="col-md-6">
+            <div className="card px-5 py-5">
               <h1>Errand Buddy</h1>
-              <div class="form-input">
+              <div className="form-input">
                 {" "}
-                <i class="fa fa-user"></i>{" "}
+                <i className="fa fa-user"></i>{" "}
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   placeholder="Email address"
                 />{" "}
               </div>
-              <div class="form-input">
+              <div className="form-input">
                 {" "}
-                <i class="fa fa-lock"></i>{" "}
+                <i className="fa fa-lock"></i>{" "}
                 <input
                   type="text"
-                  class="form-control"
+                  className="form-control"
                   placeholder="password"
                 />{" "}
               </div>
-              <div class="form-check"> </div>{" "}
-              <button class="btn btn-primary mt-4 signup">Login</button>
-              <div class="d-flex justify-content-center mt-4">
+              <div className="form-check"> </div>{" "}
+              <button className="btn btn-primary mt-4 signup">Login</button>
+              <div className="d-flex justify-content-center mt-4">
                 {" "}
                
               </div>
-              <div class="text-center mt-4">
+              <div className="text-center mt-4">
                 {" "}
                 <span>Not a member?</span>{" "}
-                <a href="/#" class="text-decoration-none">
+                <a href="/#" className="text-decoration-none">
                   Register
                 </a>{" "}
               </div>

@@ -12,6 +12,8 @@ const Payments = () => {
          <div className="row">
            {/* <div className="col-md-8 offset-md-2">{newPostForm()}</div> */}
            <div className="col-md-8 offset-md-2">Hello</div>
+
+           
            <button className="btn btn-outline-primary">
        <Link to={`/user/errand-completed`} className="navbar-item" href="">Confirm Payment
        </Link>

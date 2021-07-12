@@ -63,7 +63,7 @@ function Completed_errands() {
         Submit
       </button>
 
-      <button type="button" class="btn btn-warning">
+      <button type="button" className="btn btn-warning">
             <Link to="/buddy/buddy-dashboard" className="navbar-item" href="">My Profile</Link>
             </button>
 

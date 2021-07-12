@@ -10,13 +10,13 @@ function Accept_errands(props) {
 <div>
 <Layout title="Accept Errand" 
        description=" "
-       classNameName="container-fluid"
+       className="container-fluid"
        >
 
         
-         <div classNameName="row"></div>
+         <div className="row"></div>
        </Layout>
-<div classNameName="alert alert-success" role="alert">
+<div className="alert alert-success" role="alert">
   <h4 className="alert-heading">Well done!</h4>
   <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
   <hr/>

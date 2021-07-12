@@ -6,12 +6,12 @@ import './SiteHeader.css'
 
 const SiteHeader = (props) => {
   return (
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
-      <a class="navbar-brand" href="/#">
+    <nav className="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+      <a className="navbar-brand" href="/#">
         Errand Buddy <i className="fab fa-typo3"></i>
       </a>
 
-      <a class="navbar-brand" href="/#">
+      <a className="navbar-brand" href="/#">
         <Link
           to="/home"
           className="navbar-link"
@@ -23,17 +23,17 @@ const SiteHeader = (props) => {
       </a>
 
       <button
-        class="navbar-toggler navbar-toggler-right"
+        className="navbar-toggler navbar-toggler-right"
         type="button"
         data-toggle="collapse"
         data-target="#navb"
         aria-expanded="true"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
-      <div id="navb" class="navbar-collapse collapse hide">
-        <ul class="navbar-nav ml-auto">
-          <button type="button" class="btn btn-primary"> 
+      <div id="navb" className="navbar-collapse collapse hide">
+        <ul className="navbar-nav ml-auto">
+          <button type="button" className="btn btn-primary"> 
           <Link to="/user/errand-request"
           className="navbar-link">
             Find a Buddy
@@ -42,10 +42,10 @@ const SiteHeader = (props) => {
           </button>
         </ul>
 
-        <ul class="nav navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="/#">
-              <span class="fas fa-user">
+        <ul className="nav navbar-nav">
+          <li className="nav-item">
+            <a className="nav-link" href="/#">
+              <span className="fas fa-user">
                 {" "}
                 <Link
                   to="/register"
@@ -58,9 +58,9 @@ const SiteHeader = (props) => {
               </span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/#">
-              <span class="fas fa-sign-in-alt">
+          <li className="nav-item">
+            <a className="nav-link" href="/#">
+              <span className="fas fa-sign-in-alt">
                 {" "}
                 <Link to="/login" className="navbar-link">
                   

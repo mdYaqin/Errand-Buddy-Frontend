@@ -1,155 +1,127 @@
 import React from "react";
 import { useState } from "react";
-import { Redirect} from "react-router-dom";
-import Layout from './Layout'
+import { Redirect, useHistory } from "react-router-dom";
+import Layout from "./Layout";
+import axios from "axios";
 
+const Register = () => {
+  const [values, setValues] = useState({
+    email: "",
+    name: "",
+    username: "",
+    password: "",
+    password2: "",
+  });
 
-  const Register = () => {
+  const history = useHistory();
 
-    const [values, setValues] = useState({
-      
-      email: '',
-      name: '',
-      password: '',
-      error: '',
-      success: false,
+  const { name, username, email, password, password2 } = values;
 
-    })
+  const handleChange = (name) => (event) => {
+    setValues({ ...values, [name]: event.target.value });
+  };
 
-    const {name, email, password, success, error} = values
-
-    const handleChange = name => event => {
-      setValues({...values, error: false, [name]: event.target.value})
-
-    }
-
-    const register = (user)=> {
-      console.log(name, email, password)
-      //  return fetch(`${API}/signup`, {
-       return fetch(`/signup`, {
-
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          "Content-Type": 'application/json'
-        },
-        body: JSON.stringify(user)
-
+  const clickSubmit = (event) => {
+    event.preventDefault();
+    axios
+      .post("http://localhost:3000/api/users/register", {
+        username: username,
+        name: name,
+        email: email,
+        password: password,
+        password2: password2,
       })
-      .then(response => {
-        return response.json()
+      .then((response) => {
+        history.push("/login");
+      }).catch((error) => {
+        console.log('error')
       })
-      .catch(err => {
-        console.log(err)
-      })
-
-    }
-
-    const clickSubmit = (event) => {
-      event.preventDefault()
-      setValues({...values, error: false})
-      register({name: name, email: email, password: password})
-      .then(data => {
-        if (data.error) {
-          setValues({...values, error:data.error, success:false})
-        } else {
-          setValues({
-            ...values, 
-            name:'',
-            email: '',
-            password: '',
-            error: '',
-            success: true
-
-          
-          })
-        }
-      })
-
-
-    }
-  
-    const showError = () => {
-      <div className="alert alert-danger" style={{display: error ? '' : 'none'}}>
-        {error}
-      </div>
-    }
-
-    // const showLoading = () => 
-    //   loading && (<div className="alert alert-info"><h2>loading..</h2></div>)
     
-
-    // const redirectUser = () => {
-    //   if(redirectToReferer) {
-    //     return <Redirect to="/show" />
-    //   }
-    // }
-
-
+  };
 
   return (
-    <div class="container mt-5 mb-5">
+    <div className="container mt-5 mb-5">
       <Layout title="Welcome to Errand Buddy!" description="  "></Layout>
-      <div class="row d-flex align-items-center justify-content-center">
-        <div class="col-md-6">
-          <div class="card px-5 py-5">
-            <h5 class="mt-3">
-              Join other errand buddies! <br /> let us do while you rest{" "}
-            </h5>{" "}
-            <small class="mt-2 text-muted">
+      <div className="row d-flex align-items-center justify-content-center">
+        <div className="col-md-6">
+          <div className="card px-5 py-5">
+            <h5 className="mt-3">
+              Join other errand buddies! <br /> let us do while you rest
+            </h5>
+            <small className="mt-2 text-muted">
               All info will be kept under privacy based on pdpa
             </small>
-            <div class="form-input">
-              {" "}
-              <i class="fa fa-envelope"></i>{" "}
-              <input onChange={handleChange('email')}
+            <div className="form-input">
+              <i className="fa fa-envelope"></i>
+              <input
+                onChange={handleChange("email")}
                 type="text"
-                class="form-control"
+                className="form-control"
                 value={email}
                 placeholder="Email address"
-              />{" "}
+              />
             </div>
-            <div class="form-input">
-              {" "}
-              <i class="fa fa-user"></i>{" "}
-              <input onChange={handleChange('name')}type="text" 
-              class="form-control" 
-              value={name}
-              placeholder="User name" />{" "}
+            <div className="form-input">
+              <i className="fa fa-user"></i>
+              <input
+                onChange={handleChange("username")}
+                type="text"
+                className="form-control"
+                value={username}
+                placeholder="User name"
+              />
             </div>
-            <div class="form-input">
-              {" "}
-              <i class="fa fa-lock"></i>{" "}
-              <input onChange={handleChange('password')}type="text" 
-              class="form-control"
-              value={password}
-              placeholder="password" />{" "}
+            <div className="form-input">
+              <i className="fa fa-user"></i>
+              <input
+                onChange={handleChange("name")}
+                type="text"
+                className="form-control"
+                value={name}
+                placeholder="name"
+              />
             </div>
-            <div class="form-input">
-              {" "}
-              <i class="fa fa-users" aria-hidden="true"></i>{" "}
+            <div className="form-input">
+              <i className="fa fa-lock"></i>
+              <input
+                onChange={handleChange("password")}
+                type="text"
+                className="form-control"
+                value={password}
+                placeholder="password"
+              />
             </div>
-            <select class="browser-default custom-select">
-              <option selected>Select options</option>
-              <option value="1">User</option>
-              <option value="2">Buddy</option>
-            </select>
-            <div class="form-check"> </div>{" "}
-            <button onClick={clickSubmit} class="btn btn-primary mt-4 signup">Join us now</button>
-           
-            <div class="text-center mt-4">
-              {" "}
-              <span>Already a member?</span>{" "}
-              <a href="/#" class="text-decoration-none">
+            <div className="form-input"></div>
+            <div className="form-input">
+              <i className="fa fa-lock"></i>
+              <input
+                onChange={handleChange("password2")}
+                type="text"
+                className="form-control"
+                value={password2}
+                placeholder="confirm password"
+              />
+            </div>
+
+            <div className="form-check"> </div>
+            <button
+              onClick={clickSubmit}
+              className="btn btn-primary mt-4 signup"
+            >
+              Join us now
+            </button>
+
+            <div className="text-center mt-4">
+              <span>Already a member?</span>
+              <a href="/#" className="text-decoration-none">
                 Login
-              </a>{" "}
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   );
-}
+};
 
 export default Register;

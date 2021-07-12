@@ -5,8 +5,8 @@ class SiteFooter extends React.Component {
     render() {
 
         return(
-          <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
-          <a class="navbar-brand" href="/#">
+          <nav className="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
+          <a className="navbar-brand" href="/#">
             About Us
           </a>
           
