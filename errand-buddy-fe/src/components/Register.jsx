@@ -24,7 +24,7 @@ const Register = () => {
   const clickSubmit = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:3000/api/users/register", {
+      .post("http://localhost:4000/api/users/register", {
         username: username,
         name: name,
         email: email,
@@ -55,7 +55,7 @@ const Register = () => {
               <i className="fa fa-envelope"></i>
               <input
                 onChange={handleChange("email")}
-                type="text"
+                type="email"
                 className="form-control"
                 value={email}
                 placeholder="Email address"
@@ -85,7 +85,7 @@ const Register = () => {
               <i className="fa fa-lock"></i>
               <input
                 onChange={handleChange("password")}
-                type="text"
+                type="password"
                 className="form-control"
                 value={password}
                 placeholder="password"
@@ -96,7 +96,7 @@ const Register = () => {
               <i className="fa fa-lock"></i>
               <input
                 onChange={handleChange("password2")}
-                type="text"
+                type="password"
                 className="form-control"
                 value={password2}
                 placeholder="confirm password"

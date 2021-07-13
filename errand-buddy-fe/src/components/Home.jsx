@@ -40,7 +40,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/")
+      .get("http://localhost:4000/")
 
       .then(function (response) {
         // handle success

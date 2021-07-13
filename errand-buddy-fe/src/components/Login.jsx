@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { useState } from "react";
 import { Link} from "react-router-dom";
 import Layout from './Layout'
-
-
+import Cookies from 'universal-cookie';
+ 
 
 const Login = () => {
 
@@ -11,8 +11,6 @@ const Login = () => {
       
     email: '',
     password: '',
-   
-   
 
   })
 
@@ -25,11 +23,14 @@ const Login = () => {
 
 
 
-  const clickSubmit = (event) => {
+  const clickSubmit = (event) => { 
+
+    //axios call to backend login
+
     event.preventDefault()
     setValues({...values, error: false})
     Login({ email: email, password: password})
-    .then(data => {
+    .then(data => { // response.token from the backend sets this as the cookie
       if (data.error) {
         setValues({...values, error:data.error})
       } else {
