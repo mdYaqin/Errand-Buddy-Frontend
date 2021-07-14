@@ -1,11 +1,23 @@
-import React from "react";
-import { BrowserRouter as Router, Route , Link} from 'react-router-dom';
+import React, {useState} from "react";
+import { BrowserRouter as Router, Route , Link, useHistory} from 'react-router-dom';
+import {isAuthenticated} from "./Auth"
+import axios from "axios";
 import './SiteHeader.scss'
 
 
 
 
+
 const SiteHeader = (props) => {
+  const [bool,setBool]=useState(true)
+  const history =useHistory()
+
+  const logout= (next)=>{
+    localStorage.removeItem('jwt');
+    // axios.get("http://localhost:4000/api/users/logout")
+    next()
+    setBool(prev => !bool)
+  }
   return (
     <nav className="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
 
@@ -50,6 +62,7 @@ const SiteHeader = (props) => {
         <ul>
           <li>
             <a className="nav-link" href="/#">
+
               <span className="fas fa-user">
                 {" "} 
                 <Link
@@ -60,15 +73,23 @@ const SiteHeader = (props) => {
                   <strong>Sign up</strong>
                 </Link>
               </span>
+
             </a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="/#">
               <span className="fas fa-sign-in-alt">
-                {" "}
-                <Link to="/login">                  
-                  <strong>Login</strong>
-                </Link>
+               
+                {!isAuthenticated() && (<Link to="/login" className="navbar-link">
+                  
+                   <strong>Login</strong>
+                </Link>)
+                } 
+                
+                {isAuthenticated() && (<Link to="/" className="navbar-link" onClick={()=> logout(()=> history.push('/home'))}>
+                  <strong>Logout</strong>
+                </Link>)
+                }
               </span>
             </a>
           </li>
