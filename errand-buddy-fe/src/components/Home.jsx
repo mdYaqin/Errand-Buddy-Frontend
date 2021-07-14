@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import arrData from "../Data";
 import Layout from "./Layout";
 import axios from "axios";
+import './Home.scss'
 
 const Home = () => {
   // const[]= [errandByOffer, setErrandbyOffer] = useState([])
@@ -67,24 +68,21 @@ const Home = () => {
     {JSON.stringify{errandByOffer}} */}
       </Layout>
 
-      <div className="container-fluid mt-5 ">
-        <h2 className="mb-4">Latest Errand! </h2>
-        <div className="row">
+      <div className="main-container container-fluid mt-5">
+        <h2 className="mb-4">Latest Available Errands! </h2>
+        <div id="errand-container" className="errand-container row ">
           {data.map((e) => (
-            <div className="col-4 mb-3" key={e._id}>
-              <div className="card-header" style={{ width: `25rem` }}>
-              
-                <div
-                  className="card-body"
-                  style={{ boxShadow: `5px 5px 15px orange` }}
-                >
-                 
-                  <p className="card-header">Created By: {e.username}</p>
+            <div className="errand-card mb-3" key={e._id}>
+                <div className="card-image embed-responsive">
+                  <img src={e.image} alt="Item" />
+                </div>
+                <div className="card-body">                 
+                  <h4 className="card-header">{e.username}</h4>
                   <br/>
+                  <p>Item:{e.items}</p>       
                   <p>Errand Fee:{e.errandFee}</p>
-                  <p>Item:{e.items}</p>
-                  <p>Status:{e.status}</p>
-                  <p>Delivery Location:{e.deliveryLocation}</p>
+                  <p>Pickup At:{e.pickupLocation}</p>
+                  <p>Deliver To:{e.deliveryLocation}</p>
 
                   <button className="btn btn-outline-primary mt-2 mb-2">
                     <Link
@@ -96,7 +94,6 @@ const Home = () => {
                     </Link>
                   </button>
                 </div>
-              </div>
             </div>
           ))}
         </div>
