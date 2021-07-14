@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { useState } from "react";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Layout from './Layout'
-import Cookies from 'universal-cookie';
+import { useCookies } from "react-cookie"
+import { Redirect, useHistory } from "react-router-dom";
+import axios from "axios";
  
 
 const Login = () => {
@@ -14,36 +16,47 @@ const Login = () => {
 
   })
 
-  const {email, password,error} = values
+  const history = useHistory();
+
+  const {email, password, error} = values
 
   const handleChange = name => event => {
     setValues({...values, error: false, [name]: event.target.value})
 
   }
 
-
+  const [cookies, setCookie] = useCookies(["x-auth-token"]);
 
   const clickSubmit = (event) => { 
+    
+    event.preventDefault()
 
     //axios call to backend login
+    axios
+      .post("http://localhost:4000/api/users/login", {
+        email: email,
+        password: password,
+      })
 
-    event.preventDefault()
-    setValues({...values, error: false})
-    Login({ email: email, password: password})
-    .then(data => { // response.token from the backend sets this as the cookie
-      if (data.error) {
-        setValues({...values, error:data.error})
+    //setValues({...values, error: false})
+    //Login({ email: email, password: password})
+    .then(response => { // set the response.token from the backend as the cookie
+      if (response.error) {
+        setValues({...values, error:response.error})
       } else {
-        setValues({
-          ...values
+        console.log(response.data.token)
+        setCookie("x-auth-token", response.data.token, {
+          path: "/",
+        }); 
 
-        
-        })
+        history.push("/home");
       }
-    })
-
-
+      }
+    )
   }
+
+
+  
 
   const showError = () => {
     <div className="alert alert-danger" style={{display: error ? '' : 'none'}}>
@@ -70,7 +83,8 @@ const Login = () => {
                 {" "}
                 <i className="fa fa-user"></i>{" "}
                 <input
-                  type="text"
+                  onChange={handleChange("email")}
+                  type="email"
                   className="form-control"
                   placeholder="Email address"
                 />{" "}
@@ -79,13 +93,14 @@ const Login = () => {
                 {" "}
                 <i className="fa fa-lock"></i>{" "}
                 <input
-                  type="text"
+                  onChange={handleChange("password")}
+                  type="password"
                   className="form-control"
                   placeholder="password"
                 />{" "}
               </div>
               <div className="form-check"> </div>{" "}
-              <button className="btn btn-primary mt-4 signup">Login</button>
+              <button onClick={clickSubmit} className="btn btn-primary mt-4 signup">Login</button>
               <div className="d-flex justify-content-center mt-4">
                 {" "}
                
@@ -102,7 +117,7 @@ const Login = () => {
         </div>
       </div>
     );
-  }
+}
 
 
 export default Login;
