@@ -27,7 +27,7 @@ const Login = () => {
 
   const clickSubmit = (event) => { 
     event.preventDefault()
-    console.log(email, password)
+    
     axios
       .post("http://localhost:4000/api/users/login", {
         email: email,
@@ -38,10 +38,8 @@ const Login = () => {
       history.push('/')
       setValues({...values, email: '',
       password: '',})
-      
-      // response.token from the backend sets this as the cookie
-     
-    }) .catch(err => {
+    })
+    .catch(err => {
       console.log("errror",err)
     })
 
