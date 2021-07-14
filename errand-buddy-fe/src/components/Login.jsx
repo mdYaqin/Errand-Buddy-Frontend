@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+
+import { Link, Redirect, useHistory} from "react-router-dom";
 import Layout from './Layout'
-import { useCookies } from "react-cookie"
-import { Redirect, useHistory } from "react-router-dom";
 import axios from "axios";
- 
+import { useCookies } from "react-cookie"
+
+
+
 
 const Login = () => {
 
@@ -16,14 +18,18 @@ const Login = () => {
 
   })
 
-  const history = useHistory();
 
-  const {email, password, error} = values
+  const history = useHistory()
+
+  const {email, password} = values
+
 
   const handleChange = name => event => {
-    setValues({...values, error: false, [name]: event.target.value})
+    setValues({...values, [name]: event.target.value})
 
   }
+
+
 
   const [cookies, setCookie] = useCookies(["x-auth-token"]);
 
@@ -38,39 +44,23 @@ const Login = () => {
         password: password,
       })
 
-    //setValues({...values, error: false})
-    //Login({ email: email, password: password})
-    .then(response => { // set the response.token from the backend as the cookie
-      if (response.error) {
-        setValues({...values, error:response.error})
-      } else {
-        console.log(response.data.token)
-        setCookie("x-auth-token", response.data.token, {
+    .then(data => { 
+      setCookie("x-auth-token", response.data.token, {
           path: "/",
-        }); 
+      }); 
+      history.push('/')
+      setValues({...values, email: '',
+      password: '',})
+      
+      // response.token from the backend sets this as the cookie
+     
+    }) .catch(err => {
+      console.log("errror",err)
+    })
 
-        history.push("/home");
-      }
       }
     )
   }
-
-
-  
-
-  const showError = () => {
-    <div className="alert alert-danger" style={{display: error ? '' : 'none'}}>
-      {error}
-    </div>
-  }
-
-  // const showSuccess = () => {
-  //   <div className="alert alert-info" style={{display: success ? '' : 'none'}}>
-  //     New account is created. Please <Link to="/Login">Login</Link>
-  //   </div>
-  // }
-
-
   
     return (
       <div className="container mt-5 mb-5">
@@ -80,37 +70,46 @@ const Login = () => {
             <div className="card px-5 py-5">
               <h1>Errand Buddy</h1>
               <div className="form-input">
-                {" "}
-                <i className="fa fa-user"></i>{" "}
+                
+                <i className="fa fa-user"></i>
                 <input
+
                   onChange={handleChange("email")}
                   type="email"
+
                   className="form-control"
+                  value={email}
                   placeholder="Email address"
-                />{" "}
+                />
               </div>
               <div className="form-input">
-                {" "}
-                <i className="fa fa-lock"></i>{" "}
+                
+                <i className="fa fa-lock"></i>
                 <input
-                  onChange={handleChange("password")}
+
+                onChange={handleChange
+                ("password")}
+
                   type="password"
                   className="form-control"
+                  value={password}
                   placeholder="password"
-                />{" "}
+                />
               </div>
-              <div className="form-check"> </div>{" "}
-              <button onClick={clickSubmit} className="btn btn-primary mt-4 signup">Login</button>
+
+              <div className="form-check"> </div>
+              <button  onClick={clickSubmit}className="btn btn-primary mt-4 signup">Login</button>
+
               <div className="d-flex justify-content-center mt-4">
-                {" "}
+                
                
               </div>
               <div className="text-center mt-4">
-                {" "}
-                <span>Not a member?</span>{" "}
+                
+                <span>Not a member?</span>
                 <a href="/#" className="text-decoration-none">
                   Register
-                </a>{" "}
+                </a>
               </div>
             </div>
           </div>

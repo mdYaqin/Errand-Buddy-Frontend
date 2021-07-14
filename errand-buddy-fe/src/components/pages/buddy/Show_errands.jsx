@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import arrData from "../../../Data"
 import Layout from '../../Layout'
 import moment from 'moment'
+import {isAuthenticated} from '../../Auth'
 
 const Show_errands=(props) => {
 
@@ -40,21 +41,11 @@ const Show_errands=(props) => {
                   <p>Delivery Location:{props.location.state.e.deliveryLocation}</p>
                   <p>Created At:{props.location.state.e.createdAt}</p>
                   <p>Status:{props.location.state.e.status}</p>
-                 
-         
-          {/* <div className="card-body" style={{boxShadow: `5px 5px 15px orange`}}>
-            <p>Categories :{props.location.state.e.category}</p> 
-            <p>{props.location.state.e.date_posted}</p> 
-            <p>{props.location.state.e.time_pickup}</p> 
-            <p>{props.location.state.e.time_deliver}</p> 
-            <p>{props.location.state.e.date_created}</p> 
-            <p>{props.location.state.e.status}</p> 
-            <p>{props.location.state.e.date_updated}</p> 
-            <p>{props.location.state.e.fulfilled_by}</p>  */}
             
           
             <button className="btn btn-outline-primary" mt-2 mb-2>
-            <Link to={`/buddy/${props.location.state.e.id}/accept-errands`} className="navbar-item" href="">Login to accept</Link>
+            {isAuthenticated() && (<Link to={`/buddy/${props.location.state.e.id}/accept-errands`} className="navbar-item" href="">Accept</Link>)}
+            {!isAuthenticated() && <Link to={`/login`} className="navbar-item" href="">Login to accept</Link>}
             </button>
           </div>
         </div>

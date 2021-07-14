@@ -6,36 +6,6 @@ import axios from "axios";
 import './Home.scss'
 
 const Home = () => {
-  // const[]= [errandByOffer, setErrandbyOffer] = useState([])
-  // const[]= [errandByArrival, setErrandbyArrival] = useState([])
-
-  // const loadErrandByOffer = () => {
-  //   addErrand('sold')
-  //   .then(data => {
-  //     if(data.error) {
-  //       setError(data.error)
-  //     } else {
-  //       setErrandbyOffer(data)
-  //     }
-  //   })
-  // }
-
-  // const loadErrandByArrival = () => {
-  //   addErrand('createdAt')
-  //   .then(data => {
-  //     if(data.error) {
-  //       setError(data.error)
-  //     } else {
-  //       setErrandbyArrival(data)
-  //     }
-  //   })
-  // }
-
-  // useEffect(() => {
-  //   loadErrandByArrival()
-  //   loadErrandByOffer()
-
-  // }, [])
 
   const [data, setData] = useState(arrData);
 
