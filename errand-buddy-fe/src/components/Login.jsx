@@ -7,8 +7,6 @@ import axios from "axios";
 import { useCookies } from "react-cookie"
 
 
-
-
 const Login = () => {
 
   const [values, setValues] = useState({
@@ -18,36 +16,25 @@ const Login = () => {
 
   })
 
-
   const history = useHistory()
 
   const {email, password} = values
-
 
   const handleChange = name => event => {
     setValues({...values, [name]: event.target.value})
 
   }
 
-
-
-  const [cookies, setCookie] = useCookies(["x-auth-token"]);
-
   const clickSubmit = (event) => { 
-    
     event.preventDefault()
-
-    //axios call to backend login
+    console.log(email, password)
     axios
       .post("http://localhost:4000/api/users/login", {
         email: email,
         password: password,
       })
-
     .then(data => { 
-      setCookie("x-auth-token", response.data.token, {
-          path: "/",
-      }); 
+      localStorage.setItem ('jwt', data.data.token)
       history.push('/')
       setValues({...values, email: '',
       password: '',})
@@ -58,9 +45,14 @@ const Login = () => {
       console.log("errror",err)
     })
 
-      }
-    )
+
   }
+
+  
+
+
+
+
   
     return (
       <div className="container mt-5 mb-5">
@@ -73,10 +65,8 @@ const Login = () => {
                 
                 <i className="fa fa-user"></i>
                 <input
-
-                  onChange={handleChange("email")}
-                  type="email"
-
+                onChange={handleChange("email")}
+                  type="text"
                   className="form-control"
                   value={email}
                   placeholder="Email address"
@@ -86,20 +76,16 @@ const Login = () => {
                 
                 <i className="fa fa-lock"></i>
                 <input
-
                 onChange={handleChange
                 ("password")}
-
                   type="password"
                   className="form-control"
                   value={password}
                   placeholder="password"
                 />
               </div>
-
               <div className="form-check"> </div>
               <button  onClick={clickSubmit}className="btn btn-primary mt-4 signup">Login</button>
-
               <div className="d-flex justify-content-center mt-4">
                 
                
@@ -116,7 +102,7 @@ const Login = () => {
         </div>
       </div>
     );
-}
+  }
 
 
 export default Login;
