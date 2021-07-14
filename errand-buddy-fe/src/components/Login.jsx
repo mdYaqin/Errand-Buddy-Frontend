@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { useState } from "react";
-import { Link} from "react-router-dom";
+import { Link, useHistory} from "react-router-dom";
 import Layout from './Layout'
-import Cookies from 'universal-cookie';
- 
+import axios from "axios";
 
 const Login = () => {
 
@@ -14,48 +13,41 @@ const Login = () => {
 
   })
 
-  const {email, password,error} = values
+  const history = useHistory()
+
+  const {email, password} = values
 
   const handleChange = name => event => {
-    setValues({...values, error: false, [name]: event.target.value})
+    setValues({...values, [name]: event.target.value})
 
   }
 
-
-
   const clickSubmit = (event) => { 
-
-    //axios call to backend login
-
     event.preventDefault()
-    setValues({...values, error: false})
-    Login({ email: email, password: password})
-    .then(data => { // response.token from the backend sets this as the cookie
-      if (data.error) {
-        setValues({...values, error:data.error})
-      } else {
-        setValues({
-          ...values
-
-        
-        })
-      }
+    console.log(email, password)
+    axios
+      .post("http://localhost:4000/api/users/login", {
+        email: email,
+        password: password,
+      })
+    .then(data => { 
+      localStorage.setItem ('jwt', data.data.token)
+      history.push('/')
+      setValues({...values, email: '',
+      password: '',})
+      
+      // response.token from the backend sets this as the cookie
+     
+    }) .catch(err => {
+      console.log("errror",err)
     })
 
 
   }
 
-  const showError = () => {
-    <div className="alert alert-danger" style={{display: error ? '' : 'none'}}>
-      {error}
-    </div>
-  }
+  
 
-  // const showSuccess = () => {
-  //   <div className="alert alert-info" style={{display: success ? '' : 'none'}}>
-  //     New account is created. Please <Link to="/Login">Login</Link>
-  //   </div>
-  // }
+
 
 
   
@@ -67,35 +59,40 @@ const Login = () => {
             <div className="card px-5 py-5">
               <h1>Errand Buddy</h1>
               <div className="form-input">
-                {" "}
-                <i className="fa fa-user"></i>{" "}
+                
+                <i className="fa fa-user"></i>
                 <input
+                onChange={handleChange("email")}
                   type="text"
                   className="form-control"
+                  value={email}
                   placeholder="Email address"
-                />{" "}
+                />
               </div>
               <div className="form-input">
-                {" "}
-                <i className="fa fa-lock"></i>{" "}
+                
+                <i className="fa fa-lock"></i>
                 <input
-                  type="text"
+                onChange={handleChange
+                ("password")}
+                  type="password"
                   className="form-control"
+                  value={password}
                   placeholder="password"
-                />{" "}
+                />
               </div>
-              <div className="form-check"> </div>{" "}
-              <button className="btn btn-primary mt-4 signup">Login</button>
+              <div className="form-check"> </div>
+              <button  onClick={clickSubmit}className="btn btn-primary mt-4 signup">Login</button>
               <div className="d-flex justify-content-center mt-4">
-                {" "}
+                
                
               </div>
               <div className="text-center mt-4">
-                {" "}
-                <span>Not a member?</span>{" "}
+                
+                <span>Not a member?</span>
                 <a href="/#" className="text-decoration-none">
                   Register
-                </a>{" "}
+                </a>
               </div>
             </div>
           </div>
