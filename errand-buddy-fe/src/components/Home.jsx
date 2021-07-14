@@ -61,7 +61,7 @@ const Home = () => {
                   <p>Errand Fee: ${e.errandFee}</p>
                   <p>Pickup At: {e.pickupLocation}</p>
                   <p>Deliver To: {e.deliveryLocation}</p>
-                  <span className="card-like"><i class="far fa-thumbs-up"></i></span>
+                  <span className="card-like"><i class="far fa-heart"></i></span>
                 </div>
             </div>
           ))}
