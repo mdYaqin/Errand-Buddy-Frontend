@@ -67,7 +67,6 @@ class App extends React.Component {
               <Route path="/user/errand-completed" exact component={ErrandCompleted} />
               <Route path="/user/payment" exact component={Payments} />
               <Route path="/user/add-errand" exact component={AddErrands} />
-              <Route path="/user/add-errand" exact component={AddErrands} />
               <Route path="/user/errand-request" exact component={ErrandRequest} />
               <Route path="/user/" exact component={Login} />
 
