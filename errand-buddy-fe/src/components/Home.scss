@@ -12,21 +12,21 @@ h2{
     width: 15vw;
     margin: 10px;
     border: lightgrey;
-    border-radius: 5px;
+    border-radius: 10px;
     background-color: white;
     padding: 0;
 
     .item-details {
         text-align: center;
         font-weight: bold;
-        margin-top: 20px;
+        margin: 20px auto 10px auto;
         font-family: 'Otomanopee One', sans-serif;
         color: black;
     }
 
     p {
         font-size: small;
-        margin: 10px auto 0 auto;
+        margin: 5px auto 0 auto;
     }
 
     .card-like {
@@ -40,6 +40,8 @@ h2{
 
     img {
         margin: 10px auto 2px auto;
-        height: 90%;
+        width: 85%;
+        object-fit: cover;
+        border-radius: 5px;
     }
 }
