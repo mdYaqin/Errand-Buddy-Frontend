@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { useState } from "react";
-import { Link, useHistory} from "react-router-dom";
+
+import { Link, Redirect, useHistory} from "react-router-dom";
 import Layout from './Layout'
 import axios from "axios";
+import { useCookies } from "react-cookie"
+
+
+
 
 const Login = () => {
 
@@ -13,25 +18,36 @@ const Login = () => {
 
   })
 
+
   const history = useHistory()
 
   const {email, password} = values
+
 
   const handleChange = name => event => {
     setValues({...values, [name]: event.target.value})
 
   }
 
+
+
+  const [cookies, setCookie] = useCookies(["x-auth-token"]);
+
   const clickSubmit = (event) => { 
+    
     event.preventDefault()
-    console.log(email, password)
+
+    //axios call to backend login
     axios
       .post("http://localhost:4000/api/users/login", {
         email: email,
         password: password,
       })
+
     .then(data => { 
-      localStorage.setItem ('jwt', data.data.token)
+      setCookie("x-auth-token", response.data.token, {
+          path: "/",
+      }); 
       history.push('/')
       setValues({...values, email: '',
       password: '',})
@@ -42,14 +58,9 @@ const Login = () => {
       console.log("errror",err)
     })
 
-
+      }
+    )
   }
-
-  
-
-
-
-
   
     return (
       <div className="container mt-5 mb-5">
@@ -62,8 +73,10 @@ const Login = () => {
                 
                 <i className="fa fa-user"></i>
                 <input
-                onChange={handleChange("email")}
-                  type="text"
+
+                  onChange={handleChange("email")}
+                  type="email"
+
                   className="form-control"
                   value={email}
                   placeholder="Email address"
@@ -73,16 +86,20 @@ const Login = () => {
                 
                 <i className="fa fa-lock"></i>
                 <input
+
                 onChange={handleChange
                 ("password")}
+
                   type="password"
                   className="form-control"
                   value={password}
                   placeholder="password"
                 />
               </div>
+
               <div className="form-check"> </div>
               <button  onClick={clickSubmit}className="btn btn-primary mt-4 signup">Login</button>
+
               <div className="d-flex justify-content-center mt-4">
                 
                
@@ -99,7 +116,7 @@ const Login = () => {
         </div>
       </div>
     );
-  }
+}
 
 
 export default Login;
