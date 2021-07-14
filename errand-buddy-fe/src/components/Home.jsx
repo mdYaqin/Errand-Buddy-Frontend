@@ -27,6 +27,9 @@ const Home = () => {
       });
   },[]);
 
+
+  //Likes function
+ 
   return (
     <>
       <Layout
@@ -39,7 +42,7 @@ const Home = () => {
       </Layout>
 
       <div className="main-container container-fluid mt-5">
-        <h2 className="mb-4">Latest Available Errands! </h2>
+        <h2 className="mb-4">Available Errands! </h2>
         <div id="errand-container" className="errand-container row ">
           {data.map((e) => (
             <div className="errand-card mb-3" key={e._id}>
@@ -47,22 +50,18 @@ const Home = () => {
                   <img src={e.image} alt="Item" />
                 </div>
                 <div className="card-body">                 
-                  <h4 className="card-header">{e.username}</h4>
-                  <br/>
-                  <p>Item:{e.items}</p>       
-                  <p>Errand Fee:{e.errandFee}</p>
-                  <p>Pickup At:{e.pickupLocation}</p>
-                  <p>Deliver To:{e.deliveryLocation}</p>
-
-                  <button className="btn btn-outline-primary mt-2 mb-2">
-                    <Link
+                  <h5 className="card-header">{e.username}</h5>
+                  <Link
                       to={{ pathname: `/buddy/${e._id}`, state: { e } }}
                       className=""
                       href=""
                     >
-                      Show Errand
-                    </Link>
-                  </button>
+                      <h5 className="item-details">{e.items}</h5>    
+                    </Link>   
+                  <p>Errand Fee: ${e.errandFee}</p>
+                  <p>Pickup At: {e.pickupLocation}</p>
+                  <p>Deliver To: {e.deliveryLocation}</p>
+                  <span className="card-like"><i class="far fa-thumbs-up"></i></span>
                 </div>
             </div>
           ))}
