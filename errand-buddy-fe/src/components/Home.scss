@@ -1,0 +1,30 @@
+#errand-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+h2 {
+    text-align: center;
+}
+
+.errand-card {
+    box-shadow: 0 3px 10px rgb(44 44 45 / 10%) , inset 0 0 0 1px rgb(44 44 45 / 10%);
+    height: 32vw;
+    width: 23vw;
+    background-color: white;
+    padding: 0;
+
+    p {
+        font-size: small;
+    }
+}
+
+.card-image {
+    height: 40%;
+    display: flex;
+
+    img {
+        margin: 10px auto 2px auto;
+        height: 100%;
+    }
+}
