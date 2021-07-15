@@ -7,7 +7,11 @@ import axios from "axios";
 import { useCookies } from "react-cookie"
 
 
-const Login = () => {
+
+
+
+const Login = (props) => {
+
 
   const [values, setValues] = useState({
       
@@ -35,6 +39,9 @@ const Login = () => {
       })
     .then(data => { 
       localStorage.setItem ('jwt', data.data.token)
+
+      props.setAuth(true)
+
       history.push('/')
       setValues({...values, email: '',
       password: '',})
@@ -43,13 +50,9 @@ const Login = () => {
       console.log("errror",err)
     })
 
-
-  }
-
+      }
+    
   
-
-
-
 
   
     return (
