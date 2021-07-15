@@ -9,7 +9,7 @@ import { useCookies } from "react-cookie"
 
 
 
-const Login = () => {
+const Login = (props) => {
 
   const [values, setValues] = useState({
       
@@ -45,9 +45,8 @@ const Login = () => {
       })
 
     .then(data => { 
-      setCookie("x-auth-token", response.data.token, {
-          path: "/",
-      }); 
+      localStorage.setItem ('jwt', data.data.token)
+      props.setAuth(true)
       history.push('/')
       setValues({...values, email: '',
       password: '',})
@@ -59,8 +58,8 @@ const Login = () => {
     })
 
       }
-    )
-  }
+    
+  
   
     return (
       <div className="container mt-5 mb-5">
