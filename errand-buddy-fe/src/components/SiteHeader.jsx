@@ -15,7 +15,7 @@ const SiteHeader = (props) => {
   const logout= (next)=>{
     localStorage.removeItem('jwt');
     // axios.get("http://localhost:4000/api/users/logout")
-    props.setAuth(false)
+    props.setAuth(false);
     next()
     setBool(prev => !bool)
   }
@@ -65,7 +65,7 @@ const SiteHeader = (props) => {
             <a className="nav-link" href="/#">
 
               <span className="fas fa-user">
-                {" "} 
+                
                 <Link
                   to="/register"
                   
@@ -81,16 +81,15 @@ const SiteHeader = (props) => {
             <a className="nav-link" href="/#">
               <span className="fas fa-sign-in-alt">
                
-              {!props.isAuth && (<Link to="/login" className="navbar-link">
-                  
-                   <strong>Login</strong>
+              {(!props.isAuth && !localStorage.getItem("jwt")) ? (
+                <Link to="/login" className="navbar-link">
+                    Login            
+                </Link>
+                ) : (
+                <Link to="/" className="navbar-link" onClick={()=> logout(()=> history.push('/home'))}>
+                    Logout
                 </Link>)
                 } 
-                
-                {props.isAuth && (<Link to="/" className="navbar-link" onClick={()=> logout(()=> history.push('/home'))}>
-                  <strong>Logout</strong>
-                </Link>)
-                }
               </span>
             </a>
           </li>

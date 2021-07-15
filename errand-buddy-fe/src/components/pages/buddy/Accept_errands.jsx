@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import Layout from '../../Layout'
 
 function Accept_errands(props) {
      console.log(props, 12345)
-  
-    return (
-      
+     const id = localStorage.getItem("jwt");
+     // const {id} = localStorage;
+     console.log(id, "localstorage userID");
+     const { userID } = useParams();
+
+    return ( 
 <div>
 <Layout title="Accept Errand" 
-       description=" "
+       description=""
        className="container-fluid"
        >
 

@@ -33,9 +33,7 @@ const Home = () => {
         title="Errand Buddy"
         description="Let us share your errands today."
       >
-        {/* {JSON.stringify(errandByArrival)}
-    <hr/>
-    {JSON.stringify{errandByOffer}} */}
+        
       </Layout>
 
       <div className="main-container container-fluid mt-5">
