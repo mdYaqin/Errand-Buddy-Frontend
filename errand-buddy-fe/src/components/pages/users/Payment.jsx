@@ -10,7 +10,7 @@ const Payments = () => {
           <>
        <Layout title="Payment Page" description=" {Hi user!} "> </Layout>
          <div className="row">
-           {/* <div className="col-md-8 offset-md-2">{newPostForm()}</div> */}
+           
            <div className="col-md-8 offset-md-2">Hello</div>
 
            

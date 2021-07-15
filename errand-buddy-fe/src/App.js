@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
   BrowserRouter,
+  useParams
 } from 'react-router-dom';
 
 //Shared Components
@@ -32,8 +33,17 @@ import ErrandRequest from './components/pages/users/Errand_request';
 
 
 function App() {
-  const [isAuth, setAuth] = useState(false)
+  const [isAuth, setAuth] = useState(false);
+  const [reviews, setReviews] = useState([]);
   
+  const displayReviews = (latestReview) => {
+    setReviews([...reviews, latestReview]);
+  }
+
+  // const id = localStorage.getItem("jwt");
+  // // const {id} = localStorage;
+  // console.log(id, "localstorage userID");
+  // const {userID} = useParams();
     return (
       <div className="app">
         
@@ -46,17 +56,18 @@ function App() {
               <Route
                 path="/buddy/:id/completed-errands"
                 exact
-                component={CompletedErrands}
+                render = { () => (<CompletedErrands />)}
               />
               <Route
-                path="/buddy/:id/accept-errands"
+                path="/buddy/:userID/accept-errands"
                 exact
-                component={AcceptErrands}
+                render={(props) => (<AcceptErrands {...props} />)}
+
               />
               <Route
                 path="/buddy/buddy-dashboard"
                 exact
-                component={BuddyDashboard}
+                render={(props) => ( <BuddyDashboard reviews={reviews} />)}
               />
               <Route path="/buddy/:id" exact component={ShowErrands} />
               <Route path="/home" exact component={Home}  />
@@ -64,8 +75,8 @@ function App() {
               <Route path="/login" exact component={()=> <Login setAuth={setAuth} />} />
               
               <Route path="/user/user-dashboard" exact component={UserDashboard} />
-              <Route path="/user/user-review" exact component={UserReview} />
-              <Route path="/user/errand-completed" exact component={ErrandCompleted} />
+              <Route path="/user/user-review" exact render={(props) => (<UserReview reviews={reviews} displayReviews={displayReviews}/>)} />
+              <Route path="/user/errand-completed" exact render={(props) => (<ErrandCompleted reviews={reviews} displayReviews={displayReviews} />)} />
               <Route path="/user/payment" exact component={Payments} />
               <Route path="/user/add-errand" exact component={AddErrands} />
               <Route path="/user/errand-request" exact component={ErrandRequest} />

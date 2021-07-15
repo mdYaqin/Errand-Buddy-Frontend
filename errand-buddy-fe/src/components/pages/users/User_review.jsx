@@ -1,38 +1,36 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
-import Layout from '../../Layout'
+import Layout from "../../Layout";
 
 const colors = {
-    orange: "#FFBA5A",
-    grey: "#a9a9a9"
-    
+  orange: "#FFBA5A",
+  grey: "#a9a9a9",
 };
 
-
-
-function UserReview() {
+function UserReview({reviews, displayReviews}) {
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
-  const stars = Array(5).fill(0)
+  const [reviewText, setReviewText] = useState("");
+  const stars = Array(5).fill(0);
 
-  const handleClick = value => {
-    setCurrentValue(value)
-  }
+  console.log(reviews, displayReviews, "PROPS IN USER REVIEW")
+  const handleClick = (value) => {
+    setCurrentValue(value);
+  };
 
-  const handleMouseOver = newHoverValue => {
-    setHoverValue(newHoverValue)
+  const handleMouseOver = (newHoverValue) => {
+    setHoverValue(newHoverValue);
   };
 
   const handleMouseLeave = () => {
-    setHoverValue(undefined)
-  }
-
+    setHoverValue(undefined);
+  };
 
   return (
     <div style={styles.container}>
       <Layout title="Thanks User!" description=""></Layout>
-      
+
       <h2> Please rate your experience </h2>
       <div style={styles.stars}>
         {stars.map((_, index) => {
@@ -43,35 +41,34 @@ function UserReview() {
               onClick={() => handleClick(index + 1)}
               onMouseOver={() => handleMouseOver(index + 1)}
               onMouseLeave={handleMouseLeave}
-              color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
+              color={
+                (hoverValue || currentValue) > index
+                  ? colors.orange
+                  : colors.grey
+              }
               style={{
                 marginRight: 10,
-                cursor: "pointer"
+                cursor: "pointer",
               }}
             />
-          )
+          );
         })}
       </div>
-      <textarea
-        placeholder="What's your experience?"
-        style={styles.textarea}
-      />
+      <textarea placeholder="What's your experience?" onChange={(e) => setReviewText(e.target.value)} style={styles.textarea} />
 
-      <button
-        style={styles.button}
-      >
-        Submit
+      <button onClick={() =>displayReviews(reviewText)} style={styles.button}>
+        <Link to="/user/user-dashboard" className="navbar-item" href="">
+          Submit
+       </Link>
       </button>
-
-      <button type="button" class="btn btn-warning">
-            <Link to="/user/user-dashboard" className="navbar-item" href="">My Profile</Link>
-            </button>
-
-      
+      <button type="button" className="btn btn-warning">
+        <Link to="/user/user-dashboard" className="navbar-item" href="">
+          My Profile
+        </Link>
+      </button>
     </div>
   );
-};
-
+}
 
 const styles = {
   container: {
@@ -91,7 +88,7 @@ const styles = {
     padding: 10,
     margin: "20px 0",
     minHeight: 200,
-    width: 500
+    width: 500,
   },
   button: {
     border: "1px solid #a9a9a9",
@@ -99,12 +96,7 @@ const styles = {
     margin: "20px 0",
     width: 300,
     padding: 10,
-  }
-
+  },
 };
 
-
-
-
 export default UserReview;
- 

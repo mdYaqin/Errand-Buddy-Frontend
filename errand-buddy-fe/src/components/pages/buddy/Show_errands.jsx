@@ -1,16 +1,20 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import arrData from "../../../Data"
-import Layout from '../../Layout'
-import moment from 'moment'
+
+import arrData from "../../../Data";
+import Layout from "../../Layout";
+import moment from "moment";
+import { isAuthenticated } from "../../Auth";
+
 import './Show_errands.scss'
-import {isAuthenticated} from '../../Auth'
 import SiteFooter from '../../SiteFooter';
 
-const Show_errands=(props) => {
 
-  console.log(props,'sssss');
+const Show_errands = (props) => {
+  console.log(props, "sssss");
   //  console.log(props.location.data.e, "sasa")
+
+
     return (
         <div>
            <div className="main-container mt-5">
@@ -43,9 +47,21 @@ const Show_errands=(props) => {
                 <p>Status:{props.location.state.e.status}</p>
 
                 <button className="btn btn-outline-primary" mt-2 mb-2>
-                  {isAuthenticated() && (<Link to={`/buddy/${props.location.state.e.id}/accept-errands`} className="navbar-item" href="">Accept</Link>)}
-                  {!isAuthenticated() && <Link to={`/login`} className="navbar-item" href="">Login to accept</Link>}
-                </button>
+              {isAuthenticated() && (
+                <Link
+                  to={`/buddy/${localStorage.getItem("jwt")}/accept-errands`}
+                  className="navbar-item"
+                  href=""
+                >
+                  Accept
+                </Link>
+              )}
+              {!isAuthenticated() && (
+                <Link to={`/login`} className="navbar-item" href="">
+                  Login to accept
+                </Link>
+              )}
+            </button>
                 
               </div>
 
@@ -85,16 +101,14 @@ const Show_errands=(props) => {
               </div>
             </div>
             
+
           </div>
 
           <SiteFooter />
 
         </div>
-       
+      
     );
   }
 
-
 export default Show_errands;
-
-
