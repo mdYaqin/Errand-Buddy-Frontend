@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import arrData from "../Data";
 import Layout from "./Layout";
 import axios from "axios";
+import Likes from './Sections/Likes'
 import './Home.scss'
 
 const Home = () => {
@@ -41,12 +42,12 @@ const Home = () => {
     {JSON.stringify{errandByOffer}} */}
       </Layout>
 
-      <div className="main-container container-fluid mt-5">
+      <div className="main-container mt-5">
         <h2 className="mb-4">Available Errands! </h2>
         <div id="errand-container" className="errand-container row ">
           {data.map((e) => (
             <div className="errand-card mb-3" key={e._id}>
-                <div className="card-image embed-responsive">
+                <div className="card-image">
                   <img src={e.image} alt="Item" />
                 </div>
                 <div className="card-body">                 
@@ -61,8 +62,9 @@ const Home = () => {
                   <p>Errand Fee: ${e.errandFee}</p>
                   <p>Pickup At: {e.pickupLocation}</p>
                   <p>Deliver To: {e.deliveryLocation}</p>
-                  <span className="card-like"><i class="far fa-heart"></i></span>
+                  
                 </div>
+                <Likes />
             </div>
           ))}
         </div>

@@ -1,0 +1,120 @@
+.main-container {
+    width: 70vw;
+    margin: 0 auto;
+  }
+
+.show-container {
+
+    display: flex;
+    flex-direction: column;
+
+
+    img {
+        margin: 5px auto;
+
+        max-height: 40vh;
+    }
+
+    .show-header {
+        font-family: 'Otomanopee One', sans-serif;
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0;
+        border-top: 3px solid #999;
+        border-bottom: 2px solid #999;
+        padding:10px 0;
+
+        p {
+            margin-bottom: 2px;;
+        }
+        .summary {
+            font-weight: 600;
+            font-size: 2em;
+        }
+
+        .fees {
+            font-weight: 600;
+            font-size: 1.5em;
+        }
+    }
+
+    .location-info {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid #999;
+        margin: 10px 0;
+    }
+}
+
+.errand-guarantee {
+    font-family: 'Noto Sans JP', sans-serif;
+    text-align: justify;
+    border: 5px solid gray;
+    margin: 5px auto 20px auto;
+
+    div {
+        display: flex;
+        justify-content: center;
+        width: 95%;
+        margin: auto;
+    }
+
+    h2 {
+        font-weight: 700;
+    }
+}
+
+.seller-info {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+
+    h5 {
+        margin: 5px auto 5px auto;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .seller-rep {
+
+        .ratings {
+        
+            display: flex;
+            justify-content: center;
+            
+            p {
+                margin-bottom: 0;
+            }
+    
+            i {
+                color: #FDCC0D;
+            }
+    
+            
+        }
+
+        h6 {
+            text-align: center;
+            font-size: 0.7em;
+        }
+
+    }
+    
+
+    .dotted-lines {
+        line-height: 1px;
+        height: 1px;
+        font-size: 1px;
+        border-top: 2px dotted #999;
+        margin: 10px auto 10px auto;
+        width: 94%;
+    }
+
+    .review-box{
+        overflow: scroll;
+        height: 250px;
+        padding: 0;
+        width: 94%
+    }
+
+}
