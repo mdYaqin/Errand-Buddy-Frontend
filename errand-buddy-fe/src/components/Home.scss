@@ -1,21 +1,36 @@
 #errand-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
-h2 {
+h2{
     text-align: center;
 }
-
 .errand-card {
     box-shadow: 0 3px 10px rgb(44 44 45 / 10%) , inset 0 0 0 1px rgb(44 44 45 / 10%);
-    height: 32vw;
-    width: 23vw;
+    height: 20vw;
+    width: 15vw;
+    margin: 10px;
+    border: lightgrey;
+    border-radius: 10px;
     background-color: white;
     padding: 0;
 
+    .item-details {
+        text-align: center;
+        font-weight: bold;
+        margin: 20px auto 10px auto;
+        font-family: 'Otomanopee One', sans-serif;
+        color: black;
+    }
+
     p {
         font-size: small;
+        margin: 5px auto 0 auto;
+    }
+
+    .card-like {
+        float: right;
     }
 }
 
@@ -25,6 +40,8 @@ h2 {
 
     img {
         margin: 10px auto 2px auto;
-        height: 100%;
+        width: 85%;
+        object-fit: cover;
+        border-radius: 5px;
     }
 }
