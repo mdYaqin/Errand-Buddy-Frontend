@@ -110,7 +110,7 @@ function AddErrands() {
 
           <div className="mb-3">
             <label for="formFileSm" className="image">
-              Upload Image (Optional)
+              Upload Image
             </label>
             <input
               onChange={uploadImage}
