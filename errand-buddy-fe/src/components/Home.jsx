@@ -62,7 +62,7 @@ const Home = () => {
                   <p>Deliver To: {e.deliveryLocation}</p>
                   
                 </div>
-                <Likes />
+                <Likes errandId={e._id} userId={localStorage.getItem('userId')}/>
             </div>
           ))}
         </div>

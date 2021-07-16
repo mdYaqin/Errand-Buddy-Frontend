@@ -14,6 +14,7 @@ const SiteHeader = (props) => {
 
   const logout= (next)=>{
     localStorage.removeItem('jwt');
+    localStorage.removeItem('userId')
     // axios.get("http://localhost:4000/api/users/logout")
     props.setAuth(false);
     next()

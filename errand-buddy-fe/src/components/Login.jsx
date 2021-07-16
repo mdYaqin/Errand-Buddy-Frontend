@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { useState } from "react";
-
 import { Link, Redirect, useHistory } from "react-router-dom";
 import Layout from "./Layout";
 import axios from "axios";
@@ -36,6 +35,7 @@ const Login = (props) => {
       })
     .then(data => { 
       localStorage.setItem ('jwt', data.data.token)
+      localStorage.setItem('userId', data.data.userId )
 
       props.setAuth(true)
 

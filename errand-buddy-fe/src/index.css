@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.likes-amt {
+  font-size: small;
+  margin-left: 5px;
+}
