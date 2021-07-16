@@ -1,7 +1,6 @@
 #errand-container {
     display: flex;
     justify-content: center;
-    
 }
 
 h2{
@@ -57,4 +56,21 @@ h2{
 
 .card-like {
     margin: 15px 25px 0 0 ;
+}
+
+@media screen and (max-width: 1024px){
+
+    .main-container {
+        width: 90vw;
+        margin: auto;
+    }
+
+    .errand-card {
+        width: 20%;
+    }
+
+    .item-details {
+        font-size: 1em;
+    }
+
 }

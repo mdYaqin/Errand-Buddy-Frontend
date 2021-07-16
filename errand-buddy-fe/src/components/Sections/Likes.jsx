@@ -17,7 +17,7 @@ function Likes(props) {
                 setLikes(response.data.likes.length)
 
                 response.data.likes.map(like => {
-                    if(like.userID === props.userId) {
+                    if(like.userId === props.userId) {
                         setLikeAction('liked')
                     }
                 })
@@ -28,6 +28,12 @@ function Likes(props) {
     }, [])
 
     const onLike = () => {
+
+        if(!props.userId) {
+
+            alert('Log in to like a post')
+            return
+        }
         
         if(LikeAction === null)  {
 
@@ -61,12 +67,13 @@ function Likes(props) {
 
     return (
         <div className="card-like">
-            <i className="far fa-heart" theme ={ LikeAction === 'liked' ? 'filled' : 'outlined'}
-            onClick={onLike}
-            >
+            { LikeAction === 'liked' 
+            ?
+            <i class="fas fa-heart" onClick={onLike} style={{color: "red"}}></i>
 
-            </i>
-            <span>{Likes}</span>
+            : <i class="far fa-heart" onClick={onLike}></i>
+            }
+            <span className="likes-amt">{Likes}</span>
         </div>
     );
 }
