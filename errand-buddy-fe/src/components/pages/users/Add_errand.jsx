@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Errand_request from "./Errand_request";
 import axios from "axios";
 
+
 function AddErrands() {
   const [data, setData] = useState({
     category: "",
@@ -52,11 +53,13 @@ function AddErrands() {
       });
   }
 
+
   return (
     <>
       <Layout title="Add Errands" description="Hi {user_id}"></Layout>
       <div className="row">
         <div className="container">
+
           <form method="POST" action="" />
           <select
             className="form-select-lg mb-3"
@@ -239,6 +242,7 @@ function AddErrands() {
               Add Errand
             </Link>
           </button>
+
         </div>
       </div>
     </>
