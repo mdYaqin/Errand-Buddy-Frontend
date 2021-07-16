@@ -17,7 +17,7 @@ const Show_errands = (props) => {
 
     return (
         <div>
-           <div className="main-container mt-5">
+           <div className="mainshow-container mt-5">
             <div className="row ">
               <div className="show-container col-7 mb-3" key={props.location.state.e._id}>
                 <img className="show-image" src={props.location.state.e.image} alt="Item" />
