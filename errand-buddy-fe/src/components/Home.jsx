@@ -8,7 +8,7 @@ import './Home.scss'
 
 const Home = () => {
 
-  const [data, setData] = useState(arrData);
+  const [data, setData] = useState();
 
   useEffect(() => {
     axios
