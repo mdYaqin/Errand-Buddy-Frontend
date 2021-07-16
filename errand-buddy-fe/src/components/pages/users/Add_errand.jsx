@@ -6,7 +6,22 @@ import Errand_request from "./Errand_request";
 
 const AddErrands = () => {
   
+  const [selectedFile, setSelectedFile] = useState(null)
+  const [name, setName] = useState("")
 
+  const submitForm = () => {
+
+    const formData = new FormData();
+    formData.append("name", item_name);
+    formData.append("file", selectedFile);
+  
+    axios
+      .post('http://localhost:4000/api/users/create-errand', formData)
+      .then((res) => {
+        alert("File Upload success");
+      })
+      .catch((err) => alert("File Upload Error"));
+  };
 
   return (
     <>
@@ -57,6 +72,8 @@ const AddErrands = () => {
                 className="form-control form-control"
                 id="form-control"
                 type="file"
+                value={selectedFile}
+                onChange={(e)=> setSelectedFile(e.target.files[0])}
               />
             </div>
 
