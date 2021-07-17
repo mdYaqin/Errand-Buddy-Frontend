@@ -1,17 +1,32 @@
-import React, { Component, useState } from "react";
-
-import { Link } from "react-router-dom";
+import React, { Component, useState, useEffect } from "react";
+import axios from "axios";
+import { Link,useHistory } from "react-router-dom";
 
 const Buddy_dashboard = (props) => {
-  const [currentValue, setCurrentValue] = useState({
-    name: "",
-    email: "",
+  const history = useHistory()
+  const [user, setUser] = useState({
+    user: {
+      name: "",
+      email: "",
+    },
+    errands: {},
+    // balance: {balance: ""},
+    inProgress: [
+      {
+        items: "",
+        itemPrice: "",
+        errandFee: "",
+        image: "",
+        _id:""
+      },
+    ],
   });
 
   const handleSubmit = () =>
   {
     const token = localStorage.getItem("jwt");
  // router.post('/:id/accepted', authenticated, errandController.accept)
+<<<<<<< HEAD
     //axios.post(`http://localhost:4000/api/errands/${ _id }/completed`,{}, {
   //    headers: {
   //      "x-auth-token": token,
@@ -22,21 +37,57 @@ const Buddy_dashboard = (props) => {
   //    history.push(`/buddy/buddy-dashboard`)
       
   //    })
+=======
+    axios.post(`http://localhost:4000/api/errands/${ user._id }/completed`,{}, {
+     headers: {
+       "x-auth-token": token,
+       "content-type": "application/json"
+   }
+    } ).then(response =>
+    {
+     history.push(`/buddy/buddy-dashboard`)
+      
+     })
+>>>>>>> 01f28027874ed3e037dedc4992ed65bf5ef0f683
   
    }
  
   const token = localStorage.getItem("jwt");
 
+<<<<<<< HEAD
   // const { name, email } = user.user;
   
 
   // useEffect(() => {
   //   console.log(user);
   // });
+=======
+  const { name, email } = user.user;
+  
 
-  const handleChange = (name) => (event) => {
-    setCurrentValue({...currentValue, [name]: event.target.currentValue})
-  }
+  useEffect(() => {
+    console.log(user);
+  });
+>>>>>>> 01f28027874ed3e037dedc4992ed65bf5ef0f683
+
+  useEffect(() => {
+    // router.post('/:id/accepted', authenticated, errandController.accept)
+    axios
+      .get(`http://localhost:4000/api/users/dashboard`, {
+        headers: {
+          "x-auth-token": token,
+          "content-type": "application/json",
+        },
+      })
+      .then((response) => {
+        // history.push(`/buddy/buddy-dashboard`)
+        console.log(response.data);
+        setUser(response.data);
+      });
+  }, []);
+  // const handleChange = (name) => (event) => {
+  //   setUser({...user, [name]: event.target.user})
+  // }
 
   const dashboardLinks = () => {
     return (
@@ -44,7 +95,7 @@ const Buddy_dashboard = (props) => {
         <h4 className="card-header">Buddy Links</h4>
         <ul className="list-group">
           <Link className="nav-link" to="/"></Link>
-          <li className="list-group-item">My Wallet</li>
+          {/* <li className="list-group-item">My Wallet: ${balance}</li> */}
           <Link className="nav-link" to="/buddy/profile-update">
             Update Profile
           </Link>
@@ -69,8 +120,41 @@ const Buddy_dashboard = (props) => {
       <div className="card mb-5">
         <h3 className="card-header">Rating</h3>
         <ul className="list-group">
-          <li className="list-group-item">{props.reviews.map((customerReview, i) => <div key={i}>{customerReview}</div>) }</li>
+          <li className="list-group-item">
+            {props.reviews.map((customerReview, i) => (
+              <div key={i}>{customerReview}</div>
+            ))}
+          </li>
         </ul>
+      </div>
+    );
+  };
+  const inProgress = () => {
+    return (
+      <div className="card mb-5">
+        <h3 className="card-header">Errand In Progress</h3>
+{
+          user.inProgress ? 
+            user.inProgress.map((e) => (      
+        <div class="d-flex p-1 bg-secondary text-white justify-content-between">
+          <div> 
+          <div class="p-2 bg-info flex-fill">Items: {e.items}</div>
+          <div class="p-2 bg-info flex-fill">Item price: ${e.itemPrice}</div>
+          <div class="p-2 bg-info flex-fill">Errand fee: $ {e.errandFee}</div>
+          </div>
+          <div class="p-2 bg-info flex-fill">
+            {" "}
+            <img src={e.image} alt="" width="100" height="100" />{" "}
+            <button onClick={handleSubmit}>Complete Errand
+            </button>
+          </div>
+            </div>
+          ))              
+            :         
+            (
+          <div>no outstanding jobs</div>
+          )      
+}            
       </div>
     );
   };
@@ -81,9 +165,14 @@ const Buddy_dashboard = (props) => {
         <div className="card mb-5 ">
           <h3 className="card-header">User Information</h3>
           <ul className="list-group">
+<<<<<<< HEAD
             {/* <li className="list-group-item">{name}</li>
             <li className="list-group-item">{email}</li> */}
             <li className="list-group-item">role</li>
+=======
+            <li className="list-group-item">Name: {name}</li>
+            <li className="list-group-item">Email:{email}</li>
+>>>>>>> 01f28027874ed3e037dedc4992ed65bf5ef0f683
           </ul>
         </div>
 
@@ -92,6 +181,7 @@ const Buddy_dashboard = (props) => {
           <div className="col-9">
             {transactionHistory()}
             {buddyRating()}
+            {inProgress()}
           </div>
         </div>
       </div>

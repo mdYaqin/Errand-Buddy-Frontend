@@ -37,7 +37,11 @@ const Login = (props) => {
       localStorage.setItem ('jwt', data.data.token)
       localStorage.setItem('userId', data.data.userId )
       localStorage.setItem('userName', data.data.name )
+<<<<<<< HEAD
       console.log(data.data);
+=======
+console.log(data.data);
+>>>>>>> 01f28027874ed3e037dedc4992ed65bf5ef0f683
       props.setAuth(true)
 
       history.push('/')
