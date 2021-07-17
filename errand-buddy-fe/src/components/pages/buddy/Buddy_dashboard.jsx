@@ -8,7 +8,31 @@ const Buddy_dashboard = (props) => {
     email: "",
   });
 
-  const {name, email} = currentValue;
+  const handleSubmit = () =>
+  {
+    const token = localStorage.getItem("jwt");
+ // router.post('/:id/accepted', authenticated, errandController.accept)
+    //axios.post(`http://localhost:4000/api/errands/${ _id }/completed`,{}, {
+  //    headers: {
+  //      "x-auth-token": token,
+  //      "content-type": "application/json"
+  //  }
+  //   } ).then(response =>
+  //   {
+  //    history.push(`/buddy/buddy-dashboard`)
+      
+  //    })
+  
+   }
+ 
+  const token = localStorage.getItem("jwt");
+
+  // const { name, email } = user.user;
+  
+
+  // useEffect(() => {
+  //   console.log(user);
+  // });
 
   const handleChange = (name) => (event) => {
     setCurrentValue({...currentValue, [name]: event.target.currentValue})
@@ -57,8 +81,8 @@ const Buddy_dashboard = (props) => {
         <div className="card mb-5 ">
           <h3 className="card-header">User Information</h3>
           <ul className="list-group">
-            <li className="list-group-item">{name}</li>
-            <li className="list-group-item">{email}</li>
+            {/* <li className="list-group-item">{name}</li>
+            <li className="list-group-item">{email}</li> */}
             <li className="list-group-item">role</li>
           </ul>
         </div>
