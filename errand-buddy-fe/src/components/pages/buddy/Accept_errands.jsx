@@ -3,18 +3,18 @@ import { Link,useParams } from "react-router-dom";
 import Layout from '../../Layout'
 
 function Accept_errands(props) {
-     console.log(props, 12345)
+  const { errantID } = useParams();
+     console.log("errand id: ",errantID)
      const id = localStorage.getItem("jwt");
      // const {id} = localStorage;
      console.log(id, "localstorage userID");
-     const { userID } = useParams();
 
     return ( 
 <div>
 <Layout title="Accept Errand" 
        description=""
        className="container-fluid"
-       >
+       > 
 
         
          <div className="row"></div>
@@ -25,11 +25,9 @@ function Accept_errands(props) {
   <hr/>
   <p className="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
   <button type="button" className="btn btn-success">
-            <Link to={`/buddy/${props.match.params.id}/completed-errands`} className="navbar-item" href="">Item delivered</Link>
+            <Link to={`/buddy/${errantID}/completed-errands`} className="navbar-item" href="">Item delivered</Link>
             </button>
 </div>
-
-       
       </div>
     );
   }
