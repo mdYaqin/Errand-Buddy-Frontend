@@ -1,6 +1,8 @@
 #errand-container {
     display: flex;
     justify-content: center;
+    width: 80vw;
+    margin: auto;
 }
 
 h2{
@@ -8,14 +10,14 @@ h2{
 }
 .errand-card {
     box-shadow: 0 3px 10px rgb(44 44 45 / 10%) , inset 0 0 0 1px rgb(44 44 45 / 10%);
-    height: 40vh;
-    width: 15vw;
+    height: 400px;
+    width: 250px;
     margin: 10px;
     border: lightgrey;
     border-radius: 10px;
     background-color: white;
     padding: 0;
-    overflow: auto;
+    overflow: scroll;
     
 
     .item-details {
@@ -33,7 +35,7 @@ h2{
 
     .card-body {
         height: 50%;
-        overflow: auto;
+        overflow: scroll;
     }
 
     .card-like {
@@ -49,7 +51,7 @@ h2{
     img {
         margin: 10px auto 2px auto;
         width: 85%;
-        object-fit: cover;
+        object-fit: contain;
         border-radius: 5px;
     }
 }
