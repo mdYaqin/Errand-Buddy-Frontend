@@ -54,12 +54,12 @@ function App() {
             <Switch>
             
               <Route
-                path="/buddy/:errantID/completed-errands"
+                path="/buddy/:id/completed-errands"
                 exact
                 render = { () => (<CompletedErrands />)}
               />
               <Route
-                path="/buddy/:errantID/accept-errands"
+                path="/buddy/:userID/accept-errands"
                 exact
                 render={(props) => (<AcceptErrands {...props} />)}
 
