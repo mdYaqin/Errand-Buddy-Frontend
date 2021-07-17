@@ -25,19 +25,8 @@ const Buddy_dashboard = (props) => {
   const handleSubmit = () =>
   {
     const token = localStorage.getItem("jwt");
- // router.post('/:id/accepted', authenticated, errandController.accept)
-<<<<<<< HEAD
-    //axios.post(`http://localhost:4000/api/errands/${ _id }/completed`,{}, {
-  //    headers: {
-  //      "x-auth-token": token,
-  //      "content-type": "application/json"
-  //  }
-  //   } ).then(response =>
-  //   {
-  //    history.push(`/buddy/buddy-dashboard`)
+
       
-  //    })
-=======
     axios.post(`http://localhost:4000/api/errands/${ user._id }/completed`,{}, {
      headers: {
        "x-auth-token": token,
@@ -48,27 +37,17 @@ const Buddy_dashboard = (props) => {
      history.push(`/buddy/buddy-dashboard`)
       
      })
->>>>>>> 01f28027874ed3e037dedc4992ed65bf5ef0f683
   
    }
  
   const token = localStorage.getItem("jwt");
 
-<<<<<<< HEAD
-  // const { name, email } = user.user;
-  
-
-  // useEffect(() => {
-  //   console.log(user);
-  // });
-=======
   const { name, email } = user.user;
   
 
   useEffect(() => {
     console.log(user);
   });
->>>>>>> 01f28027874ed3e037dedc4992ed65bf5ef0f683
 
   useEffect(() => {
     // router.post('/:id/accepted', authenticated, errandController.accept)
@@ -165,14 +144,8 @@ const Buddy_dashboard = (props) => {
         <div className="card mb-5 ">
           <h3 className="card-header">User Information</h3>
           <ul className="list-group">
-<<<<<<< HEAD
-            {/* <li className="list-group-item">{name}</li>
-            <li className="list-group-item">{email}</li> */}
-            <li className="list-group-item">role</li>
-=======
             <li className="list-group-item">Name: {name}</li>
             <li className="list-group-item">Email:{email}</li>
->>>>>>> 01f28027874ed3e037dedc4992ed65bf5ef0f683
           </ul>
         </div>
 
