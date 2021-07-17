@@ -8,11 +8,9 @@ import './Home.scss'
 
 const Home = () => {
 
-  console.log('first')
-  const [data, setData] = useState([]); // Originally was useState(). Couldn't load. Only could load after I put as useState([])
-
+  
+  const [data, setData] = useState(arrData);
   useEffect(() => {
-    console.log('working')
     axios
       .get("http://localhost:4000/")
 
@@ -21,7 +19,7 @@ const Home = () => {
         setData(response.data);
         console.log(response.data);
       })
-      .catch(function (error) {
+      .catch(function (error) { 
         // handle error
         console.log(error);
       })

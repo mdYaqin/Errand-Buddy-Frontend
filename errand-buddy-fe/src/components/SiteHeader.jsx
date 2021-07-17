@@ -15,6 +15,7 @@ const SiteHeader = (props) => {
   const logout= (next)=>{
     localStorage.removeItem('jwt');
     localStorage.removeItem('userId')
+    localStorage.removeItem('userName')
     // axios.get("http://localhost:4000/api/users/logout")
     props.setAuth(false);
     next()
@@ -53,7 +54,7 @@ const SiteHeader = (props) => {
             </Link>
           </li>
           <li className="other-links">
-            <Link to="/user/dashboard">
+            <Link to="/buddy/buddy-dashboard">
               Your Dashboard
             </Link>
           </li>
@@ -63,20 +64,25 @@ const SiteHeader = (props) => {
       <div id="login-links">
         <ul>
           <li>
-            <a className="nav-link" href="/#">
+            {(!props.isAuth && !localStorage.getItem("jwt")) ? (
 
-              <span className="fas fa-user">
+              <a className="nav-link" href="/#">
                 
-                <Link
-                  to="/register"
+                <span className="fas fa-user">
+                  <Link
+                    to="/register"
                   
-                  href="/register"
-                >
-                  <strong>Sign up</strong>
-                </Link>
-              </span>
+                    href="/register"
+                  >
+                    <strong>Sign up</strong>
+                  </Link>
+                </span>
+              </a>
+            ) : <strong className="nav-link">Hello, { localStorage.getItem("userName")}</strong>
 
-            </a>
+
+}
+        
           </li>
           <li className="nav-item">
             <a className="nav-link" href="/#">

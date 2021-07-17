@@ -1,16 +1,36 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link,Redirect, useHistory } from "react-router-dom";
 
 import arrData from "../../../Data";
 import Layout from "../../Layout";
 import moment from "moment";
 import { isAuthenticated } from "../../Auth";
+import axios from "axios";
 
 import './Show_errands.scss'
 import SiteFooter from '../../SiteFooter';
 
 
-const Show_errands = (props) => {
+const Show_errands = (props) =>
+{
+  
+  const history = useHistory()
+  const handleSubmit = () =>
+  {
+    const errandId = props.location.state.e._id
+    console.log(errandId);
+    const token = localStorage.getItem("jwt");
+    axios.post(`http://localhost:4000/api/errands/${errandId }/accepted`,{}, {
+     headers: {
+       "x-auth-token": token,
+       "content-type": "application/json"
+   }
+    } ).then(response =>
+    {
+     history.push(`/buddy/${errandId}/accept-errands`)
+     })
+  
+   }
   console.log(props, "sssss");
   //  console.log(props.location.data.e, "sasa")
 
@@ -48,13 +68,8 @@ const Show_errands = (props) => {
 
                 <button className="btn btn-outline-primary" mt-2 mb-2>
               {isAuthenticated() && (
-                <Link
-                  to={`/buddy/${localStorage.getItem("jwt")}/accept-errands`}
-                  className="navbar-item"
-                  href=""
-                >
-                  Accept
-                </Link>
+                  <button onClick= {handleSubmit}> Accept
+              </button>
               )}
               {!isAuthenticated() && (
                 <Link to={`/login`} className="navbar-item" href="">
