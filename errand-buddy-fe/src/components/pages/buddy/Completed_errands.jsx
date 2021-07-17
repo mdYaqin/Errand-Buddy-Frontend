@@ -1,20 +1,59 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import {  Link,useParams,useHistory  } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import Layout from "../../Layout";
+import axios from "axios";
 
 const colors = {
   orange: "#FFBA5A",
   grey: "#a9a9a9",
 };
 
-function Completed_errands() {
+function Completed_errands()
+{
+  
+  const history = useHistory();
+  const { errantID } = useParams();
+
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
+  const [feedback, setFeedback]=useState({})
   const stars = Array(5).fill(0);
+  let feedbackMessage = ''
+  
+  useEffect(() =>
+  {
+    console.log("errant id: " +errantID);
+    console.log("feedback msg: "+feedback);
+    console.log("stars: "+currentValue);
+  })
+
+  const handleSubmit = () =>
+  {
+    const token = localStorage.getItem("jwt");
+ // router.post('/:id/accepted', authenticated, errandController.accept)
+    axios.post(`http://localhost:4000/api/errands/${ errantID }/completed`,{}, {
+     headers: {
+       "x-auth-token": token,
+       "content-type": "application/json"
+   }
+    } ).then(response =>
+    {
+     history.push(`/buddy/buddy-dashboard`)
+      
+     })
+  
+   }
 
   const handleClick = (value) => {
     setCurrentValue(value);
+  
+  };
+  // const handleSubmit = () => {
+  //   console.log(feedback);
+  // };
+  const handleOnChange = (e) => {
+    setFeedback(e.target.value);
   };
 
   const handleMouseOver = (newHoverValue) => {
@@ -52,10 +91,13 @@ function Completed_errands() {
           );
         })}
       </div>
-      <textarea placeholder="What's your experience?" style={styles.textarea} />
-
-      <button style={styles.button}><Link to="/buddy/buddy-dashboard" className="navbar-item" href="">Submit </Link></button>
-
+      <textarea placeholder="What's your experience?" style={styles.textarea} onChange={handleOnChange} />
+{/* 
+      <button style={styles.button}><Link to="/buddy/buddy-dashboard" className="navbar-item" href="">Confirm your errand completion </Link></button> */}
+      <button onClick={handleSubmit}>
+        submit feedback
+</button>
+      
       <button type="button" className="btn btn-warning">
         <Link to="/buddy/buddy-dashboard" className="navbar-item" href="">
           My Profile
