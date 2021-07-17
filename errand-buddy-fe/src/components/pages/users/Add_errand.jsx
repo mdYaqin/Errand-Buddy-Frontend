@@ -5,11 +5,11 @@ import { Link } from "react-router-dom";
 import Errand_request from "./Errand_request";
 import axios from "axios";
 
-
 function AddErrands() {
   const [data, setData] = useState({
     category: "",
     items: "",
+    username: "",
     description: "",
     pickupLocation: "",
     deliveryLocation: "",
@@ -17,19 +17,8 @@ function AddErrands() {
     deliveryTime: "",
     itemPrice: "",
     errandFee: "",
+    image: "",
   });
-
-  const [image, setImage] = useState({
-      image: ""
-  });
-
-  function uploadImage (event) {
-    setImage ({
-
-      newImage: event.target.files[0]
-
-    })
-  }
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -45,53 +34,55 @@ function AddErrands() {
   function handleClick(event) {
     event.preventDefault();
 
-    let formData = new FormData()
-    formData.append ("items", data.items)
-    formData.append("category", data.category)
-    formData.append('description', data.description)
-    formData.append('pickupLocation', data.pickupLocation)
-    formData.append('deliveryLocation', data.deliveryLocation)
-    formData.append('pickupTime', data.pickupTime)
-    formData.append('deliveryTime', data.deliveryTime)
-    formData.append('itemPrice', data.itemPrice)
-    formData.append('errandFee', data.errandFee)
-    formData.append('image', image.newImage)
-
     axios
-      .post("http://localhost:4000/api/users/create-errand", 
-        formData,
-        {
-          headers: {
-            'x-auth-token': localStorage.getItem('jwt'),
-            "Content-Type": "multipart/form-data" 
-          }
-        }
-      )
+      .post("http://localhost:4000/api/users/create-errand",  {
+        items: data.items,
+        username: data.username,
+        description: data.description,
+        pickupLocation: data.pickupLocation,
+        deliveryLocation: data.deliveryLocation,
+        pickupTime: data.pickupTime,
+        deliveryTime: data.deliveryTime,
+        itemPrice: data.itemPrice,
+        errandFee: data.errandFee,
+        image: data.image,
+      })
       .then((res) => {
         console.log(res.data);
       });
   }
-
 
   return (
     <>
       <Layout title="Add Errands" description="Hi {user_id}"></Layout>
       <div className="row">
         <div className="container">
-
           <form method="POST" action="" />
           <select
             className="form-select-lg mb-3"
             aria-label=".form-select-lg example"
-            name="category"
-            value={data.category} onChange={handleChange}
           >
             <option selected> Select Categories</option>
-            <option value="Grocery">Grocery</option>
-            <option value="Queue">Queue</option>
-            <option value="Pet-Sitting">Pet-sit</option>
-            <option value="Others">Others</option>
+            <option value="1">Grocery</option>
+            <option value="2">Queue</option>
+            <option value="3">Pet-sit</option>
+            <option value="3">Others</option>
           </select>
+
+          <div className="mb-3">
+            <label for="username" className="form-label">
+              username
+            </label>
+            <input
+              onChange={handleChange}
+              required
+              type="text"
+              className="form-control"
+              id="username"
+              name="username"
+              value={data.username}
+            />
+          </div>
 
           <div className="mb-3">
             <label for="items" className="form-label">
@@ -110,14 +101,14 @@ function AddErrands() {
 
           <div className="mb-3">
             <label for="formFileSm" className="image">
-              Upload Image
+              Upload Image (Optional)
             </label>
             <input
-              onChange={uploadImage}
+              onChange={handleChange}
               className="form-control form-control"
               id="image"
               type="file"
-              name="newImage"
+              value={data.image}
             />
           </div>
           <div className="mb-3">
@@ -171,7 +162,7 @@ function AddErrands() {
             <input
               onChange={handleChange}
               required
-              type="date"
+              type="number"
               className="form-control"
               id="pickupTime"
               name="pickupTime"
@@ -186,7 +177,7 @@ function AddErrands() {
             <input
               onChange={handleChange}
               required
-              type="date"
+              type="number"
               className="form-control"
               id="deliveryTime"
               name="deliveryTime"
@@ -248,7 +239,6 @@ function AddErrands() {
               Add Errand
             </Link>
           </button>
-
         </div>
       </div>
     </>

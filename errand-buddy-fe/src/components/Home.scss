@@ -1,8 +1,6 @@
 #errand-container {
     display: flex;
     justify-content: center;
-    width: 80vw;
-    margin: auto;
 }
 
 h2{
@@ -17,6 +15,7 @@ h2{
     border-radius: 10px;
     background-color: white;
     padding: 0;
+    overflow: auto;
     
 
     .item-details {
@@ -34,6 +33,7 @@ h2{
 
     .card-body {
         height: 50%;
+        overflow: auto;
     }
 
     .card-like {
