@@ -26,7 +26,7 @@ const Buddy_dashboard = (props) => {
   {
     const token = localStorage.getItem("jwt");
  // router.post('/:id/accepted', authenticated, errandController.accept)
-    axios.post(`http://localhost:4000/api/errands/${ _id }/completed`,{}, {
+    axios.post(`http://localhost:4000/api/errands/${ user._id }/completed`,{}, {
      headers: {
        "x-auth-token": token,
        "content-type": "application/json"
