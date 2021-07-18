@@ -78,7 +78,7 @@ const SiteHeader = (props) => {
                   </Link>
                 </span>
               </a>
-            ) : <strong className="nav-link">Hello, { localStorage.getItem("userName")}</strong>
+            ) : <strong className="nav-link">Hello, { localStorage.getItem("username")}</strong>
 
 
 }

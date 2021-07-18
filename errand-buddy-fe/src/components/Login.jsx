@@ -36,7 +36,7 @@ const Login = (props) => {
     .then(data => { 
       localStorage.setItem ('jwt', data.data.token)
       localStorage.setItem('userId', data.data.userId )
-      localStorage.setItem('userName', data.data.name )
+      localStorage.setItem('username', data.data.username )
       console.log(data.data);
       props.setAuth(true)
 

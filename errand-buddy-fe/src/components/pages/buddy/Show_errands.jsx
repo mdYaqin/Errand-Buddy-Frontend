@@ -27,7 +27,7 @@ const Show_errands = (props) =>
    }
     } ).then(response =>
     {
-     history.push(`/buddy/${errandId}/accept-errands`)
+     history.push(`/buddy/buddy-dashboard`)
      })
   
    }

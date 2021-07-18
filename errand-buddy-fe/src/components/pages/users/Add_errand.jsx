@@ -16,7 +16,7 @@ function AddErrands() {
     pickupTime: "",
     deliveryTime: "",
     itemPrice: "",
-    errandFee: "",
+    errandFee: ""
   });
 
   const [image, setImage] = useState({
@@ -25,7 +25,7 @@ function AddErrands() {
 
   function uploadImage (event) {
     setImage ({
-
+      
       newImage: event.target.files[0]
 
     })
