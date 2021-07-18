@@ -39,10 +39,10 @@ console.log(e);
    }
     } ).then(response =>
     {
-setBool(!bool);
-     history.push(`/buddy/${e}/completed-errands`)
+      setBool(!bool);
+      history.push(`/buddy/${e}/completed-errands`)
       
-     })
+    })
    }
  
   const token = localStorage.getItem("jwt");
