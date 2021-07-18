@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Link,Redirect, useHistory } from "react-router-dom";
+import React, { Component, useState, useEffect  } from "react";
+import { Link, Redirect, useHistory } from "react-router-dom";
 
 import arrData from "../../../Data";
 import Layout from "../../Layout";
@@ -15,6 +15,7 @@ const Show_errands = (props) =>
 {
   
   const history = useHistory()
+
   const handleSubmit = () =>
   {
     const errandId = props.location.state.e._id
@@ -33,6 +34,29 @@ const Show_errands = (props) =>
    }
   console.log(props, "sssss");
   //  console.log(props.location.data.e, "sasa")
+  
+  const [review, setReview] = useState({
+    
+      averageRating: "",
+      allReviews: []
+    
+  });
+
+  useEffect(() => {
+    // router.post('/:id/accepted', authenticated, errandController.accept)
+    axios
+      .get(`http://localhost:4000/api/errands/show/${props.location.state.e._id}`, {
+        headers: {
+          "x-auth-token": localStorage.getItem('jwt'),
+          "content-type": "application/json",
+        },
+      })
+      .then((response) => {
+        setReview(response.data);
+      });
+  },[]);
+
+  console.log('review', review)
 
 
     return (
@@ -95,13 +119,13 @@ const Show_errands = (props) =>
                 </div>
 
                 <div className="seller-info">
-                  <h5>Meet The Seller</h5>
+                  <h4>Meet The Seller</h4>
                   
                   <div className="seller-rep">
                     <div className="ratings">
-                      <p>{props.location.state.e.username} ( number <i className="fas fa-star"></i>)</p>
+                        <h5>{props.location.state.e.username}  ({review.averageRating} <i className="fas fa-star"></i>)</h5> 
                     </div>
-                    <h6> Based on XX of reviews</h6>
+                    <h6 className="smaller-h6"> Based on {review.allReviews.length} reviews</h6>
                   </div>
 
                   
@@ -109,6 +133,17 @@ const Show_errands = (props) =>
 
                   <div className="review-box">
                     <h5> Reviews </h5>
+                    <div>
+                      {review.allReviews.map( item => (
+                        <div className="reviews-list">
+                          <h6>{item.review}</h6>
+                          <h6>By: {item.user_name} on {item.created}</h6>
+                        </div>
+
+                      ))}
+
+                    </div>
+                    
                   </div>
                 
                 </div>

@@ -15,7 +15,7 @@ const SiteHeader = (props) => {
   const logout= (next)=>{
     localStorage.removeItem('jwt');
     localStorage.removeItem('userId')
-    localStorage.removeItem('userName')
+    localStorage.removeItem('username')
     // axios.get("http://localhost:4000/api/users/logout")
     props.setAuth(false);
     next()
@@ -78,7 +78,7 @@ const SiteHeader = (props) => {
                   </Link>
                 </span>
               </a>
-            ) : <strong className="nav-link">Hello, { localStorage.getItem("username")}</strong>
+            ) : <strong className="nav-link authUser">Hello, { localStorage.getItem("username")}</strong>
 
 
 }
