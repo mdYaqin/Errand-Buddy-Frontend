@@ -7,6 +7,7 @@ import axios from "axios";
 
 
 function AddErrands() {
+
   const [data, setData] = useState({
     category: "",
     items: "",
@@ -17,14 +18,17 @@ function AddErrands() {
     deliveryTime: "",
     itemPrice: "",
     errandFee: "",
+    image: "",
   });
+
+
 
   const [image, setImage] = useState({
       image: ""
   });
 
   function uploadImage (event) {
-    setImage ({
+    setImage ({...data,
 
       newImage: event.target.files[0]
 
@@ -56,6 +60,9 @@ function AddErrands() {
     formData.append('itemPrice', data.itemPrice)
     formData.append('errandFee', data.errandFee)
     formData.append('image', image.newImage)
+
+    console.log(data)
+    console.log(formData)
 
     axios
       .post("http://localhost:4000/api/users/create-errand", 
@@ -117,7 +124,7 @@ function AddErrands() {
               className="form-control form-control"
               id="image"
               type="file"
-              name="newImage"
+              name="newIsmage"
             />
           </div>
           <div className="mb-3">

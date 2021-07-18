@@ -17,7 +17,7 @@ function Completed_errands()
 
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
-  const [feedback, setFeedback]=useState({})
+  const [feedback, setFeedback]=useState('')
   const stars = Array(5).fill(0);
   let feedbackMessage = ''
   
@@ -32,7 +32,7 @@ function Completed_errands()
   {
     const token = localStorage.getItem("jwt");
  // router.post('/:id/accepted', authenticated, errandController.accept)
-    axios.post(`http://localhost:4000/api/errands/${ errantID }/completed`,{}, {
+    axios.post(`http://localhost:4000/api/errands/${ errantID }/completed/review`,{rating: currentValue, review:feedback}, {
      headers: {
        "x-auth-token": token,
        "content-type": "application/json"
