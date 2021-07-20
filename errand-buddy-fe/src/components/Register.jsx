@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import Layout from "./Layout";
 import axios from "axios";
+import './Register.scss'
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -43,73 +44,72 @@ const Register = () => {
     <div className="container mt-5 mb-5">
       <Layout title="Welcome to Errand Buddy!" description="  "></Layout>
       <div className="row d-flex align-items-center justify-content-center">
-        <div className="col-md-6">
-          <div className="card px-5 py-5">
-            <h5 className="mt-3">
-              Join other errand buddies! <br /> let us do while you rest
-            </h5>
-            <small className="mt-2 text-muted">
-              All info will be kept under privacy based on pdpa
-            </small>
-            <div className="form-input">
-              <i className="fa fa-envelope"></i>
+        <div className="add-container">
+            <h1 className="register-header mt-3">
+              Join Errand Buddy! 
+            </h1>
+            <h6 className="register-header  mt-1">Take A Break or Help Perform an Errand</h6>
+            
+            <div className="outer registration mb-3">
+              <i className="fa fa-envelope"/>
               <input
                 onChange={handleChange("email")}
                 type="email"
-                className="form-control"
+                className="input"
                 value={email}
-                placeholder="Email address"
+                placeholder="Email Address"
               />
             </div>
-            <div className="form-input">
+            <div className="outer registration mb-3">
               <i className="fa fa-user"></i>
               <input
                 onChange={handleChange("username")}
                 type="text"
-                className="form-control"
+                className="input"
                 value={username}
-                placeholder="User name"
+                placeholder="User Name"
               />
             </div>
-            <div className="form-input">
+            <div className="outer registration mb-3">
               <i className="fa fa-user"></i>
               <input
                 onChange={handleChange("name")}
                 type="text"
-                className="form-control"
+                className="input"
                 value={name}
                 placeholder="name"
               />
             </div>
-            <div className="form-input">
+            <div className="outer registration mb-3">
               <i className="fa fa-lock"></i>
               <input
                 onChange={handleChange("password")}
                 type="password"
-                className="form-control"
+                className="input"
                 value={password}
-                placeholder="password"
+                placeholder="Password"
               />
             </div>
-            <div className="form-input"></div>
-            <div className="form-input">
+
+            <div className="outer registration mb-3">
               <i className="fa fa-lock"></i>
               <input
                 onChange={handleChange("password2")}
                 type="password"
-                className="form-control"
+                className="input"
                 value={password2}
-                placeholder="confirm password"
+                placeholder="Confirm Password"
               />
             </div>
+            <div className="register-button">
+              <button
+                onClick={clickSubmit}
+                className="btn btn-primary mt-4 signup"
+              >
+                Join us now
+              </button>
+            </div>
 
-            <div className="form-check"> </div>
-            <button
-              onClick={clickSubmit}
-              className="btn btn-primary mt-4 signup"
-            >
-              Join us now
-            </button>
 
             <div className="text-center mt-4">
               <span>Already a member?</span>
@@ -117,7 +117,15 @@ const Register = () => {
                 Login
               </a>
             </div>
-          </div>
+
+            <div className="pdpa">
+              <small className="text-muted">
+                By registering, you agree that you have read and understood our <a href="/">Data Protection Notice</a>, and consent to
+                the collection, use and disclosure of my personal data by Errand Buddy for the purposes set out in the Notice.
+              </small>
+            </div>
+
+         
         </div>
       </div>
     </div>

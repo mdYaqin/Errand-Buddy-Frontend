@@ -1,15 +1,11 @@
 
-.row {
-    background-color: #ebebeb;
-}
-
-.container {
+.add-container {
     margin: 50px auto;
-    width: 40vw;
+    width: 50vw;
     padding: 20px;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0, 1px, 5px, rgba(0,0,0,0.25);
+    border-radius: 6px;
+    border: 1px solid lightgrey;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     font-family: "Open Sans", Helvetica, sans-serif;
 }
 
@@ -18,6 +14,7 @@ h1 {
     font-size: 175%;
     color: #757575;
     font-weight: 900;
+    margin-bottom: 40px;
 }
 
 .outer {
@@ -35,10 +32,10 @@ h1 {
     border-bottom: 2px solid #ebebeb;
     &:focus {
         outline: none;
-        border-bottom-color: #58c791 !important;
+        border-bottom-color: #58c791;
     }
     &:hover {
-        border-bottom-color: #dcdcdc;
+        border-bottom-color: #58c791;
     }
     &:invalid {
         box-shadow: none;
@@ -50,8 +47,7 @@ h1 {
     justify-content: space-evenly;
 
     label {
-        font-size: 1.2em;
-        font-weight: bold;
+        font-weight: 400;
         color: black;
     }
 

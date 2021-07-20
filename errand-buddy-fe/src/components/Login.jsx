@@ -50,9 +50,6 @@ const Login = (props) => {
 
       }
     
-  
-
-  
     return (
       <div className="container mt-5 mb-5">
         <Layout title="Welcome back Buddy!" description="  "></Layout>
@@ -61,7 +58,6 @@ const Login = (props) => {
             <div className="card px-5 py-5">
               <h1>Errand Buddy</h1>
               <div className="form-input">
-                
                 <i className="fa fa-user"></i>
                 <input
                 onChange={handleChange("email")}
