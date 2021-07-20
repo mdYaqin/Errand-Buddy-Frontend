@@ -11,8 +11,8 @@ const Login = (props) => {
 
   const [values, setValues] = useState({
       
-    email: '',
-    password: '',
+    email: 'ben234@hotmail.com',
+    password: 'asdasd',
 
   })
 

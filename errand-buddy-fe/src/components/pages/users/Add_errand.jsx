@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Layout from "../../Layout";
 // import { isAuthenticated } from "../../auth";
 import { Link } from "react-router-dom";
@@ -14,8 +14,9 @@ import {
 
 
 
-function AddErrands() {
+function AddErrands(props) {
 
+  const username = localStorage.getItem("username")
   const [data, setData] = useState({
     category: "",
     items: "",
@@ -31,9 +32,19 @@ function AddErrands() {
     image:"",
     price:""
   })
-
+  
   const [pickupDate, setPickupDate] = useState(new Date())
   const [deliveryDate, setDeliveryDate] = useState(new Date())
+
+  console.log(props)
+
+  useEffect(()=>{ 
+  if (props.location.state){
+  setData(props.location.state.data)
+  console.log(props.location.state.data)
+   }
+  },[])
+
 
   const [image, setImage] = useState({
       image: ""
@@ -85,7 +96,7 @@ function AddErrands() {
     formData.append('errandFee', data.errandFee)
     formData.append('image', image.newImage)
 
-    axios
+    props.location.state?.data===undefined ? (axios
       .post("http://localhost:4000/api/users/create-errand", 
         formData,
         {
@@ -94,14 +105,23 @@ function AddErrands() {
             "Content-Type": "multipart/form-data" 
           }
         }
-      )
+      )) 
+      : (axios
+      .put(`http://localhost:4000/api/errands/${props.match.params.id}/update`, 
+        formData,
+        {
+          headers: {
+            'x-auth-token': localStorage.getItem('jwt'),
+            "Content-Type": "multipart/form-data" 
+          }
+        }
+      ))
       .then((res) => {
         console.log(res.data);
         
         updateErrandData(res.data.errandInfo) //this needs to be checked along with the data being passed in the link
 
 
-        console.log(errandData)
       });
   }
 

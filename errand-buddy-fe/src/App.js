@@ -70,7 +70,7 @@ function App() {
                 render={(props) => ( <BuddyDashboard reviews={reviews} />)}
               />
               <Route path="/buddy/:id" exact component={ShowErrands} />
-              <Route path="/home" exact component={Home}  />
+              <Route path="/home" exact component={Home} isAuth={isAuth} />
               <Route path="/register" exact component={Register} />
               <Route path="/login" exact component={()=> <Login setAuth={setAuth} />} />
               
@@ -79,6 +79,7 @@ function App() {
               <Route path="/user/errand-completed" exact render={(props) => (<ErrandCompleted reviews={reviews} displayReviews={displayReviews} />)} />
               <Route path="/user/payment" exact component={Payments} />
               <Route path="/user/add-errand" exact component={AddErrands} />
+              <Route path="/user/edit-errand/:id" exact component={AddErrands} />
               <Route path="/user/errand-request" exact component={ErrandRequest} />
               <Route path="/user/" exact component={()=> <Login setAuth={setAuth} />} />
 
