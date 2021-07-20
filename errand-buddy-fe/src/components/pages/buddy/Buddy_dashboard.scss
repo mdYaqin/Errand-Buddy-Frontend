@@ -1,0 +1,30 @@
+.user-summary {
+    width: 80vw;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.user-card {
+    width: 60%;
+
+    .dashboard-button {
+        display: flex;
+        justify-content: center;
+    }
+
+    button {
+        background-color: rgb(6, 107, 141);        
+        border-radius: 5px;
+        margin: 10px auto;
+
+        a{
+            color: white;
+        }
+    }
+}
+
+#tabs {
+    width: 80vw;
+    margin: auto;
+}

@@ -33,13 +33,13 @@ export default function Payments(props) {
     <section>
       <div className="errand">
         <img
-          src='https://res.cloudinary.com/dvdjfkiji/image/upload/v1626697580/fllulpamkgbkqyocqlvl.png' //must be the errand picture
+          src={props.location.state.errandData.errandImage} //must be the errand picture
           alt="errand"
         />
   
         <div className="description">
-          <h3>name</h3> 
-          <h5>price</h5>
+          <h3>{props.location.state.errandData.errandName}</h3> 
+          <h5>{props.location.state.errandData.errandPrice}</h5>
         </div>
       </div>
       <form action="" method="">
