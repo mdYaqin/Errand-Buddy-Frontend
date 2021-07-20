@@ -34,8 +34,6 @@ const Show_errands = (props) =>
      })
   
    }
-  console.log(props, "sssss");
-  //  console.log(props.location.data.e, "sasa")
   
   const [review, setReview] = useState({
     
@@ -58,8 +56,14 @@ const Show_errands = (props) =>
       });
   },[]);
 
-  console.log('review', review)
 
+  function formatDate(string){
+    return new Date(string).toLocaleString([]);
+  }
+
+  const deliveryDate = props.location.state.e.deliveryTime
+  const localDeliveryDate = new Date(deliveryDate)
+  
 
     return (
         <div>
@@ -77,11 +81,12 @@ const Show_errands = (props) =>
                 <div className="row location-info">
                   <div className="pickup-info">
                     <p>Pick up Location:{props.location.state.e.pickupLocation}</p>
-                    <p>Pick up Time:{props.location.state.e.pickupTime}</p>
+                    <p>Pick up Time:{formatDate(props.location.state.e.pickupTime)}</p>
                   </div>
 
                   <div className="deliver-info">
                     <p>Delivery Location:{props.location.state.e.deliveryLocation}</p>
+                    <p>Deliver By:{formatDate(props.location.state.e.deliveryTime)}</p>
                   </div>
 
                 </div>
@@ -139,7 +144,7 @@ const Show_errands = (props) =>
                       {review.allReviews.map( item => (
                         <div className="reviews-list">
                           <h6>{item.review}</h6>
-                          <h6>By: {item.user_name} on {item.created}</h6>
+                          <h6>By: {item.user_name} on {formatDate(item.created)}</h6>
                         </div>
 
                       ))}

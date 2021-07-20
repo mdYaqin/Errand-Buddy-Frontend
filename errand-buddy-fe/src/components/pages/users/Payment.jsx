@@ -1,77 +1,84 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import Layout from "../../Layout";
 // import { isAuthenticated } from "../../auth";
 import {Link} from "react-router-dom";
+import StripeContainer from "../../Stripe/StripeContainer";
 import Add_errand  from "./Add_errand";
+import axios from "axios";
 
-const Payments = () => {
 
-     return (
-          <>
-       <Layout title="Payment Page" description=" {Hi user!} "> </Layout>
-         <div className="row">
-           
-           <div className="col-md-8 offset-md-2">Hello</div>
+const ErrandDisplay = (props) => (
+  <section>
+    <div className="errand">
+      <img
+        src='https://res.cloudinary.com/dvdjfkiji/image/upload/v1626697580/fllulpamkgbkqyocqlvl.png' //must be the errand picture
+        alt="errand"
+      />
 
-           
-           <button className="btn btn-outline-primary">
-       <Link to={`/user/user-dashboard`} className="navbar-item" href="">Confirm Payment
-       </Link>
-       </button>  
-         </div>
-         </>
-      
-     );
-   };
-   
-   export default Payments;
+      <div className="description">
+        <h3>name</h3> 
+        <h5>price</h5>
+      </div>
+    </div>
+    <form action="" method="">
+      <button type="submit" onClick={handleClick}>
+        Checkout
+      </button>
+    </form>
+  </section>
+);
 
-//   import react from "react"
+const Message = ({ message }) => (
+  <section>
+    <p>{message}</p>
+  </section>
+);
 
-//   import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+function handleClick(event) {
+  event.preventDefault();
 
-// const Payment = () => {
-//   const stripe = useStripe();
-//   const elements = useElements();
+  const product = {
+    name: 'mike', // errand description
+    price: 10, //actual errand price
+    image: 'https://res.cloudinary.com/dvdjfkiji/image/upload/v1626697580/fllulpamkgbkqyocqlvl.png' // actual errand image
+  }
 
-//   const handleSubmit = async (event) => {
-//     // Block native form submission.
-//     event.preventDefault();
+  axios
+    .post(`http://localhost:4000/api/payment/create-checkout-session`, 
+    { product},
+      {
+        headers: {
+          'x-auth-token': localStorage.getItem('jwt'),
+          'Access-Control-Allow-Origin': '*'
+        },       
+      }
+    )
+    .then((res) => {
+      console.log(res.data);
+    });
+}
 
-//     if (!stripe || !elements) {
-//       // Stripe.js has not loaded yet. Make sure to disable
-//       // form submission until Stripe.js has loaded.
-//       return;
-//     }
+export default function Payments() {
+  const [message, setMessage] = useState("");
 
-//     // Get a reference to a mounted CardElement. Elements knows how
-//     // to find your CardElement because there can only ever be one of
-//     // each type of element.
-//     const cardElement = elements.getElement(CardElement);
+  useEffect(() => {
+    // Check to see if this is a redirect back from Checkout
+    const query = new URLSearchParams(window.location.search);
 
-//     // Use your card Element with other Stripe.js APIs
-//     const {error, paymentMethod} = await stripe.createPaymentMethod({
-//       type: 'card',
-//       card: cardElement,
-//     });
+    if (query.get("success")) {
+      setMessage("Order placed! You will receive an email confirmation.");
+    }
 
-//     if (error) {
-//       console.log('[error]', error);
-//     } else {
-//       console.log('[PaymentMethod]', paymentMethod);
-//     }
-//   };
+    if (query.get("canceled")) {
+      setMessage(
+        "Order canceled -- continue to shop around and checkout when you're ready."
+      );
+    }
+  }, []);
 
-//   return (
-//     <>
-//     <form onSubmit={handleSubmit}>
-//       <CardElement />
-//       <button type="submit" disabled={!stripe}>
-//         Pay
-//       </button>
-//     </form>
-//     </>
-//   );
-// };
-
-// export default Payment
+  return message ? (
+    <Message message={message} />
+  ) : (
+    <ErrandDisplay />
+  );
+}

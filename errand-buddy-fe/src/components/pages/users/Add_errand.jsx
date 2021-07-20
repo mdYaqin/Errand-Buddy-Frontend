@@ -3,7 +3,15 @@ import Layout from "../../Layout";
 // import { isAuthenticated } from "../../auth";
 import { Link } from "react-router-dom";
 import Errand_request from "./Errand_request";
+import DateFnsUtils from '@date-io/date-fns'
 import axios from "axios";
+import './Add_errand.scss'
+
+import {
+  DateTimePicker,
+  MuiPickersUtilsProvider,
+} from '@material-ui/pickers'
+
 
 
 function AddErrands(props) {
@@ -15,8 +23,6 @@ function AddErrands(props) {
     description: "",
     pickupLocation: "",
     deliveryLocation: "",
-    pickupTime: "",
-    deliveryTime: "",
     itemPrice: "",
     errandFee: ""
   });
@@ -43,6 +49,18 @@ function AddErrands(props) {
     })
   }
 
+  function updateErrandData (info) { //this needs to be checked
+    
+    const { name, value } = info
+    
+    setErrandData((prevData) => {
+      return {
+        ...prevData,
+        [name]: value,
+      };
+    })
+  }
+
   function handleChange(event) {
     const { name, value } = event.target;
 
@@ -63,8 +81,8 @@ function AddErrands(props) {
     formData.append('description', data.description)
     formData.append('pickupLocation', data.pickupLocation)
     formData.append('deliveryLocation', data.deliveryLocation)
-    formData.append('pickupTime', data.pickupTime)
-    formData.append('deliveryTime', data.deliveryTime)
+    formData.append('pickupTime', pickupDate)
+    formData.append('deliveryTime', deliveryDate)
     formData.append('itemPrice', data.itemPrice)
     formData.append('errandFee', data.errandFee)
     formData.append('image', image.newImage)
@@ -90,20 +108,25 @@ function AddErrands(props) {
         }
       ))
       .then((res) => {
-        console.log(res.json);
+        console.log(res.data);
+        
+        updateErrandData(res.data.errandInfo) //this needs to be checked along with the data being passed in the link
+
+
+        console.log(errandData)
       });
   }
 
 
   return (
     <>
-      <Layout title={`Add Errand`} Errands description={`Hi ${username}`}></Layout>
       <div className="row">
         <div className="container">
 
           <form method="POST" action="" />
+          <h1> Create an Errand </h1>
           <select
-            className="form-select-lg mb-3"
+            className="input mb-3"
             aria-label=".form-select-lg example"
             name="category"
             value={data.category} onChange={handleChange}
@@ -115,148 +138,104 @@ function AddErrands(props) {
             <option value="Others">Others</option>
           </select>
 
-          <div className="mb-3">
-            <label for="items" className="form-label">
-              items
-            </label>
+          <div className="outer mb-3">
             <input
               onChange={handleChange}
               required
               type="text"
-              className="form-control"
+              className="input  "
               id="items"
               name="items"
               value={data.items}
+              placeholder="Summary of Errand"
             />
           </div>
 
-          <div className="mb-3">
-            <label for="formFileSm" className="image">
-              Upload Image
-            </label>
+          <div className="outer mb-3">
+
             <input
               onChange={uploadImage}
-              className="form-control form-control"
+              className="input"
               id="image"
               type="file"
               name="newImage"
+              placeholder="Upload an image"
             />
           </div>
-          <div className="mb-3">
-            <label for="description" className="form-label">
-              Description
-            </label>
-            <input
+          <div className="outer textbox mb-3">
+            <textarea
+              rows="5"
               onChange={handleChange}
               required
               type="text"
-              className="form-control"
+              className="input"
               id="description"
               name="description"
+              placeholder="Description of Errand"
               value={data.description}
             />
           </div>
 
-          <div className="mb-3">
-            <label for="pickupLocation" className="form-label">
-              pickup location
-            </label>
+          <div className="outer mb-3">
             <input
               onChange={handleChange}
               required
-              type="text"
-              className="form-control"
+              type="textbox"
+              className="input"
               id="pickupLocation"
               name="pickupLocation"
+              placeholder="Postal code of errand/pickup location"
               value={data.pickupLocation}
             />
           </div>
 
-          <div className="mb-3">
-            <label for="deliveryLocation" className="form-label">
-              delivery location
-            </label>
+          <div className="outer mb-3">
             <input
               onChange={handleChange}
               required
-              type="text"
-              className="form-control"
+              type="number"
+              className="input"
               id="deliveryLocation"
               name="deliveryLocation"
+              placeholder="Postal code of delivery/ending location"
               value={data.deliveryLocation}
             />
           </div>
-          <div className="mb-3">
-            <label for="pickupTime" className="form-label">
-              pick up time
-            </label>
-            <input
-              onChange={handleChange}
-              required
-              type="date"
-              className="form-control"
-              id="pickupTime"
-              name="pickupTime"
-              value={data.pickupTime}
-            />
+          <div className="outer date-inputs mb-3">
+            <div classname="inputDate">
+              <MuiPickersUtilsProvider  utils={DateFnsUtils}>
+                <DateTimePicker label="Pick Up Time" id="pickupTime" name="pickupTime" value={pickupDate} onChange={date => setPickupDate(date)} />
+              </MuiPickersUtilsProvider>
+            </div>
+            <div classname="inputDate">
+              <MuiPickersUtilsProvider  utils={DateFnsUtils}>
+                <DateTimePicker label="Delivery Time" id="deliveryTime" name="deliveryTime" value={deliveryDate} onChange={date => setDeliveryDate(date)}/>
+              </MuiPickersUtilsProvider>
+            </div>
           </div>
 
-          <div className="mb-3">
-            <label for="deliveryTime" className="form-label">
-              delivery time
-            </label>
-            <input
-              onChange={handleChange}
-              required
-              type="date"
-              className="form-control"
-              id="deliveryTime"
-              name="deliveryTime"
-              value={data.deliveryTime}
-            />
-          </div>
-
-          <div className="mb-3">
-            <label for="price" className="form-label">
-              item price
-            </label>
+          <div className="outer moneyDisplay mb-3">
             <input
               onChange={handleChange}
               required
               type="number"
-              className="form-control"
+              className="input"
               id="itemPrice"
               name="itemPrice"
-              value={data.itemPrice}
+              placeholder="Price of Items being purchased (if applicable)"
+              value={data.price}
             />
           </div>
-          <div className="mb-3">
-            <label for="quantity" className="form-label">
-              errand fee
-            </label>
+          <div className="outer moneyDisplay mb-3">
             <input
               onChange={handleChange}
               required
               type="number"
-              className="form-control"
+              className="input"
               id="errandFee"
               name="errandFee"
+              placeholder="Amount you are willing to pay for the errand"
               value={data.errandFee}
-            />
-          </div>
-
-          <div className="mb-3">
-            <label for="quantity" className="form-label">
-              status
-            </label>
-            <input
-              onChange={handleChange}
-              required
-              type="text"
-              className="form-control"
-              id="status"
-              name="status"
-              value={data.quantity}
             />
           </div>
 
@@ -264,9 +243,9 @@ function AddErrands(props) {
 
           <button
             onClick={handleClick}
-            className="btn btn-outline-primary mb-5"
+            className="inputButton"
           >
-            <Link to={`/user/payment`} className="navbar-item" href="">
+            <Link to={{ pathname: `/user/payment`, state: {errandData: errandData}}} className="navbar-item" href="">
               Add Errand
             </Link>
           </button>
