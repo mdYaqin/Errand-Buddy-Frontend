@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Layout from "../../Layout";
 // import { isAuthenticated } from "../../auth";
 import { Link } from "react-router-dom";
@@ -6,7 +6,9 @@ import Errand_request from "./Errand_request";
 import axios from "axios";
 
 
-function AddErrands() {
+function AddErrands(props) {
+
+  const username = localStorage.getItem("username")
   const [data, setData] = useState({
     category: "",
     items: "",
@@ -18,6 +20,16 @@ function AddErrands() {
     itemPrice: "",
     errandFee: ""
   });
+
+  console.log(props)
+
+  useEffect(()=>{ 
+  if (props.location.state){
+  setData(props.location.state.data)
+  console.log(props.location.state.data)
+   }
+  },[])
+
 
   const [image, setImage] = useState({
       image: ""
@@ -57,7 +69,7 @@ function AddErrands() {
     formData.append('errandFee', data.errandFee)
     formData.append('image', image.newImage)
 
-    axios
+    props.location.state?.data===undefined ? (axios
       .post("http://localhost:4000/api/users/create-errand", 
         formData,
         {
@@ -66,16 +78,26 @@ function AddErrands() {
             "Content-Type": "multipart/form-data" 
           }
         }
-      )
+      )) 
+      : (axios
+      .put(`http://localhost:4000/api/errands/${props.match.params.id}/update`, 
+        formData,
+        {
+          headers: {
+            'x-auth-token': localStorage.getItem('jwt'),
+            "Content-Type": "multipart/form-data" 
+          }
+        }
+      ))
       .then((res) => {
-        console.log(res.data);
+        console.log(res.json);
       });
   }
 
 
   return (
     <>
-      <Layout title="Add Errands" description="Hi {user_id}"></Layout>
+      <Layout title={`Add Errand`} Errands description={`Hi ${username}`}></Layout>
       <div className="row">
         <div className="container">
 
@@ -205,7 +227,7 @@ function AddErrands() {
               className="form-control"
               id="itemPrice"
               name="itemPrice"
-              value={data.price}
+              value={data.itemPrice}
             />
           </div>
           <div className="mb-3">

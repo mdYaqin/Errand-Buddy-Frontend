@@ -4,6 +4,7 @@ import { Link,useHistory } from "react-router-dom";
 
 const Buddy_dashboard = (props) => {
   const history = useHistory()
+  const token = localStorage.getItem("jwt");
   const [bool, setBool]= useState(true)
   const [user, setUser] = useState({
     user: {
@@ -13,13 +14,23 @@ const Buddy_dashboard = (props) => {
     },
     errands: {},
     balance: {balance: ""},
-    inProgress: [
+    jobFulfill: [
       {
         items: "",
         itemPrice: "",
         errandFee: "",
         image: "",
         _id:""
+      },
+    ],
+    jobCreated: [
+      {
+        items: "",
+        itemPrice: "",
+        errandFee: "",
+        image: "",
+        _id:"",
+        status:""
       },
     ],
     completed:[
@@ -29,7 +40,7 @@ const Buddy_dashboard = (props) => {
 
   const handleSubmit = (e) =>
   {
-    const token = localStorage.getItem("jwt");
+    
 console.log(e);
       
     axios.post(`http://localhost:4000/api/errands/${ e }/completed`,{}, {
@@ -44,8 +55,26 @@ console.log(e);
       
     })
    }
- 
-  const token = localStorage.getItem("jwt");
+
+   const handleEdit=(e)=> {
+     history.push({
+      pathname: `/user/edit-errand/${e._id}`,
+      state: { data: e }
+    }
+     )}
+
+   const handleDelete=(e)=> {
+
+    axios.delete(`http://localhost:4000/api/errands/${ e._id }/delete`, {
+      headers: {
+        "x-auth-token": token,
+        "content-type": "application/json"
+    }
+    }).then(response => {
+      setBool(!bool);
+    });
+    
+   }
 
   const { name, email } = user.user;
   
@@ -158,8 +187,8 @@ console.log(e);
       <div className="card mb-5">
         <h3 className="card-header">Errand In Progress</h3>
 {
-          user.inProgress.length>0 ? 
-            user.inProgress.map((e) => (   
+          user.jobFulfill.length>0 ? 
+            user.jobFulfill.map((e) => (   
               
         <div class="d-flex p-1 bg-secondary text-white justify-content-between">
           <div> 
@@ -173,6 +202,42 @@ console.log(e);
             <img src={e.image} alt="" width="100" height="100" />
             <button onClick={()=>handleSubmit(e._id)}>Complete Errand
             </button>
+          </div>
+            </div>
+          ))              
+            :         
+            (
+          <div>no outstanding jobs</div>
+          )      
+}            
+      </div>
+    );
+  };
+
+
+  const errandPosted = () => {
+    return (
+      <div className="card mb-5">
+        <h3 className="card-header">Errand Posted</h3>
+{
+          user.jobCreated.length>0 ? 
+            user.jobCreated.map((e) => (   
+              
+        <div class="d-flex p-1 bg-secondary text-white justify-content-between">
+          <div> 
+            
+          <div class="p-2 bg-info flex-fill">Items: {e.items}</div>
+          <div class="p-2 bg-info flex-fill">Item price: ${e.itemPrice}</div>
+          <div class="p-2 bg-info flex-fill">Errand fee: $ {e.errandFee}</div>
+          </div>
+          <div class="p-2 bg-info flex-fill">
+            
+            <img src={e.image} alt="" width="100" height="100" />
+            <span>{e.status}
+            </span>
+            
+            <button onClick={()=>handleEdit(e)}>Edit</button>
+            <button onClick={()=>handleDelete(e)}>Delete</button>
           </div>
             </div>
           ))              
@@ -202,6 +267,8 @@ console.log(e);
             {transactionHistory()}
             {buddyRating()}
             {inProgress()}
+            {errandPosted()}
+
           </div>
         </div>
       </div>

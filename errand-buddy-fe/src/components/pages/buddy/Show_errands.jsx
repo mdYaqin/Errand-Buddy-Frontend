@@ -18,6 +18,7 @@ const Show_errands = (props) =>
 
   const handleSubmit = () =>
   {
+    
     const errandId = props.location.state.e._id
     console.log(errandId);
     const token = localStorage.getItem("jwt");
@@ -28,6 +29,7 @@ const Show_errands = (props) =>
    }
     } ).then(response =>
     {
+      console.log(response)
      history.push(`/buddy/buddy-dashboard`)
      })
   
@@ -91,7 +93,7 @@ const Show_errands = (props) =>
                 <p>Status:{props.location.state.e.status}</p>
 
                 <button className="btn btn-outline-primary" mt-2 mb-2>
-              {isAuthenticated() && (
+              {isAuthenticated() &&  (
                   <button onClick= {handleSubmit}> Accept
               </button>
               )}
