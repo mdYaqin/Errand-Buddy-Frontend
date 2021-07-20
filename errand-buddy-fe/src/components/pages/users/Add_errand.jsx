@@ -27,6 +27,15 @@ function AddErrands(props) {
     errandFee: ""
   });
 
+  const [errandData, setErrandData] = useState({
+    name:"",
+    image:"",
+    price:""
+  })
+  
+  const [pickupDate, setPickupDate] = useState(new Date())
+  const [deliveryDate, setDeliveryDate] = useState(new Date())
+
   console.log(props)
 
   useEffect(()=>{ 
@@ -113,7 +122,6 @@ function AddErrands(props) {
         updateErrandData(res.data.errandInfo) //this needs to be checked along with the data being passed in the link
 
 
-        console.log(errandData)
       });
   }
 
