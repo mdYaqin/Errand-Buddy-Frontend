@@ -1,7 +1,7 @@
 import React, { useState,useEffect } from "react";
 import Layout from "../../Layout";
 // import { isAuthenticated } from "../../auth";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Errand_request from "./Errand_request";
 import DateFnsUtils from '@date-io/date-fns'
 import axios from "axios";
@@ -16,6 +16,7 @@ import {
 
 function AddErrands(props) {
 
+  const history = useHistory()
   const username = localStorage.getItem("username")
   const [data, setData] = useState({
     category: "",
@@ -27,11 +28,11 @@ function AddErrands(props) {
     errandFee: ""
   });
 
-  const [errandData, setErrandData] = useState({
-    name:"",
-    image:"",
-    price:""
-  })
+  // const [errandData, setErrandData] = useState({
+  //   name:"",
+  //   image:"",
+  //   price:""
+  // })
   
   const [pickupDate, setPickupDate] = useState(new Date())
   const [deliveryDate, setDeliveryDate] = useState(new Date())
@@ -58,17 +59,17 @@ function AddErrands(props) {
     })
   }
 
-  function updateErrandData (info) { //this needs to be checked
+  // function updateErrandData (info) { //this needs to be checked
     
-    const { name, value } = info
+  //   const { name, value } = info
     
-    setErrandData((prevData) => {
-      return {
-        ...prevData,
-        [name]: value,
-      };
-    })
-  }
+  //   setErrandData((prevData) => {
+  //     return {
+  //       ...prevData,
+  //       [name]: value,
+  //     };
+  //   })
+  // }
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -105,7 +106,12 @@ function AddErrands(props) {
             "Content-Type": "multipart/form-data" 
           }
         }
-      )) 
+      ).then (response => {
+        console.log(response.data, "helllooooooooo")
+        history.push ({
+          pathname: `/user/payment`, state: {errandData: response.data.errandInfo}
+      })
+      }))
       : (axios
       .put(`http://localhost:4000/api/errands/${props.match.params.id}/update`, 
         formData,
@@ -119,7 +125,7 @@ function AddErrands(props) {
       .then((res) => {
         console.log(res.data);
         
-        updateErrandData(res.data.errandInfo) //this needs to be checked along with the data being passed in the link
+        // updateErrandData(res.data.errandInfo) //this needs to be checked along with the data being passed in the link
 
 
       });
@@ -252,10 +258,8 @@ function AddErrands(props) {
           <button
             onClick={handleClick}
             className="inputButton"
-          >
-            <Link to={{ pathname: `/user/payment`, state: {errandData: errandData}}} className="navbar-item" href="">
-              Add Errand
-            </Link>
+          > Add Errand
+            
           </button>
 
         </div>
