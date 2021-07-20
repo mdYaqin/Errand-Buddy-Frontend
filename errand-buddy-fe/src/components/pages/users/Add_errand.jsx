@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from "react";
+import { Link } from "react-router-dom";
 import Layout from "../../Layout";
 // import { isAuthenticated } from "../../auth";
 import { useHistory } from "react-router-dom";
@@ -7,11 +8,11 @@ import DateFnsUtils from '@date-io/date-fns'
 import axios from "axios";
 import './Add_errand.scss'
 
+
 import {
   DateTimePicker,
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers'
-
 
 
 function AddErrands(props) {
@@ -131,12 +132,11 @@ function AddErrands(props) {
       });
   }
 
-
   return (
     <>
-      <div className="row">
-        <div className="container">
-
+      <div className="add-row">
+        <div className="add-container">
+        
           <form method="POST" action="" />
           <h1> Create an Errand </h1>
           <select
@@ -218,12 +218,12 @@ function AddErrands(props) {
           <div className="outer date-inputs mb-3">
             <div classname="inputDate">
               <MuiPickersUtilsProvider  utils={DateFnsUtils}>
-                <DateTimePicker label="Pick Up Time" id="pickupTime" name="pickupTime" value={pickupDate} onChange={date => setPickupDate(date)} />
+                <DateTimePicker label="Start/Pick Up Time" id="pickupTime" name="pickupTime" value={pickupDate} onChange={date => setPickupDate(date)} />
               </MuiPickersUtilsProvider>
             </div>
             <div classname="inputDate">
               <MuiPickersUtilsProvider  utils={DateFnsUtils}>
-                <DateTimePicker label="Delivery Time" id="deliveryTime" name="deliveryTime" value={deliveryDate} onChange={date => setDeliveryDate(date)}/>
+                <DateTimePicker label="End/Delivery Time" id="deliveryTime" name="deliveryTime" value={deliveryDate} onChange={date => setDeliveryDate(date)}/>
               </MuiPickersUtilsProvider>
             </div>
           </div>

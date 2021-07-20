@@ -1,0 +1,40 @@
+.registration {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: center;
+
+    input {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    i {
+      margin: auto 0;
+    }
+
+}
+
+.register-button {
+    display: flex;
+    justify-content: center;
+
+    button {
+        border-radius: 8px;
+    }
+}
+
+.register-header {
+    text-align: center;
+    margin-bottom: 1px;
+
+
+}
+
+
+.pdpa {
+    margin: 10px auto;
+    text-align: justify;
+    width: 75%;
+
+}
+  

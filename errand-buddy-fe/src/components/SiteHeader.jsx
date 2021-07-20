@@ -66,18 +66,18 @@ const SiteHeader = (props) => {
           <li>
             {(!props.isAuth && !localStorage.getItem("jwt")) ? (
 
-              <a className="nav-link" href="/#">
+              <div className="nav-link" href="#">
                 
-                <span className="fas fa-user">
+                
                   <Link
                     to="/register"
                   
                     href="/register"
                   >
-                    <strong>Sign up</strong>
+                    <span className="fas fa-user"></span>
+                    Sign up
                   </Link>
-                </span>
-              </a>
+              </div>
             ) : <strong className="nav-link authUser">Hello, { localStorage.getItem("username")}</strong>
 
 
@@ -85,20 +85,21 @@ const SiteHeader = (props) => {
         
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/#">
-              <span className="fas fa-sign-in-alt">
+            <div className="nav-link" href="/#">
+              
                
               {(!props.isAuth && !localStorage.getItem("jwt")) ? (
                 <Link to="/login" className="navbar-link">
+                  <span className="fas fa-sign-in-alt"></span>
                     Login            
                 </Link>
                 ) : (
                 <Link to="/" className="navbar-link" onClick={()=> logout(()=> history.push('/home'))}>
+                    <span className="fas fa-sign-in-alt"></span>
                     Logout
                 </Link>)
                 } 
-              </span>
-            </a>
+            </div>
           </li>
         </ul>
       </div>
