@@ -25,9 +25,10 @@ import BuddyDashboard from './components/pages/buddy/Buddy_dashboard';
 import UserDashboard from './components/pages/users/User_dashboard';
 import UserReview from './components/pages/users/User_review';
 import ErrandCompleted from './components/pages/users/Errand_completed';
-import Payments from './components/pages/users/Payment';
+import Payments from './components/Stripe/Payment';
 import AddErrands from './components/pages/users/Add_errand';
 import ErrandRequest from './components/pages/users/Errand_request';
+import Success from './components/pages/payment/success'
 
 
 
@@ -73,15 +74,17 @@ function App() {
               <Route path="/home" exact component={Home} isAuth={isAuth} />
               <Route path="/register" exact component={Register} />
               <Route path="/login" exact component={()=> <Login setAuth={setAuth} />} />
+
               
               <Route path="/user/user-dashboard" exact component={UserDashboard} />
               <Route path="/user/user-review" exact render={(props) => (<UserReview reviews={reviews} displayReviews={displayReviews}/>)} />
               <Route path="/user/errand-completed" exact render={(props) => (<ErrandCompleted reviews={reviews} displayReviews={displayReviews} />)} />
-              <Route path="/user/payment" exact component={Payments} />
+              <Route path="/stripe/payment" exact component={Payments} />
               <Route path="/user/add-errand" exact component={AddErrands} />
               <Route path="/user/edit-errand/:id" exact component={AddErrands} />
               <Route path="/user/errand-request" exact component={ErrandRequest} />
               <Route path="/user/" exact component={()=> <Login setAuth={setAuth} />} />
+              <Route path="/stripe/success" exact component={Success} />
 
               <Home />
             </Switch>
