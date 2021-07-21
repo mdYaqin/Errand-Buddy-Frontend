@@ -3,13 +3,18 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { CookiesProvider } from 'react-cookie'
 import App from './App';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js'
 
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE)
 
 
 ReactDOM.render(
   <React.StrictMode>
     <CookiesProvider>
-      <App />
+      <Elements stripe={stripePromise}>
+        <App />
+      </Elements>
     </CookiesProvider>
   </React.StrictMode>,
   document.getElementById('root')

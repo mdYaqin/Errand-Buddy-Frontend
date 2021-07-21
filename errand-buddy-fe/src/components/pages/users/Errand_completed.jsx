@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import Layout from "../../Layout";
 
 import {Link} from "react-router-dom";
-import Payments  from "./Payment";
+import Payments  from "../../Stripe/Payment";
 
 const ErrandCompleted = () => {
 
