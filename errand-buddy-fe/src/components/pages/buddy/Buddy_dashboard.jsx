@@ -4,8 +4,7 @@ import { Link, useHistory } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { Tabs, Tab, AppBar } from '@material-ui/core';
 import PhoneIcon from '@material-ui/icons/Phone';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -321,30 +320,49 @@ export default function IconLabelTabs() {
   };
 
 
+
   return (
 
     <div>
-      <div title="Dashboard" description="  " className="user-summary">
-        <div className="user-card mb-5 ">
-          <h3 className="card-header">User Information</h3>
-          <ul className="list-group">
-            <li className="list-group-item">Name: {name}</li>
-            <li className="list-group-item">Email: {email}</li>
-            <li className="list-group-item">Balance: ${user.balance.balance}</li>
-            <li className="list-group-item"> Total No. of Errands Posted: {user.jobCreated.length}</li>
-            <li className="list-group-item">Total No. of Errands Performed: {user.completed.length}</li>
-            <li className="list-group-item">Average Rating</li>
-          </ul>
-          <div className="dashboard-button">
-            <button>
-              <Link className="nav-link" to="/profile-update">
-                Update Profile
-              </Link>
-            </button>
-          </div>
+      <div className="head-tabs">
+        
+          {/* <Tabs value={value} onChange={handleChange} centered>
+            <Tab label="User" />
+            <Tab label="Buddy" />
+          </Tabs>
 
-        </div>
+          <TabPanel value={value} index={0}> */}
+          <div title="Dashboard" description="  " className="user-summary">
+            <div className="user-card mb-5 ">
+              <h3 className="card-header">User Information</h3>
+              <ul className="list-group">
+                <li className="list-group-item">Name: {name}</li>
+                <li className="list-group-item">Email: {email}</li>
+                <li className="list-group-item">Balance: ${user.balance.balance}</li>
+                <li className="list-group-item"> Total No. of Errands Posted: {user.jobCreated.length}</li>
+                <li className="list-group-item">Total No. of Errands Performed: {user.completed.length}</li>
+                <li className="list-group-item">Average Rating</li>
+              </ul>
+              <div className="dashboard-button">
+                <button>
+                  <Link className="nav-link" to="/profile-update">
+                    Update Profile
+                  </Link>
+                </button>
+              </div>
+
+            </div>
+          </div>
+          {/* </TabPanel>
+
+          <TabPanel value={value} index={1}>
+            Test 2
+          </TabPanel> */}
+
+
+
       </div>
+
       
       <div id="tabs">
         <Paper square className={classes.root}>
