@@ -3,6 +3,7 @@ import { useStripe } from '@stripe/react-stripe-js'
 // import { isAuthenticated } from "../../auth";
 import {Link} from "react-router-dom";
 import axios from "axios";
+import './Payment.scss'
 
 
 
@@ -14,8 +15,8 @@ export default function Payments(props) {
 
   const ErrandDisplay = () => (
   
-    <section>
-      <div className="errand">
+    <section className="payment-section">
+      <div className="payment-div">
         <img
           src={props.location.state.errandData.errandImage} //must be the errand picture
           alt="errand"
@@ -23,7 +24,7 @@ export default function Payments(props) {
   
         <div className="description">
           <h3>{props.location.state.errandData.errandName}</h3> 
-          <h5>{props.location.state.errandData.errandPrice}</h5>
+          <h5>$ {props.location.state.errandData.errandPrice}</h5>
         </div>
       </div>
       <form action="" method="">
@@ -43,7 +44,7 @@ export default function Payments(props) {
   const handleClick = (e) => {
     e.preventDefault();
   
-    const {errandImage, errandName, errandPrice} = props.location.state.errandData
+    const { errandId, errandImage, errandName, errandPrice} = props.location.state.errandData
     
     const line_items = [
       {
@@ -63,7 +64,7 @@ export default function Payments(props) {
     const user_id = localStorage.getItem('userId')
     axios
       .post(`http://localhost:4000/api/payment/create-checkout-session`, 
-      { line_items, user_id },
+      { line_items, user_id, errandId },
         {
           headers: {
             'x-auth-token': localStorage.getItem('jwt'),
@@ -81,8 +82,6 @@ export default function Payments(props) {
         if (error) {
           console.log(error)
         }
-        // window.location = res.data.url
-        // console.log(res.data);
 
       });
   }

@@ -28,7 +28,7 @@ import ErrandCompleted from './components/pages/users/Errand_completed';
 import Payments from './components/Stripe/Payment';
 import AddErrands from './components/pages/users/Add_errand';
 import ErrandRequest from './components/pages/users/Errand_request';
-import Success from './components/pages/payment/success'
+import Success from './components/Stripe/Success'
 
 
 
