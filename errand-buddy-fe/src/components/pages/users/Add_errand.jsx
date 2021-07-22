@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Layout from "../../Layout";
 // import { isAuthenticated } from "../../auth";
 import { useHistory } from "react-router-dom";
@@ -18,6 +18,7 @@ import {
 function AddErrands(props) {
 
   const history = useHistory()
+
   const [data, setData] = useState({
     category: "",
     items: "",
@@ -40,11 +41,20 @@ function AddErrands(props) {
   console.log(props)
 
   useEffect(()=>{ 
+    setData({
+    category: "",
+      items: "",
+      description: "",
+      pickupLocation: "",
+      deliveryLocation: "",
+      itemPrice: "",
+      errandFee: ""
+    })
   if (props.location.state){
   setData(props.location.state.data)
   console.log(props.location.state.data)
    }
-  },[])
+  },[id])
 
 
   const [image, setImage] = useState({
@@ -136,7 +146,7 @@ function AddErrands(props) {
         <div className="add-container">
         
           <form method="POST" action="" />
-          <h1> Create an Errand </h1>
+          <h1>{!props.location.state ? "Create an Errand" : "Modify Errand"}</h1>
           <select
             className="input mb-3"
             aria-label=".form-select-lg example"
@@ -256,7 +266,7 @@ function AddErrands(props) {
           <button
             onClick={handleClick}
             className="inputButton"
-          > Add Errand
+          > {!props.location.state ? "Add Errand" : "Modify Details"}
             
           </button>
 

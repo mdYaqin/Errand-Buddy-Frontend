@@ -14,6 +14,7 @@ function Completed_errands()
   
   const history = useHistory();
   const { errantID } = useParams();
+  const userId = localStorage.getItem("userId")
 
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
@@ -39,7 +40,7 @@ function Completed_errands()
    }
     } ).then(response =>
     {
-     history.push(`/buddy/buddy-dashboard`)
+     history.push(`/dashboard/${userId}`)
       
      })
   
@@ -93,13 +94,13 @@ function Completed_errands()
       </div>
       <textarea placeholder="What's your experience?" style={styles.textarea} onChange={handleOnChange} />
 {/* 
-      <button style={styles.button}><Link to="/buddy/buddy-dashboard" className="navbar-item" href="">Confirm your errand completion </Link></button> */}
+      <button style={styles.button}><Link to="/dashboard" className="navbar-item" href="">Confirm your errand completion </Link></button> */}
       <button onClick={handleSubmit}>
         submit feedback
 </button>
       
       <button type="button" className="btn btn-warning">
-        <Link to="/buddy/buddy-dashboard" className="navbar-item" href="">
+        <Link to={`/dashboard/${userId}`} className="navbar-item">
           My Profile
         </Link>
       </button>
