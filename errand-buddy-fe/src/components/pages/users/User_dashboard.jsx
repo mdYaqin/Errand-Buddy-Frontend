@@ -97,14 +97,14 @@ console.log(e);
           user.completed.length>0 ? 
             user.completed.map((e) => (   
               
-        <div class="d-flex p-1 bg-secondary text-white justify-content-between">
+        <div className="d-flex p-1 bg-secondary text-white justify-content-between">
           <div> 
            
-          <div class="p-2 bg-info flex-fill">Items: {e.items}</div>
-          <div class="p-2 bg-info flex-fill">Item price: ${e.itemPrice}</div>
-          <div class="p-2 bg-info flex-fill">Errand fee: $ {e.errandFee}</div>
+          <div className="p-2 bg-info flex-fill">Items: {e.items}</div>
+          <div className="p-2 bg-info flex-fill">Item price: ${e.itemPrice}</div>
+          <div className="p-2 bg-info flex-fill">Errand fee: $ {e.errandFee}</div>
           </div>
-          <div class="p-2 bg-info flex-fill">
+          <div className="p-2 bg-info flex-fill">
             
             <img src={e.image} alt="" width="100" height="100" />
           
@@ -131,14 +131,14 @@ console.log(e);
           user.user.reviews.length>0 ? 
           user.user.reviews.map((e) => (   
               
-        <div class="d-flex p-1 bg-secondary text-white justify-content-between">
+        <div className="d-flex p-1 bg-secondary text-white justify-content-between">
           <div> 
               {console.log(e)}
-          <div class="p-2 bg-info flex-fill">Item id: {e.errand_id}</div>
-          <div class="p-2 bg-info flex-fill">rating: {e.rating} star</div>
-          <div class="p-2 bg-info flex-fill">Feedback summary:{e.review}</div>
+          <div className="p-2 bg-info flex-fill">Item id: {e.errand_id}</div>
+          <div className="p-2 bg-info flex-fill">rating: {e.rating} star</div>
+          <div className="p-2 bg-info flex-fill">Feedback summary:{e.review}</div>
           </div>
-          <div class="p-2 bg-info flex-fill">Rated by: {e.user_name}</div>
+          <div className="p-2 bg-info flex-fill">Rated by: {e.user_name}</div>
           </div>
           
          
@@ -161,14 +161,14 @@ console.log(e);
           user.inProgress.length>0 ? 
             user.inProgress.map((e) => (   
               
-        <div class="d-flex p-1 bg-secondary text-white justify-content-between">
+        <div className="d-flex p-1 bg-secondary text-white justify-content-between">
           <div> 
             
-          <div class="p-2 bg-info flex-fill">Items: {e.items}</div>
-          <div class="p-2 bg-info flex-fill">Item price: ${e.itemPrice}</div>
-          <div class="p-2 bg-info flex-fill">Errand fee: $ {e.errandFee}</div>
+          <div className="p-2 bg-info flex-fill">Items: {e.items}</div>
+          <div className="p-2 bg-info flex-fill">Item price: ${e.itemPrice}</div>
+          <div className="p-2 bg-info flex-fill">Errand fee: $ {e.errandFee}</div>
           </div>
-          <div class="p-2 bg-info flex-fill">
+          <div className="p-2 bg-info flex-fill">
             
             <img src={e.image} alt="" width="100" height="100" />
             <button onClick={()=>handleSubmit(e._id)}>Complete Errand

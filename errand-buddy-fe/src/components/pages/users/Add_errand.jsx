@@ -154,7 +154,7 @@ function AddErrands(props) {
             name="category"
             value={data.category} onChange={handleChange}
           >
-            <option selected> Select Categories</option>
+            <option defaultValue> Select Categories</option>
             <option value="Grocery">Grocery</option>
             <option value="Queue">Queue</option>
             <option value="Pet-Sitting">Pet-sit</option>
@@ -225,12 +225,12 @@ function AddErrands(props) {
             />
           </div>
           <div className="outer date-inputs mb-3">
-            <div classname="inputDate">
+            <div className="inputDate">
               <MuiPickersUtilsProvider  utils={DateFnsUtils}>
                 <DateTimePicker label="Start/Pick Up Time" id="pickupTime" name="pickupTime" value={pickupDate} onChange={date => setPickupDate(date)} />
               </MuiPickersUtilsProvider>
             </div>
-            <div classname="inputDate">
+            <div className="inputDate">
               <MuiPickersUtilsProvider  utils={DateFnsUtils}>
                 <DateTimePicker label="End/Delivery Time" id="deliveryTime" name="deliveryTime" value={deliveryDate} onChange={date => setDeliveryDate(date)}/>
               </MuiPickersUtilsProvider>

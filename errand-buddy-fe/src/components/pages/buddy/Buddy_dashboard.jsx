@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory,useParams } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
@@ -80,6 +80,7 @@ export default function IconLabelTabs() {
     setValue(newValue);
   };
 
+  const {id}=useParams()
   const history = useHistory()
   const token = localStorage.getItem("jwt");
   const [bool, setBool]= useState(true)
@@ -150,12 +151,20 @@ export default function IconLabelTabs() {
    
   }
 
+  // const handleUpdate=(user)=> {
+  //   history.push({
+  //     pathname: `/profile-update/${id}`,
+  //     state: { user }
+  //   })
+  //   console.log(user,id,'sgsgssg')
+  // }
+
  const { name, email } = user.user;
  
 
  useEffect(() => {
    console.log(user);
- });
+ },[]);
 
  useEffect(() => {
    // router.post('/:id/accepted', authenticated, errandController.accept)
@@ -171,7 +180,7 @@ export default function IconLabelTabs() {
        console.log(response.data);
        setUser(response.data);
      });
- }, [bool,user]);
+ }, [bool]);
 
   const dashboardLinks = () => {
     return (
@@ -231,7 +240,6 @@ export default function IconLabelTabs() {
               
         <div className="d-flex p-1 bg-secondary text-white justify-content-between">
           <div> 
-              {console.log(e)}
           <div className="p-2 bg-info flex-fill">Item id: {e.errand_id}</div>
           <div className="p-2 bg-info flex-fill">rating: {e.rating} star</div>
           <div className="p-2 bg-info flex-fill">Feedback summary:{e.review}</div>
@@ -326,28 +334,23 @@ export default function IconLabelTabs() {
   return (
 
     <div>
-      <div className="head-tabs">     
 
-          <div title="Dashboard" description="  " className="user-summary">
-            <div className="user-card mb-5 ">
-              <h3 className="card-header">User Information</h3>
-              <ul className="list-group">
-                <li className="list-group-item">Name: {name}</li>
-                <li className="list-group-item">Email: {email}</li>
-                <li className="list-group-item">Balance: ${user.balance.balance}</li>
-                <li className="list-group-item"> Total No. of Errands Posted: {user.jobCreated.length}</li>
-                <li className="list-group-item">Total No. of Errands Performed: {user.completed.length}</li>
-                <li className="list-group-item">Average Rating</li>
-              </ul>
-              <div className="dashboard-button">
-                <button>
-                  <Link className="nav-link" to="/profile-update">
-                    Update Profile
-                  </Link>
-                </button>
-              </div>
+      <div title="Dashboard" description="  " className="user-summary">
+        <div className="user-card mb-5 ">
+          <h3 className="card-header">User Information</h3>
+          <ul className="list-group">
+            <li className="list-group-item">Name: {name}</li>
+            <li className="list-group-item">Email: {email}</li>
+            <li className="list-group-item">Balance: ${user.balance.balance}</li>
+            <li className="list-group-item"> Total No. of Errands Posted: {user.jobCreated.length}</li>
+            <li className="list-group-item">Total No. of Errands Performed: {user.completed.length}</li>
+            <li className="list-group-item">Average Rating</li>
+          </ul>
+          <div className="dashboard-button">
+            {/* <button onClick={()=> handleUpdate(user)}>
+                Update Profile
+            </button> */}
 
-            </div>
           </div>
 
       </div>
