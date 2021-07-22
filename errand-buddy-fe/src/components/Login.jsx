@@ -37,12 +37,11 @@ const Login = (props) => {
       localStorage.setItem ('jwt', data.data.token)
       localStorage.setItem('userId', data.data.userId )
       localStorage.setItem('username', data.data.username )
-      console.log(data.data);
       props.setAuth(true)
 
-      history.push('/')
       setValues({...values, email: '',
       password: '',})
+      history.push('/')
     })
     .catch(err => {
       console.log("errror",err)

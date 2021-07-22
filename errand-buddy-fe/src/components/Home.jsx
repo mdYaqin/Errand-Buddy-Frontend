@@ -6,10 +6,12 @@ import axios from "axios";
 import Likes from "./Sections/Likes";
 import "./Home.scss";
 
-const Home = ({ isAuth }) => {
+const Home = () => {
   const [data, setData] = useState([]);
 
+
   const userId = localStorage.getItem("userId");
+  
   useEffect(() => {
     axios
       .get("http://localhost:4000/")
@@ -17,7 +19,6 @@ const Home = ({ isAuth }) => {
       .then(function (response) {
         // handle success
         setData(response.data);
-        console.log(response.data);
       })
       .catch(function (error) {
         // handle error
@@ -40,8 +41,7 @@ const Home = ({ isAuth }) => {
       <div className="main-container mt-5">
         <h2 className="mb-4">Available Errands! </h2>
         <div id="errand-container" className="errand-container row ">
-          {!isAuth &&
-            data.map((e) => {
+          {data.map((e) => {
               if (userId !== e.user_id) {
                 return (
                   <div className="errand-card mb-3" key={e._id}>
@@ -51,7 +51,7 @@ const Home = ({ isAuth }) => {
                     <div className="card-body">
                       <h5 className="card-header">{e.username}</h5>
                       <Link
-                        to={{ pathname: `/buddy/${e._id}`, state: { e } }}
+                        to={{ pathname: `/${e._id}`, state: { e } }}
                         className=""
                         href=""
                       >

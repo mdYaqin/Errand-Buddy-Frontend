@@ -80,7 +80,7 @@ const Errand_request = () => {
         <div className="col-md-8 offset-md-2">{newRequestForm()}</div>
 
         <button className="btn btn-outline-primary">
-          <Link to={`/user/add-errand`} className="navbar-item" href="">
+          <Link to={`/add-errand`} className="navbar-item" href="">
             Create Errand
           </Link>
         </button>

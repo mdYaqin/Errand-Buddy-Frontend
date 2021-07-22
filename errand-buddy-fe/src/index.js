@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { CookiesProvider } from 'react-cookie'
+import {BrowserRouter as Router,} from 'react-router-dom'
 import App from './App';
 
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <CookiesProvider>
+    <Router>
       <App />
-    </CookiesProvider>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

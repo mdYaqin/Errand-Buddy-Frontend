@@ -124,14 +124,14 @@ export default function IconLabelTabs() {
     } ).then(response =>
     {
       setBool(!bool);
-      history.push(`/buddy/${e}/completed-errands`)
+      history.push(`/${e}/completed-errands`)
       
     })
    }
 
    const handleEdit=(e)=> {
     history.push({
-     pathname: `/user/edit-errand/${e._id}`,
+     pathname: `/edit-errand/${e._id}`,
      state: { data: e }
    }
     )}
@@ -166,7 +166,7 @@ export default function IconLabelTabs() {
        },
      })
      .then((response) => {
-       // history.push(`/buddy/buddy-dashboard`)
+       // history.push(`/dashboard`)
        console.log(response.data);
        setUser(response.data);
      });
@@ -331,13 +331,13 @@ export default function IconLabelTabs() {
             <li className="list-group-item">Name: {name}</li>
             <li className="list-group-item">Email: {email}</li>
             <li className="list-group-item">Balance: ${user.balance.balance}</li>
-            <li className="list-group-item"> Total No. of Errands Posted:</li>
-            <li className="list-group-item">Total No. of Errands Performed:</li>
+            <li className="list-group-item"> Total No. of Errands Posted: {user.jobCreated.length}</li>
+            <li className="list-group-item">Total No. of Errands Performed: {user.completed.length}</li>
             <li className="list-group-item">Average Rating</li>
           </ul>
           <div className="dashboard-button">
             <button>
-              <Link className="nav-link" to="/buddy/profile-update">
+              <Link className="nav-link" to="/profile-update">
                 Update Profile
               </Link>
             </button>

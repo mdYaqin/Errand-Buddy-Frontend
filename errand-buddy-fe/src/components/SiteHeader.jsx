@@ -1,34 +1,31 @@
-import React, {useState} from "react";
-import { BrowserRouter as Router, Route , Link, useHistory} from 'react-router-dom';
-import {isAuthenticated} from "./Auth"
+import React, { useState } from "react";
+import { Redirect, Link, useHistory } from "react-router-dom";
+import { isAuthenticated } from "./Auth";
 import axios from "axios";
-import './SiteHeader.scss'
-
-
-
-
+import "./SiteHeader.scss";
 
 const SiteHeader = (props) => {
-  const [bool,setBool]=useState(true)
-  const history =useHistory()
+  const history = useHistory();
+  const token = localStorage.getItem("jwt")
+  const userId = localStorage.getItem("userId")
 
-  const logout= (next)=>{
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('userId')
-    localStorage.removeItem('username')
+  const logout = (next) => {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("username");
     // axios.get("http://localhost:4000/api/users/logout")
     props.setAuth(false);
-    next()
-    setBool(prev => !bool)
-  }
+    next();
+  };
   return (
     <nav className="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
-
-      <a className="navbar navbar-brand" href="/#">        
-      <Link to="/home">
-        <img className="logo" src={process.env.PUBLIC_URL + '/Errand-Buddy-Logo.png'} alt="logo"/>
+      <Link to="/">
+        <img
+          className="logo"
+          src={process.env.PUBLIC_URL + "/Errand-Buddy-Logo.png"}
+          alt="logo"
+        />
       </Link>
-      </a>
 
       <button
         className="navbar-toggler navbar-toggler-right"
@@ -40,23 +37,16 @@ const SiteHeader = (props) => {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-
       <div id="nav-links" className="navbar ">
         <ul>
           <li className="first-link">
-            <Link to="/Home" >
-              Home
-            </Link>
+            <Link to="/">Home</Link>
           </li>
           <li className="other-links">
-            <Link to="/user/errand-request">
-              Find a Buddy
-            </Link>
+            <Link to="/add-errand">Find a Buddy</Link>
           </li>
           <li className="other-links">
-            <Link to="/buddy/buddy-dashboard">
-              Your Dashboard
-            </Link>
+            <Link to={`/dashboard/${userId}`}>Your Dashboard</Link>
           </li>
         </ul>
       </div>
@@ -64,41 +54,36 @@ const SiteHeader = (props) => {
       <div id="login-links">
         <ul>
           <li>
-            {(!props.isAuth && !localStorage.getItem("jwt")) ? (
-
+            {!token ? (
               <div className="nav-link" href="#">
-                
-                
-                  <Link
-                    to="/register"
-                  
-                    href="/register"
-                  >
-                    <span className="fas fa-user"></span>
-                    Sign up
-                  </Link>
+                <Link to="/register">
+                  <span className="fas fa-user"></span>
+                  Sign up
+                </Link>
               </div>
-            ) : <strong className="nav-link authUser">Hello, { localStorage.getItem("username")}</strong>
-
-
-}
-        
+            ) : (
+              <strong className="nav-link authUser">
+                Hello, {localStorage.getItem("username")}
+              </strong>
+            )}
           </li>
           <li className="nav-item">
             <div className="nav-link" href="/#">
-              
-               
-              {(!props.isAuth && !localStorage.getItem("jwt")) ? (
+              {!props.isAuth && !token ? (
                 <Link to="/login" className="navbar-link">
                   <span className="fas fa-sign-in-alt"></span>
-                    Login            
+                  Login
                 </Link>
-                ) : (
-                <Link to="/" className="navbar-link" onClick={()=> logout(()=> history.push('/home'))}>
-                    <span className="fas fa-sign-in-alt"></span>
-                    Logout
-                </Link>)
-                } 
+              ) : (
+                <Link
+                  to="/"
+                  className="navbar-link"
+                  onClick={() => logout(() => history.push("/"))}
+                >
+                  <span className="fas fa-sign-in-alt"></span>
+                  Logout
+                </Link>
+              )}
             </div>
           </li>
         </ul>

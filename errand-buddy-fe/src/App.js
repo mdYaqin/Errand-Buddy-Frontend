@@ -1,10 +1,8 @@
 import React, {useState} from "react";
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
-  BrowserRouter,
-  useParams
+  Redirect
 } from 'react-router-dom';
 
 //Shared Components
@@ -16,7 +14,6 @@ import Login from './components/Login';
 import SiteHeader from './components/SiteHeader';
 import SiteFooter from './components/SiteFooter';
 import ShowErrands from './components/pages/buddy/Show_errands';
-import AcceptErrands from './components/pages/buddy/Accept_errands';
 import CompletedErrands from './components/pages/buddy/Completed_errands';
 import BuddyDashboard from './components/pages/buddy/Buddy_dashboard';
 
@@ -35,6 +32,10 @@ import ErrandRequest from './components/pages/users/Errand_request';
 function App() {
   const [isAuth, setAuth] = useState(false);
   const [reviews, setReviews] = useState([]);
+
+  const token = localStorage.getItem("jwt")
+  const userId = localStorage.getItem("userId")
+  // const token = localStorage.getItem("jwt")
   
   const displayReviews = (latestReview) => {
     setReviews([...reviews, latestReview]);
@@ -47,48 +48,38 @@ function App() {
     return (
       <div className="app">
         
-        <Router>
-          
-          <BrowserRouter>
+      
           <SiteHeader setAuth={setAuth} isAuth={isAuth}/>
             <Switch>
             
+              <Route path="/" exact component={Home}/>
+              <Route path="/login" exact component={()=> <Login setAuth={setAuth} />} />
+              <Route path="/register" exact component={Register} />
+              <Route path="/add-errand" 
+              exact
+              render = { (props) => userId ? (<AddErrands {...props}/>):(<Redirect to="/login"/>)}/>
               <Route
-                path="/buddy/:errantID/completed-errands"
-                exact
+                path="/dashboard/:id" exact>
+                {userId ? <BuddyDashboard reviews={reviews} /> : <Redirect to="/login"/>}
+              </Route>
+              <Route path="/:id" exact component={ShowErrands} />
+              <Route
+                path="/:errantID/completed-errands"
                 render = { () => (<CompletedErrands />)}
               />
-              <Route
-                path="/buddy/:errantID/accept-errands"
-                exact
-                render={(props) => (<AcceptErrands {...props} />)}
-
-              />
-              <Route
-                path="/buddy/buddy-dashboard"
-                exact
-                render={(props) => ( <BuddyDashboard reviews={reviews} />)}
-              />
-              <Route path="/buddy/:id" exact component={ShowErrands} />
-              <Route path="/home" exact component={Home} isAuth={isAuth} />
-              <Route path="/register" exact component={Register} />
-              <Route path="/login" exact component={()=> <Login setAuth={setAuth} />} />
               
               <Route path="/user/user-dashboard" exact component={UserDashboard} />
               <Route path="/user/user-review" exact render={(props) => (<UserReview reviews={reviews} displayReviews={displayReviews}/>)} />
               <Route path="/user/errand-completed" exact render={(props) => (<ErrandCompleted reviews={reviews} displayReviews={displayReviews} />)} />
               <Route path="/user/payment" exact component={Payments} />
-              <Route path="/user/add-errand" exact component={AddErrands} />
-              <Route path="/user/edit-errand/:id" exact component={AddErrands} />
+              <Route path="/edit-errand/:id" exact component={AddErrands} />
               <Route path="/user/errand-request" exact component={ErrandRequest} />
               <Route path="/user/" exact component={()=> <Login setAuth={setAuth} />} />
-
-              <Home />
             </Switch>
-          </BrowserRouter>
+  
 
           {/* <SiteFooter /> */}
-        </Router>
+     
       </div>
     );
   }
