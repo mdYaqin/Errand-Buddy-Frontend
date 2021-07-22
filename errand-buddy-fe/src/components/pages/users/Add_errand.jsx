@@ -118,9 +118,8 @@ function AddErrands(props) {
           }
         }
       ).then (response => {
-        console.log(response.data, "helllooooooooo")
         history.push ({
-          pathname: `/user/payment`, state: {errandData: response.data.errandInfo}
+          pathname: `/stripe/payment`, state: {errandData: response.data.errandInfo}
       })
       }))
       : (axios
