@@ -74,13 +74,20 @@ export default function IconLabelTabs() {
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
-  const [buddy, setBuddy] = useState(false)
+  //To show the data in the dashboard according to whether user or buddy is chosen to view
+  const [userTab, setUserTab] = useState(true)
+  const changeUserTab = () => {
+      setUserTab(true)
+  }
+  const changeBuddyTab = () => {
+    setUserTab(false)
+  }
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const {id}=useParams()
+  const {id} = useParams()
   const history = useHistory()
   const token = localStorage.getItem("jwt");
   const [bool, setBool]= useState(true)
@@ -148,8 +155,18 @@ export default function IconLabelTabs() {
    }).then(response => {
      setBool(!bool);
    });
-   
   }
+
+  const handleCancel = (e) => {
+    axios.delete(`http://localhost:4000/api/errands/${ e._id }/buddycancel`, {
+      headers: {
+        "x-auth-token": token,
+    }
+    }).then(response => {
+      setBool(!bool);
+    });
+  }
+  
 
   // const handleUpdate=(user)=> {
   //   history.push({
@@ -161,11 +178,6 @@ export default function IconLabelTabs() {
 
  const { name, email } = user.user;
  
-
- useEffect(() => {
-   console.log(user);
- },[]);
-
  useEffect(() => {
    // router.post('/:id/accepted', authenticated, errandController.accept)
    axios
@@ -177,10 +189,9 @@ export default function IconLabelTabs() {
      })
      .then((response) => {
        // history.push(`/dashboard`)
-       console.log(response.data);
        setUser(response.data);
      });
- }, [bool]);
+ }, []);
 
   const dashboardLinks = () => {
     return (
@@ -195,146 +206,182 @@ export default function IconLabelTabs() {
     );
   };
 
-  const transactionHistory = () => {
-    return (
-      <div className="card mb-5">
-        <h3 className="card-header">Job history</h3>
-        <ul className="list-group">
-        {
-          user.completed.length>0 ? 
-            user.completed.map((e) => (   
-              
-        <div className="d-flex p-1 bg-secondary text-white justify-content-between">
-          <div> 
-           
-          <div className="p-2 bg-info flex-fill">Items: {e.items}</div>
-          <div className="p-2 bg-info flex-fill">Item price: ${e.itemPrice}</div>
-          <div className="p-2 bg-info flex-fill">Errand fee: $ {e.errandFee}</div>
-          </div>
-          <div className="p-2 bg-info flex-fill">
-            
-            <img src={e.image} alt="" width="100" height="100" />
-          
-          </div>
-            </div>
-          ))              
-            :         
-            (
-          <div>no outstanding jobs</div>
-          )      
-}  
-        </ul>
-      </div>
-    );
-  };
-
   const buddyRating = () => {
     return (
-      <div className="card mb-5">
-        <h3 className="card-header">Rating</h3>
-        <ul className="list-group">
-          <li className="list-group-item">
-          {
+      <div className="dashboard-card container mb-5">
+        {
           user.user.reviews.length>0 ? 
           user.user.reviews.map((e) => (   
-              
-        <div className="d-flex p-1 bg-secondary text-white justify-content-between">
-          <div> 
-          <div className="p-2 bg-info flex-fill">Item id: {e.errand_id}</div>
-          <div className="p-2 bg-info flex-fill">rating: {e.rating} star</div>
-          <div className="p-2 bg-info flex-fill">Feedback summary:{e.review}</div>
-          </div>
-          <div className="p-2 bg-info flex-fill">Rated by: {e.user_name}</div>
+          
+          <div className="inner-card col mb-3">
+            <div className="card-image">
+              <img src={e.image} alt="Item" />
+            </div>
+            <div className="card-body">
+              <Link to={{ pathname: `/${e.errand_id}`, state: { e } }}><h5 className="item-details">{e.errand_summary}</h5></Link>
+              <h6>rating: {e.rating} <i className="fas fa-star"></i></h6>
+              <h6>Feedback summary:{e.review}</h6>
+              <h6>Rated by: {e.user_name}</h6>
+            </div>
           </div>
           
          
           ))              
             :         
             (
-          <div>no outstanding jobs</div>
+          <div>No Completed Jobs Yet</div>
           )      
-} 
-          </li>
-        </ul>
+        } 
+  
       </div>
     );
   };
 
-
-  const inProgress = () => {
+  // Jobs created by User and already accepted by a buddy, but not completed yet
+  const userInProgress = () => {
     return (
-      <div className="card mb-5">
-        <h3 className="card-header">Errand In Progress</h3>
-{
+      <div className="dashboard-card mb-5">
+        {
           user.jobFulfill.length>0 ? 
             user.jobFulfill.map((e) => (   
               
-        <div className="d-flex p-1 bg-secondary text-white justify-content-between">
-          <div> 
-            
-          <div className="p-2 bg-info flex-fill">Items: {e.items}</div>
-          <div className="p-2 bg-info flex-fill">Item price: ${e.itemPrice}</div>
-          <div className="p-2 bg-info flex-fill">Errand fee: $ {e.errandFee}</div>
-          </div>
-          <div className="p-2 bg-info flex-fill">
-            
-            <img src={e.image} alt="" width="100" height="100" />
-            <button onClick={()=>handleSubmit(e._id)}>Complete Errand
-            </button>
-          </div>
-            </div>
+              <div className="inner-card mb-3">
+                <div className="card-image">
+                  <img src={e.image} alt="Item" />
+                </div>
+                <div className="card-body">
+                  <h5 className="item-details">{e.items}</h5>
+                  <h6>Errand Fee: ${e.errandFee}</h6>
+                  <h6>Errand Fee: ${e.itemPrice}</h6>
+                </div>
+                <div className="button-div">
+                  <button onClick={()=>handleSubmit(e._id)}>Complete Errand 
+                  </button>
+                </div>
+              </div>
           ))              
             :         
             (
-          <div>no outstanding jobs</div>
+          <div>No Outstanding Jobs</div>
           )      
-}            
+        }            
       </div>
     );
   };
 
-
+  //Errands created by User and still available
   const errandPosted = () => {
     return (
-      <div className="card mb-5">
-        <h3 className="card-header">Errand Posted</h3>
-{
+      <div className="dashboard-card mb-5">
+        {
           user.jobCreated.length>0 ? 
             user.jobCreated.map((e) => (   
               
-        <div className="d-flex p-1 bg-secondary text-white justify-content-between">
-          <div> 
-            
-          <div className="p-2 bg-info flex-fill">Items: {e.items}</div>
-          <div className="p-2 bg-info flex-fill">Item price: ${e.itemPrice}</div>
-          <div className="p-2 bg-info flex-fill">Errand fee: $ {e.errandFee}</div>
-          </div>
-          <div className="p-2 bg-info flex-fill">
-            
-            <img src={e.image} alt="" width="100" height="100" />
-            <span>{e.status}
-            </span>
-            
-            <button onClick={()=>handleEdit(e)}>Edit</button>
-            <button onClick={()=>handleDelete(e)}>Delete</button>
-          </div>
-            </div>
+              <div className="inner-card mb-3">
+                <div className="card-image">
+                  <img src={e.image} alt="Item" />
+                </div>
+                <div className="card-body">
+                  <h5 className="item-details">{e.items}</h5>
+                  <h6>Errand Fee: ${e.errandFee}</h6>
+                  <h6>Errand Fee: ${e.itemPrice}</h6>
+                </div>
+                <div className="button-div">
+                  <button onClick={()=>handleEdit(e)}>Edit</button>
+                  <button onClick={()=>handleDelete(e)}>Delete</button>
+                </div>
+              </div>
           ))              
             :         
             (
-          <div>no outstanding jobs</div>
+          <div>No Outstanding Jobs</div>
           )      
-}            
+        }            
       </div>
     );
   };
 
+  //Errands accept as a Buddy to perform
+  const buddyErrandsAccepted = () => {
+    return (
+      <div className="dashboard-card mb-5">
+        {
+          user.buddyAccepted.length>0 ? 
+            user.buddyAccepted.map((e) => (   
+              
+              <div className="inner-card mb-3">
+                <div className="card-image">
+                  <img src={e.image} alt="Item" />
+                </div>
+                <div className="card-body">
+                  <h5 className="item-details">{e.items}</h5>
+                  <h6>Errand Fee: ${e.errandFee}</h6>
+                  <h6>Errand Fee: ${e.itemPrice}</h6>
+                </div>
+                <div className="button-div">
+                  <button onClick={()=>handleCancel(e)}>Cancel</button>
+                </div>
+              </div>
+          ))              
+            :         
+            (
+          <div>No Outstanding Jobs</div>
+          )      
+        }            
+      </div>
+    );
+  };
+
+    // Errands completed as a Buddy
+    const buddyErrandsCompleted = () => {
+      return (
+        <div className="dashboard-card mb-5">
+          
+          {
+            user.completed.length>0 ? 
+              user.completed.map((e) => (   
+                
+                <div className="inner-card mb-3">
+                  <div className="card-image">
+                    <img src={e.image} alt="Item" />
+                  </div>
+                  <div className="card-body">
+                    <h5 className="item-details">{e.items}</h5>
+                    <h6>Errand Fee: ${e.errandFee}</h6>
+                    <h6>Errand Fee: ${e.itemPrice}</h6>
+                  </div>
+                </div>
+            ))              
+              :         
+              (
+            <div>
+              <h3>No Errands Completed yet. Accept a job and earn some extra $$$.</h3>
+            </div>
+            )      
+          }  
+         
+        </div>
+      );
+    };
 
 
   return (
 
-    <div>
+    <div className="dashboard-container">
+      <div className="header-tabs">
+        <div>
+          <input checked id="one" name="tabs" type="radio" />
+          <label onClick={changeUserTab} classname="first-label" for="one"><i class="fa fa-pencil-square-o"></i> User</label>
+        </div>
+        <div>
+          <input id="two" name="tabs" type="radio" value="Two"/>
+          <label onClick={changeBuddyTab} for="two"><i class="fa fa-magic"></i> Buddy</label>
+        </div>
 
+
+
+      </div>
+      <div>
       <div title="Dashboard" description="  " className="user-summary">
         <div className="user-card mb-5 ">
           <h3 className="card-header">User Information</h3>
@@ -342,18 +389,22 @@ export default function IconLabelTabs() {
             <li className="list-group-item">Name: {name}</li>
             <li className="list-group-item">Email: {email}</li>
             <li className="list-group-item">Balance: ${user.balance.balance}</li>
-            <li className="list-group-item"> Total No. of Errands Posted: {user.jobCreated.length}</li>
-            <li className="list-group-item">Total No. of Errands Performed: {user.completed.length}</li>
-            <li className="list-group-item">Average Rating</li>
+             
+            { userTab ? 
+                 <li className="list-group-item"> Total No of Errands Posted: {user.errands.length}</li>
+                : <li className="list-group-item"> Total No of Errands Accepted: { user.buddyErrands.length } </li>
+            }
+
+            { userTab ? 
+              <li className="list-group-item">Average Rating: {user.averageRating} </li>
+              : null
+            }
           </ul>
           <div className="dashboard-button">
-            {/* <button onClick={()=> handleUpdate(user)}>
-                Update Profile
-            </button> */}
 
           </div>
 
-      </div>
+        </div>
 
       
       <div id="tabs">
@@ -366,33 +417,62 @@ export default function IconLabelTabs() {
               textColor="secondary"
               aria-label="icon label tabs example"
             >
-            <Tab icon={<HourglassEmptyIcon />} label="Errands Not Accepted Yet" {...a11yProps(0)}/>
-            <Tab icon={<DirectionsRunIcon/>} label="Errands In Progress" {...a11yProps(1)} />
-            <Tab icon={<CheckBoxIcon />} label="Errands Completed" {...a11yProps(2)} />
-            <Tab icon={<AssignmentIcon />} label="Buddy Jobs Performed" {...a11yProps(3)} />
-            <Tab icon={<AssignmentIcon />} label="All Errands Posted" {...a11yProps(4)} />
+            
+            <Tab icon={<DirectionsRunIcon/>} label="Errands In Progress" {...a11yProps(0)} />
+            <Tab icon={<CheckBoxIcon />} label="Errands Completed" {...a11yProps(1)} />
+            { userTab ? 
+              <Tab icon={<HourglassEmptyIcon />} label="Errands Not Accepted Yet" {...a11yProps(3)}/>
+              : null
+            }
+            {/* <Tab icon={<AssignmentIcon />} label="Buddy Jobs Performed" {...a11yProps(3)} />
+            <Tab icon={<AssignmentIcon />} label="All Errands Posted" {...a11yProps(4)} /> */}
           </Tabs>
         </Paper>
 
-        <TabPanel value={value} index={0}>
-        {errandPosted()}
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-        {inProgress()}
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-        {buddyRating()}
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-        {transactionHistory()}
+
+        {userTab ?
+          (
+            <div>
+              <TabPanel value={value} index={0}>
+                {userInProgress()}
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                {buddyRating()}
+              </TabPanel>
+              <TabPanel value={value} index={2}>
+                {errandPosted()}
+              </TabPanel>
+            </div>
+          ) : 
+          (
+            <div>
+              <TabPanel value={value} index={0}>
+                {buddyErrandsAccepted()}
+              </TabPanel>
+              <TabPanel value={value} index={1}>
+                {buddyErrandsCompleted()}
+              </TabPanel>
+            </div>
+          ) 
+          }
+        {/* <TabPanel value={value} index={3}>
+          {transactionHistory()}
         </TabPanel>
         <TabPanel value={value} index={4}>
-        {errandPosted()}
-        </TabPanel>
+          {errandPosted()}
+        </TabPanel> */}
 
       </div>
 
+      </div>
+      
+
     </div>
+
+    </div>
+
+      
+  
     
 
   );
