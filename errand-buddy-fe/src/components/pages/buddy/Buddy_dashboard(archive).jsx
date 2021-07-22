@@ -51,14 +51,14 @@ console.log(e);
     } ).then(response =>
     {
       setBool(!bool);
-      history.push(`/buddy/${e}/completed-errands`)
+      history.push(`/${e}/completed-errands`)
       
     })
    }
 
    const handleEdit=(e)=> {
      history.push({
-      pathname: `/user/edit-errand/${e._id}`,
+      pathname: `/edit-errand/${e._id}`,
       state: { data: e }
     }
      )}
@@ -93,7 +93,7 @@ console.log(e);
         },
       })
       .then((response) => {
-        // history.push(`/buddy/buddy-dashboard`)
+        // history.push(`/dashboard`)
         console.log(response.data);
         setUser(response.data);
       });
@@ -109,7 +109,7 @@ console.log(e);
         <ul className="list-group">
           <Link className="nav-link" to="/"></Link>
           <li className="list-group-item">Balance: ${user.balance.balance}</li>
-          <Link className="nav-link" to="/buddy/profile-update">
+          <Link className="nav-link" to="/profile-update">
             Update Profile
           </Link>
         </ul>

@@ -15,13 +15,14 @@ const Show_errands = (props) =>
 {
   
   const history = useHistory()
+  const token = localStorage.getItem("jwt");
+  const userId = localStorage.getItem("userId");
 
   const handleSubmit = () =>
   {
     
     const errandId = props.location.state.e._id
     console.log(errandId);
-    const token = localStorage.getItem("jwt");
     axios.post(`http://localhost:4000/api/errands/${errandId }/accepted`,{}, {
      headers: {
        "x-auth-token": token,
@@ -30,7 +31,7 @@ const Show_errands = (props) =>
     } ).then(response =>
     {
       console.log(response)
-     history.push(`/buddy/buddy-dashboard`)
+     history.push(`/dashboard/${userId}`)
      })
   
    }
@@ -47,7 +48,7 @@ const Show_errands = (props) =>
     axios
       .get(`http://localhost:4000/api/errands/show/${props.location.state.e._id}`, {
         headers: {
-          "x-auth-token": localStorage.getItem('jwt'),
+          "x-auth-token": token,
           "content-type": "application/json",
         },
       })
