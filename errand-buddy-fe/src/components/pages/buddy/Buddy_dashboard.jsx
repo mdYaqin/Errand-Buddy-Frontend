@@ -4,8 +4,7 @@ import { Link, useHistory,useParams } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { Tabs, Tab, AppBar } from '@material-ui/core';
 import PhoneIcon from '@material-ui/icons/Phone';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -73,7 +72,9 @@ const useStyles = makeStyles((theme) => ({
 export default function IconLabelTabs() {
   
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+
+  const [buddy, setBuddy] = useState(false)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -329,9 +330,11 @@ export default function IconLabelTabs() {
   };
 
 
+
   return (
 
     <div>
+
       <div title="Dashboard" description="  " className="user-summary">
         <div className="user-card mb-5 ">
           <h3 className="card-header">User Information</h3>
@@ -347,10 +350,11 @@ export default function IconLabelTabs() {
             {/* <button onClick={()=> handleUpdate(user)}>
                 Update Profile
             </button> */}
+
           </div>
 
-        </div>
       </div>
+
       
       <div id="tabs">
         <Paper square className={classes.root}>
