@@ -3,16 +3,15 @@ import React,{useState, useEffect} from 'react'
 import { withRouter } from 'react-router'
 import { Link } from "react-router-dom";
 
-const Success = ({history}) => {
-
-    const [isSuccess, setIsSuccess] = useState()
+const Success = () => {
 
     const queryParams = new URLSearchParams(window.location.search);
     const sessionId = queryParams.get('session_id');  
     const userId = localStorage.getItem("userId")
 
     console.log(sessionId)
-    
+    const [paid, setPaid] = useState(false)
+
     useEffect(() => {
         axios.patch('http://locahost:4000/api/errands/successfulpayment', 
         
@@ -27,6 +26,9 @@ const Success = ({history}) => {
         }
     ) //make call to backend to update paid
         .then ( res => {
+            if (res.data.success) { 
+                setPaid(true)
+            }
            console.log(res.data) 
         })
     },[])
