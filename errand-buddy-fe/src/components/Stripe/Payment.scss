@@ -1,0 +1,30 @@
+.payment-section {
+    max-width: 50vw;
+    width: fit-content;
+    margin: 40px auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Otomanopee One', sans-serif;
+    
+    
+    
+
+    .payment-div {
+        padding: 20px;
+        margin-bottom: 30px;
+        width: max-content;
+        border: 1px solid lightgrey;
+        border-radius: 3px;
+        box-shadow: 0 3px 10px rgb(44 44 45 / 10%) , inset 0 0 0 1px rgb(44 44 45 / 10%);
+
+        .description {
+            margin: auto;
+            width: max-content;
+        }
+    }
+
+    form {
+        margin: auto;
+    }
+}
