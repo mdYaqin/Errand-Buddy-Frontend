@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory,useParams } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
@@ -79,6 +79,7 @@ export default function IconLabelTabs() {
     setValue(newValue);
   };
 
+  const {id}=useParams()
   const history = useHistory()
   const token = localStorage.getItem("jwt");
   const [bool, setBool]= useState(true)
@@ -149,12 +150,20 @@ export default function IconLabelTabs() {
    
   }
 
+  // const handleUpdate=(user)=> {
+  //   history.push({
+  //     pathname: `/profile-update/${id}`,
+  //     state: { user }
+  //   })
+  //   console.log(user,id,'sgsgssg')
+  // }
+
  const { name, email } = user.user;
  
 
  useEffect(() => {
    console.log(user);
- });
+ },[]);
 
  useEffect(() => {
    // router.post('/:id/accepted', authenticated, errandController.accept)
@@ -170,7 +179,7 @@ export default function IconLabelTabs() {
        console.log(response.data);
        setUser(response.data);
      });
- }, [bool,user]);
+ }, [bool]);
 
   const dashboardLinks = () => {
     return (
@@ -230,7 +239,6 @@ export default function IconLabelTabs() {
               
         <div className="d-flex p-1 bg-secondary text-white justify-content-between">
           <div> 
-              {console.log(e)}
           <div className="p-2 bg-info flex-fill">Item id: {e.errand_id}</div>
           <div className="p-2 bg-info flex-fill">rating: {e.rating} star</div>
           <div className="p-2 bg-info flex-fill">Feedback summary:{e.review}</div>
@@ -336,11 +344,9 @@ export default function IconLabelTabs() {
             <li className="list-group-item">Average Rating</li>
           </ul>
           <div className="dashboard-button">
-            <button>
-              <Link className="nav-link" to="/profile-update">
+            {/* <button onClick={()=> handleUpdate(user)}>
                 Update Profile
-              </Link>
-            </button>
+            </button> */}
           </div>
 
         </div>

@@ -69,9 +69,9 @@ function Likes(props) {
         <div className="card-like">
             { LikeAction === 'liked' 
             ?
-            <i class="fas fa-heart" onClick={onLike} style={{color: "red"}}></i>
+            <i className="fas fa-heart" onClick={onLike} style={{color: "red"}}></i>
 
-            : <i class="far fa-heart" onClick={onLike}></i>
+            : <i className="far fa-heart" onClick={onLike}></i>
             }
             <span className="likes-amt">{Likes}</span>
         </div>
