@@ -10,7 +10,7 @@ const Success = ({history}) => {
 
     console.log(sessionId)
     
-    axios.patch('http://locahost:4000/errands/successfulpayment', 
+    axios.patch('http://locahost:4000/api/errands/successfulpayment', 
         
         {
             sessionId
