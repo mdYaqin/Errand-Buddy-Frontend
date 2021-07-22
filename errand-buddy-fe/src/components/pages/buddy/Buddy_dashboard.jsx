@@ -72,7 +72,9 @@ const useStyles = makeStyles((theme) => ({
 export default function IconLabelTabs() {
   
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+
+  const [buddy, setBuddy] = useState(false)
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -324,14 +326,8 @@ export default function IconLabelTabs() {
   return (
 
     <div>
-      <div className="head-tabs">
-        
-          {/* <Tabs value={value} onChange={handleChange} centered>
-            <Tab label="User" />
-            <Tab label="Buddy" />
-          </Tabs>
+      <div className="head-tabs">     
 
-          <TabPanel value={value} index={0}> */}
           <div title="Dashboard" description="  " className="user-summary">
             <div className="user-card mb-5 ">
               <h3 className="card-header">User Information</h3>
@@ -353,13 +349,6 @@ export default function IconLabelTabs() {
 
             </div>
           </div>
-          {/* </TabPanel>
-
-          <TabPanel value={value} index={1}>
-            Test 2
-          </TabPanel> */}
-
-
 
       </div>
 
