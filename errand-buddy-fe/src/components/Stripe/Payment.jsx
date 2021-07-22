@@ -46,20 +46,39 @@ export default function Payments(props) {
   
     const { errandId, errandImage, errandName, errandPrice} = props.location.state.errandData
     
-    const line_items = [
-      {
-        price_data: {
-          currency: "sgd",
-          unit_amount: errandPrice * 100, //amount is in cents for Stripe
-          product_data: {
-            name: errandName,
-            images: [errandImage]
-          }
-        },
+   let line_items
+    
+    if (errandImage) {
+      line_items = [
+        {
+          price_data: {
+            currency: "sgd",
+            unit_amount: errandPrice * 100, //amount is in cents for Stripe
+            product_data: {
+              name: errandName,
+              images : [errandImage] 
+            }
+          },
 
-        quantity: 1
-      }
-    ]
+          quantity: 1
+        }
+      ]
+    } else {
+
+      line_items = [
+        {
+          price_data: {
+            currency: "sgd",
+            unit_amount: errandPrice * 100, //amount is in cents for Stripe
+            product_data: {
+              name: errandName,
+            }
+          },
+
+          quantity: 1
+        }
+      ]
+    }
     
     const user_id = localStorage.getItem('userId')
     axios

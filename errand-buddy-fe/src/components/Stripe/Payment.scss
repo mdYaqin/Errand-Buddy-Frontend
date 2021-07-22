@@ -15,8 +15,12 @@
         margin-bottom: 30px;
         width: max-content;
         border: 1px solid lightgrey;
-        border-radius: 3px;
+        border-radius: 10px;
         box-shadow: 0 3px 10px rgb(44 44 45 / 10%) , inset 0 0 0 1px rgb(44 44 45 / 10%);
+
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
 
         .description {
             margin: auto;

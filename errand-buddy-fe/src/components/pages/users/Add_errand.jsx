@@ -18,8 +18,7 @@ import {
 function AddErrands(props) {
 
   const history = useHistory()
-  const {id} = useParams()
-  const username = localStorage.getItem("username")
+
   const [data, setData] = useState({
     category: "",
     items: "",
