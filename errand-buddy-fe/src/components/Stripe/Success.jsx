@@ -24,12 +24,11 @@ const Success = () => {
                 'x-auth-token': localStorage.getItem('jwt'),
             },       
         }
-    ) //make call to backend to update paid
-        .then ( res => {
+    ).then ( res => {
             if (res.data.success) { 
                 setPaid(true)
             }
-           console.log(res.data) 
+           console.log(res.data,"sdfsfsdfsdf") 
         })
     },[])
 
