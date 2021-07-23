@@ -23,6 +23,9 @@ import AddErrands from './components/pages/users/Add_errand';
 import ErrandRequest from './components/pages/users/Errand_request';
 import Success from './components/Stripe/Success'
 import Support from './components/pages/Support'
+import Request_reset_password from './components/Request_reset_password'
+import ResetPassword from './components/ResetPassword'
+import './App.scss'
 
 
 function App() {
@@ -43,8 +46,9 @@ function App() {
   // const {userID} = useParams();
 
   return (
-    <div className="app">
+    <div className="App">
       <SiteHeader setAuth={setAuth} isAuth={isAuth} />
+      <div className="content">
       <Switch>
         <Route path="/" exact component={Home} />
         <Route
@@ -61,6 +65,9 @@ function App() {
           }
         />
         <Route path="/support" exact component={Support} />
+        <Route path="/request-reset-password" exact component={Request_reset_password} />
+        
+        <Route path="/reset-password" exact component={ResetPassword} />
         <Route path="/stripe/payment" exact component={Payments} />
         <Route
           path="/dashboard/:id"
@@ -103,6 +110,7 @@ function App() {
         <Route path="/edit-errand/:id" exact component={AddErrands} />
         {/* <Route path="/profile-update/:id" exact component={Register} /> */}
       </Switch>
+      </div>
 
       <SiteFooter />
     </div>
