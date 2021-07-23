@@ -76,11 +76,14 @@ export default function IconLabelTabs() {
 
   //To show the data in the dashboard according to whether user or buddy is chosen to view
   const [userTab, setUserTab] = useState(true)
-  const changeUserTab = () => {
+  const [selectedOption, setSelectedOption]= useState("option1")
+  const changeUserTab = (event) => {
+      setSelectedOption(event.target.value)
       setUserTab(true)
   }
-  const changeBuddyTab = () => {
+  const changeBuddyTab = (event) => {
     setUserTab(false)
+    setSelectedOption(event.target.value)
   }
 
   const handleChange = (event, newValue) => {
@@ -370,12 +373,12 @@ export default function IconLabelTabs() {
     <div className="dashboard-container">
       <div className="header-tabs">
         <div>
-          <input checked id="one" name="tabs" type="radio" />
-          <label onClick={changeUserTab} classname="first-label" for="one"><i class="fa fa-pencil-square-o"></i> User</label>
+          <input onClick={changeUserTab} checked={selectedOption === "option1" } value="option1" id="one" name="tabs" type="radio" />
+          <label classname="first-label" for="one"><i class="fa fa-pencil-square-o"></i> User</label>
         </div>
         <div>
-          <input id="two" name="tabs" type="radio" value="Two"/>
-          <label onClick={changeBuddyTab} for="two"><i class="fa fa-magic"></i> Buddy</label>
+          <input onClick={changeBuddyTab} checked={selectedOption === "option2" } value="option2" id="two" name="tabs" type="radio"/>
+          <label for="two"><i class="fa fa-magic"></i> Buddy</label>
         </div>
 
 
