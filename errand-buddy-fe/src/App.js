@@ -104,7 +104,7 @@ function App() {
         {/* <Route path="/profile-update/:id" exact component={Register} /> */}
       </Switch>
 
-      {/* <SiteFooter /> */}
+      <SiteFooter />
     </div>
   );
 }
