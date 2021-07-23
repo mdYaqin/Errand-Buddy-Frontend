@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { useState } from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
-import Layout from "./Layout";
+import { Link, useHistory } from "react-router-dom";
+import Layout from "../utils/Layout";
 import axios from "axios";
-import { useCookies } from "react-cookie";
 
 
 const Login = (props) => {

@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
-import Layout from "./Layout";
+import { useHistory } from "react-router-dom";
+import Layout from "../utils/Layout";
 import axios from "axios";
-import './Register.scss'
+import '../../style/Register.scss'
 
 const Register = () => {
   const [values, setValues] = useState({

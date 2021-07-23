@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import arrData from "../Data";
-import Layout from "./Layout";
 import axios from "axios";
-import Likes from "./Sections/Likes";
-import "./Home.scss";
+import Likes from "./Likes";
+import "../../../style/Home.scss";
 
 const Home = () => {
   const [data, setData] = useState([]);

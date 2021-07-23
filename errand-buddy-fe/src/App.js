@@ -1,30 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 //Shared Components
-import Register from "./components/Register";
-import Home from "./components/Home";
-import Login from "./components/Login";
-
+import Register from "./components/pages/Register";
+import Home from "./components/pages/home/Home";
+import Login from "./components/pages/Login";
+ 
 //Buddy Components
-import SiteHeader from "./components/SiteHeader";
-import SiteFooter from "./components/SiteFooter";
-import ShowErrands from "./components/pages/buddy/Show_errands";
-import CompletedErrands from "./components/pages/buddy/Completed_errands";
-import BuddyDashboard from "./components/pages/buddy/Buddy_dashboard";
+import SiteHeader from "./components/utils/SiteHeader";
+import SiteFooter from "./components/utils/SiteFooter";
+import ShowErrands from "./components/pages/home/Show_errands";
+import CompletedErrands from "./components/pages/dashboard/Completed_errands";
+import Dashboard from "./components/pages/dashboard/Dashboard";
 
 //User components
 
-import UserDashboard from './components/pages/users/User_dashboard';
-import UserReview from './components/pages/users/User_review';
-import ErrandCompleted from './components/pages/users/Errand_completed';
-import Payments from './components/Stripe/Payment';
-import AddErrands from './components/pages/users/Add_errand';
-import ErrandRequest from './components/pages/users/Errand_request';
-import Success from './components/Stripe/Success'
+import UserReview from './components/pages/dashboard/Review';
+import ErrandCompleted from './components/pages/dashboard/Errand_completed';
+import Payments from './components/pages/add_errand/stripe/Payment';
+import AddErrands from './components/pages/add_errand/Add_errand';
+import Success from './components/pages/add_errand/stripe/Success'
 import Support from './components/pages/Support'
-import Request_reset_password from './components/Request_reset_password'
-import ResetPassword from './components/ResetPassword'
+import Request_reset_password from './components/utils/Request_reset_password'
+import ResetPassword from './components/utils/ResetPassword'
 import './App.scss'
 
 
@@ -39,6 +37,10 @@ function App() {
   const displayReviews = (latestReview) => {
     setReviews([...reviews, latestReview]);
   };
+
+  useEffect(() => {
+    console.log(isAuth)
+  })
 
   // const id = localStorage.getItem("jwt");
   // // const {id} = localStorage;
@@ -74,7 +76,7 @@ function App() {
           exact
           render={(props) =>
             userId ? (
-              <BuddyDashboard reviews={reviews} />
+              <Dashboard reviews={reviews} />
             ) : (
               <Redirect to="/login" />
             )

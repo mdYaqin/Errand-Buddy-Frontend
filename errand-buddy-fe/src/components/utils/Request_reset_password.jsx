@@ -52,7 +52,7 @@ function Request_reset_password(props) {
               <div className="card card-body">
                 <h1 className="text-center mb-3">Forgot Password</h1>
                   <div className="form-group">
-                    <label for="email">Email</label>
+                    <label htmlFor="email">Email</label>
                     <input
                         onChange={handleChange("email")}
                         type="text"

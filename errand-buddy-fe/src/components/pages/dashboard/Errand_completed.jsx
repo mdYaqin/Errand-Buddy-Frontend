@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import Layout from "../../Layout";
+import Layout from "../../utils/Layout";
 
 import {Link} from "react-router-dom";
-import Payments  from "../../Stripe/Payment";
+import Payments  from "../add_errand/stripe/Payment";
 
 const ErrandCompleted = () => {
 
