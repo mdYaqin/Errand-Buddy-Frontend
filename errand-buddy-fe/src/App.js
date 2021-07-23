@@ -15,13 +15,15 @@ import BuddyDashboard from "./components/pages/buddy/Buddy_dashboard";
 
 //User components
 
-import UserDashboard from "./components/pages/users/User_dashboard";
-import UserReview from "./components/pages/users/User_review";
-import ErrandCompleted from "./components/pages/users/Errand_completed";
-import Payments from "./components/Stripe/Payment";
-import AddErrands from "./components/pages/users/Add_errand";
-import ErrandRequest from "./components/pages/users/Errand_request";
-import Success from "./components/Stripe/Success";
+import UserDashboard from './components/pages/users/User_dashboard';
+import UserReview from './components/pages/users/User_review';
+import ErrandCompleted from './components/pages/users/Errand_completed';
+import Payments from './components/Stripe/Payment';
+import AddErrands from './components/pages/users/Add_errand';
+import ErrandRequest from './components/pages/users/Errand_request';
+import Success from './components/Stripe/Success'
+import Support from './components/pages/Support'
+
 
 function App() {
   const [isAuth, setAuth] = useState(false);
@@ -58,6 +60,7 @@ function App() {
             userId ? <AddErrands {...props} /> : <Redirect to="/login" />
           }
         />
+        <Route path="/support" exact component={Support} />
         <Route path="/stripe/payment" exact component={Payments} />
         <Route
           path="/dashboard/:id"
@@ -101,7 +104,7 @@ function App() {
         {/* <Route path="/profile-update/:id" exact component={Register} /> */}
       </Switch>
 
-      {/* <SiteFooter /> */}
+      <SiteFooter />
     </div>
   );
 }

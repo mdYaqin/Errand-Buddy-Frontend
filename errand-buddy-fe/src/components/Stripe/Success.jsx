@@ -14,7 +14,7 @@ const Success = () => {
   useEffect(() => {
     axios
       .patch(
-        "http://locahost:4000/api/errands/successfulpayment",
+        "http://localhost:4000/api/errands/successfulpayment",
 
         {
           sessionId,

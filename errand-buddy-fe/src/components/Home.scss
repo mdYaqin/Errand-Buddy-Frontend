@@ -1,3 +1,15 @@
+.home-body {
+    height: 100vh;
+    .home-headers {
+        text-align: center;
+        background-color: black;
+
+        h1, h3 {
+            margin: 0 auto;
+            color: white;
+        }
+    }
+}
 #errand-container {
     display: flex;
     justify-content: center;

@@ -1,12 +1,30 @@
+
+.dashboard-container {
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 100px;
+
+}
+
 .user-summary {
     width: 80vw;
     margin: 20px auto;
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
+    border-top: 3px solid #777;
+    
 }
 
 .user-card {
-    width: 60%;
+    min-width: fit-content;
+    height: fit-content;
+    margin: 20px auto;
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4) ;
 
     .dashboard-button {
         display: flex;
@@ -25,6 +43,92 @@
 }
 
 #tabs {
-    width: 80vw;
+    width: 60vw;
+    margin: 20px auto;
+}
+
+.header-tabs {
+    width: 20%;
+    margin: 10px auto 10px auto;
+    display: flex;
+
+}
+
+.first-label {
+    border-right: lightgrey;
+}
+
+.header-tabs input[type="radio"] {
+    opacity: 0;
+}
+.header-tabs .fa{
+	margin-right:10px;	
+}
+
+.header-tabs label {
+    color: #000;
+    cursor: pointer;
+    float: left;
+    margin: 0 10px;
+    padding: 0.5% 2%;
+	font-size:16px;
+	font-weight:bold;
+}
+
+.header-tabs label:hover {
+    background: -webkit-linear-gradient(#777, #666);
+}
+.header-tabs input:checked + label {
+    background: #fff;
+    color: black;
+	border-top:solid 2px lightskyblue;
+    border-bottom: solid 2px lightskyblue;
+}
+
+.dashboard-row {
+    width: 60vw
+}
+
+.dashboard-card {
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 60vw;
     margin: auto;
+    
+    h5 {
+        text-align: center;
+        font-weight: bold;
+    }
+
+    h6 {
+        font-size: 0.9em;
+    }
+
+    .card-body {
+        padding: 10px;
+        height: 45%;
+        overflow: hidden;
+        width: 250px;
+    }
+
+    .inner-card {
+        
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        max-width: 250px;
+        height: 300px;
+        margin: 5px;
+
+        .button-div {
+            display: flex;
+            justify-content: center;
+
+            button {
+                margin: 0 5px;
+            }
+        }
+    }
 }
