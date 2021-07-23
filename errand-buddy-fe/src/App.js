@@ -22,6 +22,7 @@ import Payments from './components/Stripe/Payment';
 import AddErrands from './components/pages/users/Add_errand';
 import ErrandRequest from './components/pages/users/Errand_request';
 import Success from './components/Stripe/Success'
+import Support from './components/pages/Support'
 
 
 function App() {
@@ -59,6 +60,7 @@ function App() {
             userId ? <AddErrands {...props} /> : <Redirect to="/login" />
           }
         />
+        <Route path="/support" exact component={Support} />
         <Route path="/stripe/payment" exact component={Payments} />
         <Route
           path="/dashboard/:id"

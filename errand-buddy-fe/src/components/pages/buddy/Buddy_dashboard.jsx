@@ -370,7 +370,7 @@ export default function IconLabelTabs() {
 
   return (
 
-    <div className="dashboard-container">
+    <div className="dashboard-container" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + "/dashboard-background.jpg"})`,  backgroundRepeat: "no-repeat", backgroundSize:"cover"}} >
       <div className="header-tabs">
         <div>
           <input onClick={changeUserTab} checked={selectedOption === "option1" } value="option1" id="one" name="tabs" type="radio" />
@@ -380,10 +380,8 @@ export default function IconLabelTabs() {
           <input onClick={changeBuddyTab} checked={selectedOption === "option2" } value="option2" id="two" name="tabs" type="radio"/>
           <label for="two"><i class="fa fa-magic"></i> Buddy</label>
         </div>
-
-
-
       </div>
+      
       <div>
       <div title="Dashboard" description="  " className="user-summary">
         <div className="user-card mb-5 ">

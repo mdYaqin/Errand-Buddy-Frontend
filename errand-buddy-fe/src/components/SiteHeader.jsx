@@ -48,6 +48,9 @@ const SiteHeader = (props) => {
           <li className="other-links">
             <Link to={`/dashboard/${userId}`}>Your Dashboard</Link>
           </li>
+          <li className="other-links">
+            <Link to={`/support`}>Support</Link>
+          </li>
         </ul>
       </div>
 

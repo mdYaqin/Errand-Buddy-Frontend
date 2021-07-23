@@ -142,8 +142,8 @@ function AddErrands(props) {
   }
 
   return (
-    <>
-      <div className="add-row">
+    
+      <div className="add-row" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + "/create-background.jpg"})`,  backgroundRepeat: "no-repeat", backgroundSize:"cover"}} >
         <div className="add-container">
         
           <form method="POST" action="" />
@@ -273,7 +273,7 @@ function AddErrands(props) {
 
         </div>
       </div>
-    </>
+
   );
 }
 
