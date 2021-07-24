@@ -1,0 +1,16 @@
+.payment-div {
+    max-height: 50%;
+    max-width: 40vw;
+    margin: 5px auto;
+
+    img {
+        height: 50%;
+        object-fit: contain;
+    }
+
+    form {
+        width: fit-content;
+        height: fit-content;
+        margin: 0 auto;
+    }
+}

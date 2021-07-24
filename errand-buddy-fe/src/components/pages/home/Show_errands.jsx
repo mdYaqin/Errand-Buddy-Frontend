@@ -3,7 +3,7 @@ import { Link,  useHistory } from "react-router-dom";
 
 import { isAuthenticated } from "../../utils/Auth";
 import axios from "axios";
-
+import Google from "../../googleMaps/Google_map";
 import '../../../style/Show_errands.scss'
 import SiteFooter from '../../utils/SiteFooter';
 
@@ -79,11 +79,19 @@ const Show_errands = (props) =>
                 <div className="row location-info">
                   <div className="pickup-info">
                     <p>Pick up Location:{props.location.state.e.pickupLocation}</p>
+                    { props.location.state.e.pickupLatitude ? 
+                      <Google latitude={props.location.state.e.pickupLatitude} longtitude={props.location.state.e.pickupLongtitude}/>
+                      : <h5>Google Maps no available for postal code provided</h5>
+                    }
                     <p>Pick up Time:{formatDate(props.location.state.e.pickupTime)}</p>
                   </div>
 
                   <div className="deliver-info">
                     <p>Delivery Location:{props.location.state.e.deliveryLocation}</p>
+                    { props.location.state.e.deliveryLatitude ? 
+                      <Google latitude={props.location.state.e.deliveryLatitude} longtitude={props.location.state.e.deliveryLongtitude}/>
+                      : <h5>Google Maps no available for postal code provided</h5>
+                    }     
                     <p>Deliver By:{formatDate(props.location.state.e.deliveryTime)}</p>
                   </div>
 

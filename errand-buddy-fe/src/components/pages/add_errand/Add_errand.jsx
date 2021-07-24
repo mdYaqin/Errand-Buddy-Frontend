@@ -200,7 +200,7 @@ function AddErrands(props) {
             <input
               onChange={handleChange}
               required
-              type="textbox"
+              type="text"
               className="input"
               id="pickupLocation"
               name="pickupLocation"
@@ -213,7 +213,7 @@ function AddErrands(props) {
             <input
               onChange={handleChange}
               required
-              type="number"
+              type="text"
               className="input"
               id="deliveryLocation"
               name="deliveryLocation"
