@@ -50,7 +50,7 @@ function App() {
   return (
     <div className="App">
       <SiteHeader setAuth={setAuth} isAuth={isAuth} />
-      <div className="content">
+      
       <Switch>
         <Route path="/" exact component={Home} />
         <Route
@@ -112,7 +112,6 @@ function App() {
         <Route path="/edit-errand/:id" exact component={AddErrands} />
         {/* <Route path="/profile-update/:id" exact component={Register} /> */}
       </Switch>
-      </div>
 
       <SiteFooter />
     </div>

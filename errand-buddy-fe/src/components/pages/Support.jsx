@@ -2,7 +2,7 @@ import React from 'react';
 
 function Support(props) {
     return (
-        <div>
+        <div className="content">
             FAQ
         </div>
     );

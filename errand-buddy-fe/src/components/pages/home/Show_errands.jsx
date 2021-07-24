@@ -64,7 +64,7 @@ const Show_errands = (props) =>
   
 
     return (
-        <div>
+        <div className="content">
            <div className="mainshow-container mt-5">
             <div className="row ">
               <div className="show-container col-7 mb-3" key={props.location.state.e._id}>
@@ -158,8 +158,6 @@ const Show_errands = (props) =>
             
 
           </div>
-
-          <SiteFooter />
 
         </div>
       

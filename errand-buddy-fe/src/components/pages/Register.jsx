@@ -43,7 +43,7 @@ const Register = () => {
   return (
     <div className="container mt-5 mb-5">
       <Layout title="Welcome to Errand Buddy!" description="  "></Layout>
-      <div className="row d-flex align-items-center justify-content-center">
+      <div className="content row d-flex align-items-center justify-content-center">
         <div className="add-container">
             <h1 className="register-header mt-3">
               Join Errand Buddy! 
