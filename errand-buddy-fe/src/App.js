@@ -110,6 +110,7 @@ function App() {
         />
         <Route path="/user/payment" exact component={Payments} />
         <Route path="/edit-errand/:id" exact component={AddErrands} />
+        <Route path="/reset-password/:id/:token" exact component={ResetPassword} />
         {/* <Route path="/profile-update/:id" exact component={Register} /> */}
       </Switch>
       </div>

@@ -16,7 +16,8 @@ const Home = () => {
 
       .then(function (response) {
         // handle success
-        setData(response.data);
+        setData(response.data.errands);
+        console.log(response.data)
       })
       .catch(function (error) {
         // handle error

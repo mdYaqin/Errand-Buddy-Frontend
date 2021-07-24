@@ -6,12 +6,12 @@
 
 
 .jumbotron {
-
-  width: 30wh;
-  height: 30vh;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
   color: #fafafa;
   background: linear-gradient( #ee7752, #e73c7e);
-  background-size: 400% 400%;
+  background-size: 200% 200%;
  
 }
 
