@@ -1,6 +1,5 @@
 import React from 'react'
-import SiteHeader from './SiteHeader'
-import '../Layout.css'
+import '../../style/Layout.css'
 
 const Layout = ({ 
      title = "Title",

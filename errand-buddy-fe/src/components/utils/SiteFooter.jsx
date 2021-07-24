@@ -1,8 +1,6 @@
 import React from 'react'
 
-class SiteFooter extends React.Component {
-
-    render() {
+const SiteFooter=()=> {
 
         return(
           <nav className="footer-container navbar-expand-md bg-dark navbar-dark sticky-top">
@@ -14,8 +12,6 @@ class SiteFooter extends React.Component {
         )
 
     }
-
-}
 
 export default SiteFooter
 

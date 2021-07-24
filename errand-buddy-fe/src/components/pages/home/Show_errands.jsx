@@ -1,14 +1,11 @@
-import React, { Component, useState, useEffect  } from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import React, { useState, useEffect  } from "react";
+import { Link,  useHistory } from "react-router-dom";
 
-import arrData from "../../../Data";
-import Layout from "../../Layout";
-import moment from "moment";
-import { isAuthenticated } from "../../Auth";
+import { isAuthenticated } from "../../utils/Auth";
 import axios from "axios";
 
-import './Show_errands.scss'
-import SiteFooter from '../../SiteFooter';
+import '../../../style/Show_errands.scss'
+import SiteFooter from '../../utils/SiteFooter';
 
 
 const Show_errands = (props) =>
@@ -142,8 +139,8 @@ const Show_errands = (props) =>
                   <div className="review-box">
                     <h5> Reviews </h5>
                     <div>
-                      {review.allReviews.map( item => (
-                        <div className="reviews-list">
+                      {review.allReviews.map( (item, i )=> (
+                        <div className="reviews-list" key={i}>
                           <h6>{item.review}</h6>
                           <h6>By: {item.user_name} on {formatDate(item.created)}</h6>
                         </div>

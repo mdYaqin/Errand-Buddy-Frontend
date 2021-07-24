@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { Redirect, Link, useHistory } from "react-router-dom";
-import { isAuthenticated } from "./Auth";
-import axios from "axios";
-import "./SiteHeader.scss";
+import React, { useState,useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import "../../style/SiteHeader.scss";
 
 const SiteHeader = (props) => {
   const history = useHistory();
   const token = localStorage.getItem("jwt")
   const userId = localStorage.getItem("userId")
+  const [log, setLog]=useState(false)
+
 
   const logout = (next) => {
     localStorage.removeItem("jwt");
@@ -15,6 +15,7 @@ const SiteHeader = (props) => {
     localStorage.removeItem("username");
     // axios.get("http://localhost:4000/api/users/logout")
     props.setAuth(false);
+    setLog(!log);
     next();
   };
   return (
@@ -72,7 +73,7 @@ const SiteHeader = (props) => {
           </li>
           <li className="nav-item">
             <div className="nav-link" href="/#">
-              {!props.isAuth && !token ? (
+              {!token ? (
                 <Link to="/login" className="navbar-link">
                   <span className="fas fa-sign-in-alt"></span>
                   Login

@@ -1,6 +1,6 @@
 import React from "react";
 
-const ErrandDisplay = ({ handleClick, errandData }) => (
+const Checkout = ({ handleClick, errandData }) => (
   <section className="payment-section">
     <div className="payment-div">
       <img
@@ -21,4 +21,4 @@ const ErrandDisplay = ({ handleClick, errandData }) => (
   </section>
 );
 
-export default ErrandDisplay;
+export default Checkout;

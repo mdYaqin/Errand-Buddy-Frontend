@@ -3,7 +3,7 @@ import { useStripe } from "@stripe/react-stripe-js";
 // import { isAuthenticated } from "../../auth";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import "./Payment.scss";
+import "../../../../style/Payment.scss";
 import ErrandDisplay from "./ErrandDisplay";
 
 const Payments = (props) => {

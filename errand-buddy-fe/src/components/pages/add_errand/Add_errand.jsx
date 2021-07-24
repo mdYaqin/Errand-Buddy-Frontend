@@ -1,12 +1,10 @@
 import React, { useState,useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import Layout from "../../Layout";
 // import { isAuthenticated } from "../../auth";
 import { useHistory } from "react-router-dom";
-import Errand_request from "./Errand_request";
 import DateFnsUtils from '@date-io/date-fns'
 import axios from "axios";
-import './Add_errand.scss'
+import '../../../style/Add_errand.scss'
 
 
 import {
@@ -39,7 +37,6 @@ function AddErrands(props) {
   const [pickupDate, setPickupDate] = useState(new Date())
   const [deliveryDate, setDeliveryDate] = useState(new Date())
 
-  console.log(props)
 
   useEffect(()=>{ 
     setData({

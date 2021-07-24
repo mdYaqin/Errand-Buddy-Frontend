@@ -14,7 +14,7 @@ import HourglassEmptyIcon from '@material-ui/icons/HourglassEmpty';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import './Buddy_dashboard.scss'
+import '../../../style/Dashboard.scss'
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -29,18 +29,18 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          <Typography component={'span'}>{children}</Typography>
         </Box>
       )}
     </div>
   );
 }
 
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.any.isRequired,
-  value: PropTypes.any.isRequired,
-};
+// TabPanel.propTypes = {
+//   children: PropTypes.node,
+//   index: PropTypes.any.isRequired,
+//   value: PropTypes.any.isRequired,
+// };
 
 function a11yProps(index) {
   return {
@@ -69,21 +69,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function IconLabelTabs() {
+export default function Dashboard() {
   
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
-  //To show the data in the dashboard according to whether user or buddy is chosen to view
+  // To show the data in the dashboard according to whether user or buddy is chosen to view
   const [userTab, setUserTab] = useState(true)
-  const [selectedOption, setSelectedOption]= useState("option1")
+  // const [selectedOption, setSelectedOption]= useState("option1")
   const changeUserTab = (event) => {
-      setSelectedOption(event.target.value)
+      // setSelectedOption(event.target.value)
       setUserTab(true)
   }
   const changeBuddyTab = (event) => {
     setUserTab(false)
-    setSelectedOption(event.target.value)
+    // setSelectedOption(event.target.value)
   }
 
   const handleChange = (event, newValue) => {
@@ -149,13 +149,14 @@ export default function IconLabelTabs() {
     )}
 
   const handleDelete=(e)=> {
-
+console.log(e._id)
    axios.delete(`http://localhost:4000/api/errands/${ e._id }/delete`, {
      headers: {
        "x-auth-token": token,
        "content-type": "application/json"
    }
    }).then(response => {
+     console.log(response.data.msg)
      setBool(!bool);
    });
   }
@@ -169,20 +170,9 @@ export default function IconLabelTabs() {
       setBool(!bool);
     });
   }
-  
-
-  // const handleUpdate=(user)=> {
-  //   history.push({
-  //     pathname: `/profile-update/${id}`,
-  //     state: { user }
-  //   })
-  //   console.log(user,id,'sgsgssg')
-  // }
-
  const { name, email } = user.user;
  
  useEffect(() => {
-   // router.post('/:id/accepted', authenticated, errandController.accept)
    axios
      .get(`http://localhost:4000/api/users/dashboard`, {
        headers: {
@@ -191,10 +181,9 @@ export default function IconLabelTabs() {
        },
      })
      .then((response) => {
-       // history.push(`/dashboard`)
        setUser(response.data);
      });
- }, []);
+ }, [bool]);
 
   const dashboardLinks = () => {
     return (
@@ -214,9 +203,9 @@ export default function IconLabelTabs() {
       <div className="dashboard-card container mb-5">
         {
           user.user.reviews.length>0 ? 
-          user.user.reviews.map((e) => (   
+          user.user.reviews.map((e,i) => (   
           
-          <div className="inner-card col mb-3">
+          <div className="inner-card col mb-3" key={i}>
             <div className="card-image">
               <img src={e.image} alt="Item" />
             </div>
@@ -246,9 +235,9 @@ export default function IconLabelTabs() {
       <div className="dashboard-card mb-5">
         {
           user.jobFulfill.length>0 ? 
-            user.jobFulfill.map((e) => (   
+            user.jobFulfill.map((e,i) => (   
               
-              <div className="inner-card mb-3">
+              <div className="inner-card mb-3" key={i}>
                 <div className="card-image">
                   <img src={e.image} alt="Item" />
                 </div>
@@ -278,9 +267,9 @@ export default function IconLabelTabs() {
       <div className="dashboard-card mb-5">
         {
           user.jobCreated.length>0 ? 
-            user.jobCreated.map((e) => (   
+            user.jobCreated.map((e,i) => (   
               
-              <div className="inner-card mb-3">
+              <div className="inner-card mb-3" key={i}>
                 <div className="card-image">
                   <img src={e.image} alt="Item" />
                 </div>
@@ -310,9 +299,9 @@ export default function IconLabelTabs() {
       <div className="dashboard-card mb-5">
         {
           user.buddyAccepted.length>0 ? 
-            user.buddyAccepted.map((e) => (   
+            user.buddyAccepted.map((e,i) => (   
               
-              <div className="inner-card mb-3">
+              <div className="inner-card mb-3" key={i}>
                 <div className="card-image">
                   <img src={e.image} alt="Item" />
                 </div>
@@ -342,9 +331,9 @@ export default function IconLabelTabs() {
           
           {
             user.completed.length>0 ? 
-              user.completed.map((e) => (   
+              user.completed.map((e,i) => (   
                 
-                <div className="inner-card mb-3">
+                <div className="inner-card mb-3" key={i}>
                   <div className="card-image">
                     <img src={e.image} alt="Item" />
                   </div>
@@ -373,12 +362,12 @@ export default function IconLabelTabs() {
     <div className="dashboard-container" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + "/dashboard-background.jpg"})`,  backgroundRepeat: "no-repeat", backgroundSize:"cover"}} >
       <div className="header-tabs">
         <div>
-          <input onClick={changeUserTab} checked={selectedOption === "option1" } value="option1" id="one" name="tabs" type="radio" />
-          <label classname="first-label" for="one"><i class="fa fa-pencil-square-o"></i> User</label>
+          <input onClick={changeUserTab} defaultChecked value="option1" id="one" name="tabs" type="radio" />
+          <label className="first-label" htmlFor="one"><i className="fa fa-pencil-square-o"></i> User</label>
         </div>
         <div>
-          <input onClick={changeBuddyTab} checked={selectedOption === "option2" } value="option2" id="two" name="tabs" type="radio"/>
-          <label for="two"><i class="fa fa-magic"></i> Buddy</label>
+          <input onClick={changeBuddyTab} value="option2" id="two" name="tabs" type="radio"/>
+          <label htmlFor="two"><i className="fa fa-magic"></i> Buddy</label>
         </div>
       </div>
       
@@ -422,7 +411,7 @@ export default function IconLabelTabs() {
             <Tab icon={<DirectionsRunIcon/>} label="Errands In Progress" {...a11yProps(0)} />
             <Tab icon={<CheckBoxIcon />} label="Errands Completed" {...a11yProps(1)} />
             { userTab ? 
-              <Tab icon={<HourglassEmptyIcon />} label="Errands Not Accepted Yet" {...a11yProps(3)}/>
+              <Tab icon={<HourglassEmptyIcon />} label="Errands Not Accepted Yet" {...a11yProps(2)}/>
               : null
             }
             {/* <Tab icon={<AssignmentIcon />} label="Buddy Jobs Performed" {...a11yProps(3)} />
@@ -456,12 +445,7 @@ export default function IconLabelTabs() {
             </div>
           ) 
           }
-        {/* <TabPanel value={value} index={3}>
-          {transactionHistory()}
-        </TabPanel>
-        <TabPanel value={value} index={4}>
-          {errandPosted()}
-        </TabPanel> */}
+     
 
       </div>
 
