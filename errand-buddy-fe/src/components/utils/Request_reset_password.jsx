@@ -52,7 +52,7 @@ function Request_reset_password(props) {
               <div className="card card-body">
                 <h1 className="text-center mb-3">Forgot Password</h1>
                   <div className="form-group">
-                    <label htmlFor="email">Email</label>
+                    <label for="email">Email</label>
                     <input
                         onChange={handleChange("email")}
                         type="text"
@@ -65,7 +65,7 @@ function Request_reset_password(props) {
                   </div>
                   { isLoading ? 
 
-                    null 
+                    <button onClick={clickSubmit} className="btn btn-primary btn-block" disabled>Submit<i class="fas fa-spinner fa-spin"></i> </button> 
                     : 
                     <button onClick={clickSubmit} className="btn btn-primary btn-block">Submit</button>
                   }
