@@ -371,7 +371,7 @@ console.log(e._id)
         </div>
       </div>
       
-      <div className="content">
+      <div>
       <div title="Dashboard" description="  " className="user-summary">
         <div className="user-card mb-5 ">
           <h3 className="card-header">User Information</h3>

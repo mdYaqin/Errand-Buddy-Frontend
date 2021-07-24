@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import axios from "axios";
 
@@ -18,14 +18,14 @@ function Request_reset_password(props) {
     const {email} = values
     const history = useHistory()
 
+
+    //send a loading state, loading spinner to render conditionally
     const [isLoading, setIsLoading] = useState(false)
 
     const clickSubmit = (event) => { 
         event.preventDefault()
 
         setIsLoading(true)
-
-        //send a loading state, loading spinner to render conditionally
         
         axios
           .post("http://localhost:4000/api/users/forgot-password", {
