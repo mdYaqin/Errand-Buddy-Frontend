@@ -78,19 +78,19 @@ const Show_errands = (props) =>
               
                 <div className="row location-info">
                   <div className="pickup-info">
-                    <p>Pick up Location:{props.location.state.e.pickupLocation}</p>
+                    <p>Pick up Location: {props.location.state.e.pickupLocation}</p>
                     { props.location.state.e.pickupLatitude ? 
                       <Google latitude={props.location.state.e.pickupLatitude} longtitude={props.location.state.e.pickupLongtitude}/>
-                      : <h5>Google Maps no available for postal code provided</h5>
+                      : <h5>Google Maps not available for postal code provided</h5>
                     }
                     <p>Pick up Time:{formatDate(props.location.state.e.pickupTime)}</p>
                   </div>
 
                   <div className="deliver-info">
-                    <p>Delivery Location:{props.location.state.e.deliveryLocation}</p>
+                    <p>Delivery Location: {props.location.state.e.deliveryLocation}</p>
                     { props.location.state.e.deliveryLatitude ? 
                       <Google latitude={props.location.state.e.deliveryLatitude} longtitude={props.location.state.e.deliveryLongtitude}/>
-                      : <h5>Google Maps no available for postal code provided</h5>
+                      : <h5>Google Maps not available for postal code provided</h5>
                     }     
                     <p>Deliver By:{formatDate(props.location.state.e.deliveryTime)}</p>
                   </div>
@@ -99,9 +99,9 @@ const Show_errands = (props) =>
                               
 
 
-                <p>Item Price:{props.location.state.e.itemPrice}</p>
-                <p>Description:{props.location.state.e.description}</p>
-                <p>Status:{props.location.state.e.status}</p>
+                <p>Item Price: ${props.location.state.e.itemPrice}</p>
+                <p>Description: {props.location.state.e.description}</p>
+                <p>Status: {props.location.state.e.status}</p>
 
                 <button className="btn btn-outline-primary" mt-2 mb-2>
               {isAuthenticated() &&  (

@@ -90,8 +90,14 @@ function AddErrands(props) {
     });
   }
 
+  //Loading state; loading a spinner to render conditionally
+  const [isLoading, setIsLoading] = useState(false)
+
   function handleClick(event) {
     event.preventDefault();
+
+    setIsLoading(true)
+    console.log(isLoading)
 
     let formData = new FormData()
     formData.append ("items", data.items)
@@ -129,13 +135,13 @@ function AddErrands(props) {
           }
         }
       ))
-      .then((res) => {
-        console.log(res.data);
+      .catch(err => {
+        console.log(err.data);
         
-        // updateErrandData(res.data.errandInfo) //this needs to be checked along with the data being passed in the link
-
-
-      });
+      })
+      .finally (() => {
+        setIsLoading(false)
+      })
   }
 
   return (
@@ -261,12 +267,25 @@ function AddErrands(props) {
 
           <br />
 
-          <button
-            onClick={handleClick}
-            className="inputButton"
-          > {!props.location.state ? "Add Errand" : "Modify Details"}
-            
-          </button>
+          { isLoading ?
+            (
+              <button
+                onClick={handleClick}
+                className="inputButton"
+              disabled> {!props.location.state ? "Add Errand" : "Modify Details"}<i class="fas fa-spinner fa-spin"></i>
+              </button>
+            )
+          :
+            (
+              <button
+              onClick={handleClick}
+              className="inputButton"
+              > {!props.location.state ? "Add Errand" : "Modify Details"}
+              
+              </button>
+
+            )
+          }
 
         </div>
       </div>

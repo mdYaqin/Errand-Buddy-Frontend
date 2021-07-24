@@ -16,7 +16,7 @@ function Google_map({latitude, longtitude}) {
     }
 
     const {isLoaded, LoadError} = useLoadScript({
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API,
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API,
         libraries,
     })
 

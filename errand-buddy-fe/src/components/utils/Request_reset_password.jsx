@@ -19,7 +19,7 @@ function Request_reset_password(props) {
     const history = useHistory()
 
 
-    //send a loading state, loading spinner to render conditionally
+    //Loading state; loading a spinner to render conditionally
     const [isLoading, setIsLoading] = useState(false)
 
     const clickSubmit = (event) => { 
