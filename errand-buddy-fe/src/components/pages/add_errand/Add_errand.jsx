@@ -139,9 +139,15 @@ function AddErrands(props) {
         }
       ))
       .then(response => {
-        history.push({
-          pathname: '/'
+        if (response.data.priceChange) {
+          history.push ({
+            pathname: `/stripe/payment`, state: {errandData: response.data.errandInfo}
         })
+
+        } else { history.push({
+          pathname: '/'
+          }) 
+        }
       })
       .catch(err => {
         console.log(err.data);
