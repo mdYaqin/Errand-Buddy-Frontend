@@ -137,8 +137,9 @@ function AddErrands(props) {
             "Content-Type": "multipart/form-data" 
           }
         }
-      ))
+      )
       .then(response => {
+        console.log('2', response)
         if (response.data.priceChange) {
           history.push ({
             pathname: `/stripe/payment`, state: {errandData: response.data.errandInfo}
@@ -148,6 +149,7 @@ function AddErrands(props) {
           pathname: '/'
           }) 
         }
+
       })
       .catch(err => {
         console.log(err.data);
@@ -155,7 +157,7 @@ function AddErrands(props) {
       })
       .finally (() => {
         setIsLoading(false)
-      })
+      }))
   }
 
   return (

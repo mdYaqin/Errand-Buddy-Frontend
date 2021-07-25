@@ -49,18 +49,6 @@ function a11yProps(index) {
   };
 }
 
-function LinkTab(props) {
-  return (
-    <Tab
-      component="a"
-      onClick={(event) => {
-        event.preventDefault();
-      }}
-      {...props}
-    />
-  );
-}
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -89,6 +77,17 @@ export default function Dashboard() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const [liked, setliked] = useState([])
+
+  useEffect(() => {
+    const userId = localStorage.getItem('userId')
+
+    axios.get(`http://localhost:4000/api/users/${userId}/retrieveLikes`)
+    .then(response => {
+      setliked(response.data)
+    })
+  }, ([]))
 
   const {id} = useParams()
   const history = useHistory()
@@ -244,7 +243,7 @@ console.log(e._id)
                 <div className="card-body">
                   <h5 className="item-details">{e.items}</h5>
                   <h6>Errand Fee: ${e.errandFee}</h6>
-                  <h6>Errand Fee: ${e.itemPrice}</h6>
+                  <h6>Items'Price: ${e.itemPrice}</h6>
                 </div>
                 <div className="button-div">
                   <button onClick={()=>handleSubmit(e._id)}>Complete Errand 
@@ -276,7 +275,7 @@ console.log(e._id)
                 <div className="card-body">
                   <h5 className="item-details">{e.items}</h5>
                   <h6>Errand Fee: ${e.errandFee}</h6>
-                  <h6>Errand Fee: ${e.itemPrice}</h6>
+                  <h6>Items'Price: ${e.itemPrice}</h6>
                 </div>
                 <div className="button-div">
                   <button onClick={()=>handleEdit(e)}>Edit</button>
@@ -308,7 +307,7 @@ console.log(e._id)
                 <div className="card-body">
                   <h5 className="item-details">{e.items}</h5>
                   <h6>Errand Fee: ${e.errandFee}</h6>
-                  <h6>Errand Fee: ${e.itemPrice}</h6>
+                  <h6>Items'Price: ${e.itemPrice}</h6>
                 </div>
                 <div className="button-div">
                   <button onClick={()=>handleCancel(e)}>Cancel</button>
@@ -340,7 +339,7 @@ console.log(e._id)
                   <div className="card-body">
                     <h5 className="item-details">{e.items}</h5>
                     <h6>Errand Fee: ${e.errandFee}</h6>
-                    <h6>Errand Fee: ${e.itemPrice}</h6>
+                    <h6>Items'Price: ${e.itemPrice}</h6>
                   </div>
                 </div>
             ))              
@@ -348,6 +347,38 @@ console.log(e._id)
               (
             <div>
               <h3>No Errands Completed yet. Accept a job and earn some extra $$$.</h3>
+            </div>
+            )      
+          }  
+         
+        </div>
+      );
+    };
+
+    const errandsLiked = () => {
+      return (
+        <div className="dashboard-card mb-5">
+          
+          {
+            liked.length>0 ? 
+              liked.map((e,i) => (   
+                
+                <div className="inner-card mb-3" key={i}>
+                  <div className="card-image">
+                    <img src={e.errandId.image} alt="Item" />
+                  </div>
+                  <div className="card-body">
+                    <h5 className="item-details">{e.errandId.items}</h5>
+                    <h6>Errand Fee: ${e.errandId.errandFee}</h6>
+                    <h6>Items'Price: ${e.errandId.itemPrice}</h6>
+                    <h6>{e.errandId.status}</h6>
+                  </div>
+                </div>
+            ))              
+              :         
+              (
+            <div>
+              <h3>No Errands Liked yet</h3>
             </div>
             )      
           }  
@@ -412,10 +443,8 @@ console.log(e._id)
             <Tab icon={<CheckBoxIcon />} label="Errands Completed" {...a11yProps(1)} />
             { userTab ? 
               <Tab icon={<HourglassEmptyIcon />} label="Errands Not Accepted Yet" {...a11yProps(2)}/>
-              : null
+              : <Tab icon={<FavoriteIcon />} label="Errands Liked" {...a11yProps(2)}/>
             }
-            {/* <Tab icon={<AssignmentIcon />} label="Buddy Jobs Performed" {...a11yProps(3)} />
-            <Tab icon={<AssignmentIcon />} label="All Errands Posted" {...a11yProps(4)} /> */}
           </Tabs>
         </Paper>
 
@@ -442,7 +471,11 @@ console.log(e._id)
               <TabPanel value={value} index={1}>
                 {buddyErrandsCompleted()}
               </TabPanel>
+              <TabPanel value={value} index={2}>
+                {errandsLiked()}
+              </TabPanel>
             </div>
+            
           ) 
           }
      

@@ -39,7 +39,7 @@ const Success = () => {
 
   return (
     <div>
-      {paid ? <h1>Successful Payment</h1> : <h1>Payment Unsuccessful</h1>}
+      {paid ? <h1>Successful Payment</h1> : <h1>Please contact us to ensure payment was successfully made and you are not double charged</h1>}
 
       <Link to={`/dashboard/${userId}`}>
         <button> Continue</button>
