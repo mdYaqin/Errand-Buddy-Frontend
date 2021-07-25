@@ -111,6 +111,8 @@ function AddErrands(props) {
     formData.append('errandFee', data.errandFee)
     formData.append('image', image.newImage)
 
+    console.log(formData)
+
     props.location.state?.data===undefined ? (axios
       .post("http://localhost:4000/api/users/create-errand", 
         formData,
@@ -121,12 +123,13 @@ function AddErrands(props) {
           }
         }
       ).then (response => {
+
         history.push ({
           pathname: `/stripe/payment`, state: {errandData: response.data.errandInfo}
       })
       }))
       : (axios
-      .put(`http://localhost:4000/api/errands/${props.match.params.id}/update`, 
+      .patch(`http://localhost:4000/api/errands/${props.match.params.id}/update`, 
         formData,
         {
           headers: {
@@ -135,6 +138,11 @@ function AddErrands(props) {
           }
         }
       ))
+      .then(response => {
+        history.push({
+          pathname: '/'
+        })
+      })
       .catch(err => {
         console.log(err.data);
         
