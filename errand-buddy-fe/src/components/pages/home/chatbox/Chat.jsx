@@ -1,22 +1,44 @@
 import React from 'react';
-import "../../../style/Chat.scss";
+import "../../../../style/Chat.scss";
 import Conversation from './Conversation';
+import Message from './Message';
 
-function chat(props) {
+function Chat(props) {
     return (
         
-        <div classname="chat">
+        <div className="chat">
             <div className="errand-chats">
                 <div className="errand-wrapper">
-                    <input placeholder="Search Chat" />
-
+                    <input className="search-chat" placeholder="Search Chats" />
+                    <Conversation/>
+                    <Conversation/>
+                    <Conversation/>
                 </div>
             </div>
                 
             <div className="main-chat">
                 <div className="main-wrapper">
-                    <Conversation/>
-                    
+                    <div className="chatBoxTop">
+                        <Message />
+                        <Message own={true}/>
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
+                        <Message />
+                    </div>
+                    <div className="chatBoxBottom">
+                        <textarea className="chatInput" placeholder="Type Here"></textarea>
+                        <button className="chatSubmit">Send</button>
+                    </div>
                 </div>
             </div>
                 
@@ -25,4 +47,4 @@ function chat(props) {
     );
 }
 
-export default chat;
+export default Chat;

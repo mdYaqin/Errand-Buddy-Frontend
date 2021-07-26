@@ -8,6 +8,17 @@ const Home = () => {
   const [data, setData] = useState([]);
 
 
+  //For Search Bar
+  const [searchField, setSearchField] = useState("") 
+
+  let filteredErrands = data.filter( item =>
+    item.items.toLowerCase().includes(searchField.toLowerCase())
+  )
+
+  //For Sort Bar
+  const [sortedField, setSortedField] = useState([])
+
+
   const userId = localStorage.getItem("userId");
   
   useEffect(() => {
@@ -17,7 +28,7 @@ const Home = () => {
       .then(function (response) {
         // handle success
         setData(response.data.errands);
-        console.log(response.data)
+
       })
       .catch(function (error) {
         // handle error
@@ -28,19 +39,22 @@ const Home = () => {
       });
   }, []);
 
-  //Likes function
 
   return (
         
       <div className="home-body" style={{ backgroundImage: `url(${process.env.PUBLIC_URL + "/home-background.jpg"})`,  backgroundRepeat: "no-repeat", backgroundSize:"cover"}}>
         <div className="home-headers">
           <h1>Errand Buddy</h1>
-          <h3>Let's help each other with our errands</h3>
         </div>
         <div className="main-container mt-5" >
           <h2 className="mb-4">Available Errands! </h2>
+          <input 
+            type='search' 
+            placeholder="Search the Errands"
+            onChange={e => {setSearchField(e.target.value)} }
+          />
           <div id="errand-container" className="errand-container row ">
-            {data.map((e) => {
+            {filteredErrands.map((e) => {
                 if (userId !== e.user_id) {
                   return (
                     <div className="errand-card mb-3" key={e._id}>

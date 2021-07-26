@@ -14,13 +14,13 @@ import CompletedErrands from "./components/pages/dashboard/Completed_errands";
 import Dashboard from "./components/pages/dashboard/Dashboard";
 
 //User components
-
 import UserReview from './components/pages/dashboard/Review';
 import ErrandCompleted from './components/pages/dashboard/Errand_completed';
 import Payments from './components/pages/add_errand/stripe/Payment';
 import AddErrands from './components/pages/add_errand/Add_errand';
 import Success from './components/pages/add_errand/stripe/Success'
 import Support from './components/pages/Support'
+import Chat from './components/pages/home/chatbox/Chat'
 import Request_reset_password from './components/utils/Request_reset_password'
 import ResetPassword from './components/utils/ResetPassword'
 import './App.scss'
@@ -70,6 +70,15 @@ function App() {
         <Route path="/request-reset-password" exact component={Request_reset_password} />
         
         <Route path="/reset-password" exact component={ResetPassword} />
+        <Route path="/chat" 
+          render={(props) =>
+            userId ? (
+              <Chat userId={userId} />
+            ) : (
+              <Redirect to="/login" />
+            )
+          } 
+        />
         <Route path="/stripe/payment" exact component={Payments} />
         <Route
           path="/dashboard/:id"
@@ -83,7 +92,7 @@ function App() {
           }
         />
         <Route path="/stripe/success" exact component={Success} />
-
+        
         <Route path="/:id" exact component={ShowErrands} />
         <Route
           path="/:errantID/completed-errands"

@@ -50,6 +50,9 @@ const SiteHeader = (props) => {
             <Link to={`/dashboard/${userId}`}>Your Dashboard</Link>
           </li>
           <li className="other-links">
+            <Link to={`/chat/${userId}`}>Messages</Link>
+          </li>
+          <li className="other-links">
             <Link to={`/support`}>Support</Link>
           </li>
         </ul>
