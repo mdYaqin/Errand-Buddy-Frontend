@@ -6,7 +6,7 @@ import { isAuthenticated } from "../../utils/Auth";
 import axios from "axios";
 import Google from "../../googleMaps/Google_map";
 import '../../../style/Show_errands.scss'
-import SiteFooter from '../../utils/SiteFooter';
+import { format } from 'timeago.js'
 
 
 const Show_errands = (props) =>
@@ -70,7 +70,8 @@ const Show_errands = (props) =>
   
     axios.post('http://localhost:4000/api/chats/newconversation', {
 
-      members: [ user_name, props.location.state.e.username],
+      buyer: user_name,
+      seller: props.location.state.e.username,
       errand_Id: props.location.state.e._id,
       errand_desc: props.location.state.e.items
 
@@ -78,7 +79,9 @@ const Show_errands = (props) =>
     .then(res=>{
         setNewConversation(res.data.conversation)
         history.push ({
-          pathname: `/chat`
+          pathname: `/chat`,
+          currentChat: newConversation
+
         })
     })
   
@@ -173,7 +176,7 @@ const Show_errands = (props) =>
                       {review.allReviews.map( (item, i )=> (
                         <div className="reviews-list" key={i}>
                           <h6>{item.review}</h6>
-                          <h6>By: {item.user_name} on {formatDate(item.created)}</h6>
+                          <h6>By: {item.user_name} on {format(item.created)}</h6>
                         </div>
 
                       ))}

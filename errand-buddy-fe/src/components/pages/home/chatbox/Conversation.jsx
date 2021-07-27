@@ -7,7 +7,8 @@ function Conversation({conversation, currentUser}) {
     const [otherUser, setOtherUser] = useState(null)
 
     useEffect(() => {
-        const otherPersonName = conversation.members.find( member => member !== currentUser)
+        console.log('5',conversation)
+        const otherPersonName = conversation.seller
         setOtherUser(otherPersonName)
 
     //     axios.get('http://localhost:4000/api/chats/')
@@ -15,7 +16,7 @@ function Conversation({conversation, currentUser}) {
     //         console.log(res)
     //     })
     // },[currentUser, conversation])
-    })
+    },[])
 
     return (
         <div className="conversation">

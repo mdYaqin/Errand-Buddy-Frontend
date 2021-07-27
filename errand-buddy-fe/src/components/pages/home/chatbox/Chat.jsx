@@ -6,34 +6,41 @@ import Message from './Message';
 
 function Chat(props) {
 
-    const[conversations, setConversations] = useState([])
-    const[currentChat, setCurrentChat] = useState(null)
-    const[messages, setMessages] = useState([])
+    const [buyerConversations, setBuyerConversations] = useState([])
+   
+    const [currentChat, setCurrentChat] = useState(null)
+    const [messages, setMessages] = useState([])
     const [newMessage, setNewMessage] = useState("")
+    const [searchField, setSearchField] = useState("") 
 
     const user_name = localStorage.getItem('username')
+
+    let filteredChats = buyerConversations.filter( item =>
+        item.errand_desc.toLowerCase().includes(searchField.toLowerCase())
+    )
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const message = {
             sender: user_name,
-            text: newMessage,
+            text: newMessage.trim(),
             conversationId: currentChat._id
         }
 
         axios.post('http://localhost:4000/api/chats/newmessage', {message})
         .then(res => {
             setMessages([...messages, res.data])
-
+            setNewMessage("")
         })
     }
 
 
     useEffect(() => {
-      axios.get(`http://localhost:4000/api/chats/conversations/` + user_name)
+      axios.get(`http://localhost:4000/api/chats/buyerconversations/` + user_name)
       .then(res => {
-          setConversations(res.data)
+          console.log(user_name)
+          setBuyerConversations(res.data)
       })
       .catch((error) => {
         console.log('error')
@@ -45,7 +52,6 @@ function Chat(props) {
         if(currentChat) {        
             axios.get('http://localhost:4000/api/chats/' + currentChat._id)
             .then(res => {
-                console.log('3',res.data)
                 setMessages(res.data)
             })
         }
@@ -57,8 +63,8 @@ function Chat(props) {
         <div className="chat">
             <div className="errand-chats">
                 <div className="errand-wrapper">
-                    <input className="search-chat" placeholder="Search Chats" />
-                    {conversations.map((item)=> (
+                    <input className="search-chat" placeholder="Search Chats" onChange={e => {setSearchField(e.target.value)}}/>
+                    {filteredChats.map((item)=> (
                         <div onClick={() => setCurrentChat(item)}>
                         <Conversation conversation={item} currentUser={user_name}/>
                         </div>
@@ -86,7 +92,12 @@ function Chat(props) {
                                 value={newMessage}
                             >
                             </textarea>
-                            <button className="chatSubmit" onClick={handleSubmit}>Send</button>
+                            { newMessage.trim() === "" ? 
+                                (<button className="chatSubmit" onClick={handleSubmit} disabled style={{color: "grey", backgroundColor: "lightgrey"}}>Send</button>) 
+                                : 
+                                (<button className="chatSubmit" onClick={handleSubmit}>Send</button>)
+                            }
+                            
                         </div>
                         </>
                         ) 
