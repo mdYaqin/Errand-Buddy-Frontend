@@ -1,5 +1,6 @@
 import React, { useState, useEffect  } from "react";
 import { Link,  useHistory } from "react-router-dom";
+import { Redirect } from "react-router";
 
 import { isAuthenticated } from "../../utils/Auth";
 import axios from "axios";
@@ -14,6 +15,8 @@ const Show_errands = (props) =>
   const history = useHistory()
   const token = localStorage.getItem("jwt");
   const userId = localStorage.getItem("userId");
+  const user_name = localStorage.getItem('username')
+
 
   const handleSubmit = () =>
   {
@@ -59,8 +62,27 @@ const Show_errands = (props) =>
     return new Date(string).toLocaleString([]);
   }
 
-  const deliveryDate = props.location.state.e.deliveryTime
-  const localDeliveryDate = new Date(deliveryDate)
+  // Creating a chat with seller
+
+  const [newConversation, setNewConversation] = useState(null)
+
+  function newChat() {
+  
+    axios.post('http://localhost:4000/api/chats/newconversation', {
+
+      members: [ user_name, props.location.state.e.username],
+      errand_Id: props.location.state.e._id,
+      errand_desc: props.location.state.e.items
+
+    })
+    .then(res=>{
+        setNewConversation(res.data.conversation)
+        history.push ({
+          pathname: `/chat`
+        })
+    })
+  
+  }
   
 
     return (
@@ -140,6 +162,7 @@ const Show_errands = (props) =>
                     </div>
                     <h6 className="smaller-h6"> Based on {review.allReviews.length} reviews</h6>
                   </div>
+                  <button onClick={newChat} > Chat with Seller</button>
 
                   
                   <div className="dotted-lines"></div>

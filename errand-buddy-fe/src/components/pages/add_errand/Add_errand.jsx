@@ -168,6 +168,7 @@ function AddErrands(props) {
           <form method="POST" action="" />
           <h1>{!props.location.state ? "Create an Errand" : "Modify Errand"}</h1>
           <select
+            required
             className="input mb-3"
             aria-label=".form-select-lg example"
             name="category"
