@@ -7,7 +7,7 @@ function Conversation({conversation, currentUser}) {
     const [otherUser, setOtherUser] = useState(null)
 
     useEffect(() => {
-        console.log('5',conversation)
+
         const otherPersonName = conversation.seller
         setOtherUser(otherPersonName)
 
