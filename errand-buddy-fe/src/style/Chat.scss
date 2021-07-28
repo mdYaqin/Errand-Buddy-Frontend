@@ -2,22 +2,32 @@
     display: flex;
     overflow-y: scroll;
     height: 100%;
+    justify-content: center;
     
     .errand-chats {
         width: 30%;
         height: 100%;
+
+        .errand-wrapper {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid lightblue;
+        }
 
         .search-chat {
             width: 60%;
             padding: 10px 0;
             border: none;
             border-bottom: 1px solid lightgray;
+            float:left;
         }
     }
 
     .main-chat {
         width: 40%;
         height: 100%;
+        margin-left: 20px;
     }
 
     .main-wrapper {
@@ -28,11 +38,16 @@
 
     .chatBoxTop {
         overflow-y: scroll;
-        height: 80%;
+        height: 500px;
+        width: 80%;
+        border: 2px solid Grey;
+        margin: 20px auto;
+        border-radius: 5px;
+        
     }
 
     .chatBoxBottom {
-        margin-top: 5px;
+        margin-top: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -55,6 +70,10 @@
         height: 90%;
     }
 
-    
+    .noConversation {
+        font-size: 24px;
+        color: lightgrey;
+        text-align: center;
+    }
 }
 

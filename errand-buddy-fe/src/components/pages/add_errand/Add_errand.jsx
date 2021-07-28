@@ -164,6 +164,7 @@ function AddErrands(props) {
   }
 
   return (
+
     <div
       className="add-row"
       style={{
@@ -205,7 +206,7 @@ function AddErrands(props) {
           />
         </div>
 
-        <div className="outer mb-3">
+      <div className="outer mb-3">
           <input
             onChange={uploadImage}
             required

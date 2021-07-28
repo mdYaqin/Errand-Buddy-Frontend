@@ -32,7 +32,7 @@ function App() {
 
   const token = localStorage.getItem("jwt");
   const userId = localStorage.getItem("userId");
-  // const token = localStorage.getItem("jwt")
+  const username = localStorage.getItem("username");
 
   const displayReviews = (latestReview) => {
     setReviews([...reviews, latestReview]);
