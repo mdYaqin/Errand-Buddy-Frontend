@@ -18,8 +18,6 @@ const Payments = (props) => {
     const { errandId, errandImage, errandName, errandPrice } =
       props.location.state.errandData;
 
-      console.log ( errandId, errandImage, errandName, errandPrice )
-
       let line_items
     
       if (errandImage) {

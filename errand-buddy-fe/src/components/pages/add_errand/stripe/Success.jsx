@@ -8,7 +8,6 @@ const Success = () => {
   const sessionId = queryParams.get("session_id");
   const userId = localStorage.getItem("userId");
 
-  console.log(sessionId);
   const [paid, setPaid] = useState(false);
 
   useEffect(() => {
@@ -31,7 +30,7 @@ const Success = () => {
         if (res.data.success) {
           setPaid(true);
         }
-        console.log(res.data, "sdfsfsdfsdf");
+
       }).catch((err) => {
           console.log(err, 'error')
       });

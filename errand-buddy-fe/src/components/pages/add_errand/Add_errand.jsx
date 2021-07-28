@@ -50,7 +50,7 @@ function AddErrands(props) {
     })
   if (props.location.state){
   setData(props.location.state.data)
-  console.log(props.location.state.data)
+
    }
   },[id])
 
@@ -97,7 +97,6 @@ function AddErrands(props) {
     event.preventDefault();
 
     setIsLoading(true)
-    console.log(isLoading)
 
     let formData = new FormData()
     formData.append ("items", data.items)
@@ -111,7 +110,7 @@ function AddErrands(props) {
     formData.append('errandFee', data.errandFee)
     formData.append('image', image.newImage)
 
-    console.log(formData)
+
 
     props.location.state?.data===undefined ? (axios
       .post("http://localhost:4000/api/users/create-errand", 
@@ -139,7 +138,7 @@ function AddErrands(props) {
         }
       )
       .then(response => {
-        console.log('2', response)
+
         if (response.data.priceChange) {
           history.push ({
             pathname: `/stripe/payment`, state: {errandData: response.data.errandInfo}
@@ -166,7 +165,7 @@ function AddErrands(props) {
         <div className="add-container">
         
           <form method="POST" action="" />
-          <h1>{!props.location.state ? "Create an Errand" : "Modify Errand"}</h1>
+          <h1>{!props.location.state ? "Create an Errand to Find a Buddy" : "Modify Errand"}</h1>
           <select
             required
             className="input mb-3"
@@ -174,7 +173,7 @@ function AddErrands(props) {
             name="category"
             value={data.category} onChange={handleChange}
           >
-            <option defaultValue> Select Categories</option>
+            <option defaultValue> Select Category</option>
             <option value="Grocery">Grocery</option>
             <option value="Queue">Queue</option>
             <option value="Pet-Sitting">Pet-sit</option>
@@ -190,7 +189,7 @@ function AddErrands(props) {
               id="items"
               name="items"
               value={data.items}
-              placeholder="Summary of Errand"
+              placeholder="Describe Errand (E.g. Queue for Yeezy drop at Pacific Plaza on 13 Aug)"
             />
           </div>
 
@@ -214,7 +213,7 @@ function AddErrands(props) {
               className="input"
               id="description"
               name="description"
-              placeholder="Description of Errand"
+              placeholder="More details of Errand"
               value={data.description}
             />
           </div>

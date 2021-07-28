@@ -6,28 +6,38 @@
     
     .errand-chats {
         width: 30%;
-        height: 100%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
 
-        .errand-wrapper {
-            margin-top: 10px;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid lightblue;
+        color: black;
+
+        .conversationBox {
+            margin: 0 auto;
         }
 
         .search-chat {
-            width: 60%;
+            width: 70%;
             padding: 10px 0;
+            margin: 20px auto;
+            text-align: center;
             border: none;
             border-bottom: 1px solid lightgray;
             float:left;
+
+            &:hover {
+                border-bottom-color: #58c791;
+            }
         }
+
+   
     }
 
     .main-chat {
-        width: 40%;
-        height: 100%;
+        width: 60%;
+        height: 80%;
         margin-left: 20px;
+        border-left: 1px solid #3ca0e7;
     }
 
     .main-wrapper {

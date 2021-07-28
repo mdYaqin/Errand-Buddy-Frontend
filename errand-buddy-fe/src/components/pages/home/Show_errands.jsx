@@ -22,7 +22,7 @@ const Show_errands = (props) =>
   {
     
     const errandId = props.location.state.e._id
-    console.log(errandId);
+
     axios.post(`http://localhost:4000/api/errands/${errandId }/accepted`,{}, {
      headers: {
        "x-auth-token": token,
@@ -30,7 +30,6 @@ const Show_errands = (props) =>
    }
     } ).then(response =>
     {
-      console.log(response)
      history.push(`/dashboard/${userId}`)
      })
   
