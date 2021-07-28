@@ -33,7 +33,16 @@ An online marketplace for users to list services or errands to be fulfilled for 
 *  Payment received from other users will be reflected in dashboard
 
 
+## Area of Improvements
+
+
+
+
 ## Wireframes
+
+
+
+
 
 
 
