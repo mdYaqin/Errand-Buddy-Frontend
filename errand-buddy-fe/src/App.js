@@ -123,7 +123,7 @@ function App() {
         {/* <Route path="/profile-update/:id" exact component={Register} /> */}
       </Switch>
       </div>
-      <SiteFooter />
+      {/* <SiteFooter /> */}
     </div>
   );
 }
