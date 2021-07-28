@@ -4,9 +4,6 @@ import { format } from 'timeago.js'
 
 function Message({message, own}) {
 
-    console.log('1')
-    console.log('Messages', message)
-
     return (
         <div className={ own ? "message own" : "message"} >
             <div className="messageTop">

@@ -32,7 +32,7 @@ function Request_reset_password(props) {
             email: email,
           })
         .then(res => { 
-        console.log(res)
+
           if(res.data.success) {
             history.push(`/`)
           }

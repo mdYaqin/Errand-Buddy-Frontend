@@ -39,6 +39,7 @@ function AddErrands(props) {
       pickupLocation: "",
       deliveryLocation: "",
       itemPrice: "",
+
       errandFee: "",
     });
     if (props.location.state) {

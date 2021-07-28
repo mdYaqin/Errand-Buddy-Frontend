@@ -148,14 +148,14 @@ export default function Dashboard() {
     )}
 
   const handleDelete=(e)=> {
-console.log(e._id)
+
    axios.delete(`http://localhost:4000/api/errands/${ e._id }/delete`, {
      headers: {
        "x-auth-token": token,
        "content-type": "application/json"
    }
    }).then(response => {
-     console.log(response.data.msg)
+
      setBool(!bool);
    });
   }
@@ -394,18 +394,22 @@ console.log(e._id)
       <div className="header-tabs">
         <div>
           <input onClick={changeUserTab} defaultChecked value="option1" id="one" name="tabs" type="radio" />
-          <label className="first-label" htmlFor="one"><i className="fa fa-pencil-square-o"></i> User</label>
+          <label className="first-label" htmlFor="one"><i className="fa fa-pencil-square-o"></i> Errand Requestor</label>
         </div>
         <div>
           <input onClick={changeBuddyTab} value="option2" id="two" name="tabs" type="radio"/>
-          <label htmlFor="two"><i className="fa fa-magic"></i> Buddy</label>
+          <label htmlFor="two"><i className="fa fa-magic"></i> Errand Buddy</label>
         </div>
       </div>
       
       <div>
       <div title="Dashboard" description="  " className="user-summary">
         <div className="user-card mb-5 ">
-          <h3 className="card-header">User Information</h3>
+          { userTab ?
+            <h3 className="card-header">Requestor Information</h3>
+            :
+            <h3 className="card-header">Buddy Information</h3>
+}
           <ul className="list-group">
             <li className="list-group-item">Name: {name}</li>
             <li className="list-group-item">Email: {email}</li>

@@ -14,7 +14,6 @@ function UserReview({reviews, displayReviews}) {
   const [reviewText, setReviewText] = useState("");
   const stars = Array(5).fill(0);
 
-  console.log(reviews, displayReviews, "PROPS IN USER REVIEW")
   const handleClick = (value) => {
     setCurrentValue(value);
   };
@@ -60,11 +59,6 @@ function UserReview({reviews, displayReviews}) {
         <Link to="/user/user-dashboard" className="navbar-item" href="">
           Submit
        </Link>
-      </button>
-      <button type="button" className="btn btn-warning">
-        <Link to="/user/user-dashboard" className="navbar-item" href="">
-          My Profile
-        </Link>
       </button>
     </div>
   );
