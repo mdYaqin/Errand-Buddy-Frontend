@@ -77,10 +77,11 @@ const Show_errands = (props) =>
     })
     .then(res=>{
         setNewConversation(res.data.conversation)
+       
         history.push ({
           pathname: `/chat`,
-          referredchat: newConversation
-
+          state: {referredchat: newConversation}
+        
         })
     })
   

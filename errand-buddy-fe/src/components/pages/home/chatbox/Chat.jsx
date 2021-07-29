@@ -36,8 +36,7 @@ TabPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.any.isRequired,
     value: PropTypes.any.isRequired,
-};
-  
+};c
 function a11yProps(index) {
     return {
       id: `full-width-tab-${index}`,
@@ -52,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function Chat(props, referredchat) {
+function Chat(props) {
 
     const [buddyConversations, setBuddyConversations] = useState([])
     const [sellerConversations, setSellerConversations] = useState([])   
