@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function Chat(props) {
+function Chat(props, referredchat) {
 
     const [buddyConversations, setBuddyConversations] = useState([])
     const [sellerConversations, setSellerConversations] = useState([])   

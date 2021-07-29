@@ -79,7 +79,7 @@ const Show_errands = (props) =>
         setNewConversation(res.data.conversation)
         history.push ({
           pathname: `/chat`,
-          currentChat: newConversation
+          referredchat: newConversation
 
         })
     })
@@ -126,18 +126,21 @@ const Show_errands = (props) =>
                 <p>Item Price: ${props.location.state.e.itemPrice}</p>
                 <p>Description: {props.location.state.e.description}</p>
                 <p>Status: {props.location.state.e.status}</p>
-
-                <button className="btn btn-outline-primary" mt-2 mb-2>
-              {isAuthenticated() &&  (
-                  <button onClick= {handleSubmit}> Accept
-              </button>
-              )}
-              {!isAuthenticated() && (
-                <Link to={`/login`} className="navbar-item" href="">
-                  Login to accept
-                </Link>
-              )}
-            </button>
+                { props.location.state.e.status === 'Completed' ? null : 
+                  <button className="btn btn-outline-primary" mt-2 mb-2>
+                  {isAuthenticated() &&  (
+                      <button onClick= {handleSubmit}> Accept
+                  </button>
+                  )}
+                  {!isAuthenticated() && (
+                    <Link to={`/login`} className="navbar-item" href="">
+                      Login to accept
+                    </Link>
+                  )}
+                </button>
+                
+                }
+                
                 
               </div>
 

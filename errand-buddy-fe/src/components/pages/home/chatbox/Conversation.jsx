@@ -7,6 +7,7 @@ function Conversation({conversation, currentUser}) {
     const [otherUser, setOtherUser] = useState(null)
     const user_name = localStorage.getItem('username')
     const [errandDesc, setErrandDesc] = useState('')
+    
     useEffect(() => {
 
         if(conversation.seller === user_name) {
