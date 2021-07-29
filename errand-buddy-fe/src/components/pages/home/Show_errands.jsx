@@ -120,9 +120,7 @@ const Show_errands = (props) =>
                   </div>
 
                 </div>
-                              
-
-
+                                              
                 <p>Item Price: ${props.location.state.e.itemPrice}</p>
                 <p>Description: {props.location.state.e.description}</p>
                 <p>Status: {props.location.state.e.status}</p>
