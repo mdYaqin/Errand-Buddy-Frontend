@@ -38,7 +38,7 @@ An online marketplace for users to list services or errands to be fulfilled for 
 
 
 
-<img src=https://github.com/MichaelKalamogan/Errand-Buddy-Frontend/blob/main/errand-buddy-fe/public/Readme/Wireframe1.jpeg width="500" height="400">
+<img src=https://github.com/MichaelKalamogan/Errand-Buddy-Frontend/blob/main/errand-buddy-fe/src/components/Readme/Wireframe1.jpeg width="500" height="400">
 <img src=https://github.com/MichaelKalamogan/Errand-Buddy-Frontend/blob/main/errand-buddy-fe/public/Readme/Wireframe2.jpeg width="500" height="400">
 <img src=https://github.com/MichaelKalamogan/Errand-Buddy-Frontend/blob/main/errand-buddy-fe/public/Readme/Wireframe3.jpeg width="500" height="400">
 
