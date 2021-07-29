@@ -31,7 +31,9 @@
     "sass": "^1.35.2",
     "timeago.js": "^4.0.2",
     "universal-cookie": "^4.0.4",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
+    "react-refresh": "^0.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -57,9 +59,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
-    "react-refresh": "^0.8.3"
   }
 }

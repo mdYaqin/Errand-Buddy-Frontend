@@ -36,7 +36,7 @@ TabPanel.propTypes = {
     children: PropTypes.node,
     index: PropTypes.any.isRequired,
     value: PropTypes.any.isRequired,
-};c
+};
 function a11yProps(index) {
     return {
       id: `full-width-tab-${index}`,
