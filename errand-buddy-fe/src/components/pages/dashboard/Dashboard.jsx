@@ -246,8 +246,7 @@ export default function Dashboard() {
                   <h6>Items'Price: ${e.itemPrice}</h6>
                 </div>
                 <div className="button-div">
-                  <button onClick={()=>handleSubmit(e._id)}>Complete Errand 
-                  </button>
+                  <button onClick={()=>handleEdit(e)}>Edit</button>
                 </div>
               </div>
           ))              
@@ -311,6 +310,8 @@ export default function Dashboard() {
                 </div>
                 <div className="button-div">
                   <button onClick={()=>handleCancel(e)}>Cancel</button>
+                  <button onClick={()=>handleSubmit(e._id)}>Complete Errand 
+                  </button>
                 </div>
               </div>
           ))              
@@ -331,7 +332,12 @@ export default function Dashboard() {
           {
             user.completed.length>0 ? 
               user.completed.map((e,i) => (   
-                
+                <Link
+                      to={{ pathname: `/${e._id}`, state: { e } }}
+                      className=""
+                      href=""
+                      style={{ textDecoration: 'none'}}
+                    >
                 <div className="inner-card mb-3" key={i}>
                   <div className="card-image">
                     <img src={e.image} alt="Item" />
@@ -342,6 +348,7 @@ export default function Dashboard() {
                     <h6>Items'Price: ${e.itemPrice}</h6>
                   </div>
                 </div>
+                </Link>
             ))              
               :         
               (

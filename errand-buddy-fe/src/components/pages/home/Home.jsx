@@ -92,25 +92,27 @@ const Home = () => {
           {filteredErrands.map((e) => {
             if (userId !== e.user_id) {
               return (
+                <Link
+                      to={{ pathname: `/${e._id}`, state: { e } }}
+                      className=""
+                      href=""
+                      style={{ textDecoration: 'none'}}
+                    >
                 <div className="errand-card mb-3" key={e._id}>
                   <div className="card-image">
                     <img src={e.image} alt="Item" />
                   </div>
                   <div className="card-body">
                     <h5 className="card-header">{e.username}</h5>
-                    <Link
-                      to={{ pathname: `/${e._id}`, state: { e } }}
-                      className=""
-                      href=""
-                    >
+                    
                       <h5 className="item-details">{e.items}</h5>
-                    </Link>
                     <p>Errand Fee: ${e.errandFee}</p>
                     <p>Pickup At: {e.pickupLocation}</p>
                     <p>Deliver To: {e.deliveryLocation}</p>
                   </div>
                   <Likes errandId={e._id} userId={userId} />
                 </div>
+                </Link>
               );
             }
           })}

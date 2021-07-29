@@ -29,7 +29,12 @@ h2{
     border-radius: 10px;
     background-color: white;
     padding: 0;
-    overflow: scroll;    
+    overflow: scroll;
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
 
     .item-details {
         text-align: center;
@@ -47,6 +52,9 @@ h2{
     .card-body {
         height: 50%;
         overflow: scroll;
+        text-decoration: none;
+        color: black;
+
     }
 
     .card-like {
