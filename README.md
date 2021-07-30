@@ -20,6 +20,8 @@ https://thanks-buddy.herokuapp.com/
 * Material UI
 * Bootstrap
 * Nodemailer
+* Moment
+* Date fns
 
 ## API Used
 * Stripe
